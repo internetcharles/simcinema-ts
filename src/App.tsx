@@ -1,25 +1,31 @@
 import React from "react";
-import logo from "./logo.svg";
+import { MemoryRouter, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
+import CreateCompany from "./Components/Create/CreateCompany";
+import Create from "./Components/Create/CreateMovie";
+import Header from "./Components/Global/Header";
+import StartPage from "./Components/Start/StartPage";
+
+function BasicLayout(): JSX.Element {
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+}
 
 function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<BasicLayout />}>
+          <Route index element={<StartPage />} />
+          <Route path="/create-company" element={<CreateCompany />} />
+          <Route path="/create-movie" element={<Create />} />
+        </Route>
+      </Routes>
+    </MemoryRouter>
   );
 }
 
