@@ -1,15 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Select from "react-select";
+import { Option } from "./Interfaces/CreateInterface";
 
 interface Props {}
 
-interface Option {
-  label: string;
-  value: string;
-}
-
-const CreateMovie: React.FC = (props: Props) => {
+const CreateMovie: React.FC<Props> = (props) => {
   const options: Option[] = [
     { label: "Action/Adventure", value: "action-adventure" },
     { label: "Comedy", value: "comedy" },
@@ -36,7 +32,7 @@ const CreateMovie: React.FC = (props: Props) => {
       </div>
       <div className="description-container">
         <div>Description (optional):</div>
-        <Select options={options} onChange={handleGenreChange} />
+        <input placeholder="This is a space movie." />
       </div>
       <Link to="/funding">Submit</Link>
     </>

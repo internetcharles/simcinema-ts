@@ -1,0 +1,121 @@
+import { Studio } from "../Interfaces/CreateInterface";
+
+export let studios: Studio[] = [
+  {
+    studioName: "20th Century Fox",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+  {
+    studioName: "Warner Bros.",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+  {
+    studioName: "Universal",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+  {
+    studioName: "Paramount",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+  {
+    studioName: "Columbia",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+  {
+    studioName: "TriStar",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+  {
+    studioName: "Miramax",
+    image: "",
+    offerRequested: false,
+    rejected: false,
+    offer: 0,
+    message: "",
+  },
+];
+
+export const resetData = (): void => {
+  studios = [
+    {
+      studioName: "20th Century Fox",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+    {
+      studioName: "Warner Bros.",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+    {
+      studioName: "Universal",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+    {
+      studioName: "Paramount",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+    {
+      studioName: "Columbia",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+    {
+      studioName: "TriStar",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+    {
+      studioName: "Miramax",
+      image: "",
+      offerRequested: false,
+      rejected: false,
+      offer: 0,
+      message: "",
+    },
+  ];
+};
