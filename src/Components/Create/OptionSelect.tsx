@@ -27,7 +27,7 @@ const OptionSelect: React.FC<Props> = (props) => {
   const selectOption = (option: MovieOption): void => {
     if (option.price > budgetInfo.moneyRemaining) {
       alert("Not enough money!");
-    } else if (currentOption >= optionPath.length) {
+    } else if (currentOption < optionPath.length - 1) {
       dispatch(adjustMoneyRemaining(option.price));
       dispatch(
         setMovieInfo({

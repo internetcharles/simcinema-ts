@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useAppDispatch } from "../../Redux/hooks";
+import { resetBudget } from "../../Redux/Reducers/budgetSlice";
 import {
   resetMovieInfo,
   setMovieInfo,
@@ -25,6 +26,7 @@ const CreateMovie: React.FC<Props> = (props) => {
 
   useEffect(() => {
     dispatch(resetMovieInfo());
+    dispatch(resetBudget());
   }, [dispatch]);
 
   const options: Option[] = [
