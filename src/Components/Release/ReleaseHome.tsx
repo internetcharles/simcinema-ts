@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../Redux/hooks";
+import AdModal from "../Global/AdModal";
 
 interface Props {}
 
 const ReleaseHome: React.FC<Props> = (props) => {
   const navigate = useNavigate();
-  const [theaters, setTheaters] = useState<number>(22);
+  const budgetInfo = useAppSelector((state) => state.budgetInfo);
+  const [theaters, setTheaters] = useState<number>(0);
+  const [adModalOpen, setAdModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    setTheaters(budgetInfo.hype * 1000);
+  }, [budgetInfo.hype]);
 
   useEffect(() => {
     if (theaters < 0) {
@@ -19,7 +27,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
       return;
     }
     if (theaters > 0) {
-      setTheaters(theaters - 100);
+      setTheaters(theaters - 1000);
     }
   };
 
@@ -30,12 +38,13 @@ const ReleaseHome: React.FC<Props> = (props) => {
   return (
     <>
       <div>Film Name</div>
-      <div>{theaters}</div>
+      <div>Theaters Remaining: {theaters}</div>
       <div className="buttons">
-        <button>Advertise</button>
+        <button onClick={() => setAdModalOpen(true)}>Advertise</button>
         {theaters > 0 && <button onClick={advanceWeek}>Pass Week</button>}
         {theaters === 0 && <button onClick={continueToSummary}>Summary</button>}
       </div>
+      {adModalOpen && <AdModal />}
     </>
   );
 };

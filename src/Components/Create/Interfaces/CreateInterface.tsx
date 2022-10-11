@@ -10,6 +10,7 @@ export interface PictureOption {
 }
 
 export interface Studio {
+  id: number;
   studioName: string;
   image: string;
   offerRequested: boolean;

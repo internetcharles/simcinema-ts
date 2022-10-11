@@ -1,11 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { useAppDispatch } from "../../Redux/hooks";
+import { resetBudget } from "../../Redux/Reducers/budgetSlice";
+import {
+  resetMovieInfo,
+  setMovieInfo,
+} from "../../Redux/Reducers/movieInfoSlice";
+import { RootState } from "../../Redux/store";
+import CompanyHeader from "../Global/CompanyHeader";
 import { Option } from "./Interfaces/CreateInterface";
 
 interface Props {}
 
 const CreateMovie: React.FC<Props> = (props) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const movieInfo = useSelector((state: RootState) => state.movieInfo);
+
+  const [movieName, setMovieName] = useState<string>("");
+  const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
+  const [movieDescription, setMovieDescription] = useState<string>("");
+
+  useEffect(() => {
+    dispatch(resetMovieInfo());
+    dispatch(resetBudget());
+  }, [dispatch]);
+
   const options: Option[] = [
     { label: "Action/Adventure", value: "action-adventure" },
     { label: "Comedy", value: "comedy" },
@@ -17,14 +40,35 @@ const CreateMovie: React.FC<Props> = (props) => {
   ];
 
   const handleGenreChange = (selectedOption: Option | null): void => {
-    console.log("handleGenreChange", selectedOption);
+    setSelectedGenre(selectedOption);
+  };
+
+  const submitMovie = (): void => {
+    if (movieName === "" || selectedGenre === null) {
+      alert("Please enter a name and pick a genre!");
+      return;
+    }
+    dispatch(
+      setMovieInfo({
+        ...movieInfo,
+        title: movieName,
+        genre: selectedGenre.value,
+        description: movieDescription,
+      }),
+    );
+    navigate("/funding");
   };
 
   return (
     <>
+      <CompanyHeader />
       <div className="title-container">
         <div>Title:</div>
-        <input placeholder="Star Wars" />
+        <input
+          value={movieName}
+          onInput={(e) => setMovieName((e.target as HTMLInputElement).value)}
+          placeholder="Star Wars"
+        />
       </div>
       <div className="genre-container">
         <div>Genre:</div>
@@ -32,9 +76,15 @@ const CreateMovie: React.FC<Props> = (props) => {
       </div>
       <div className="description-container">
         <div>Description (optional):</div>
-        <input placeholder="This is a space movie." />
+        <input
+          value={movieDescription}
+          onInput={(e) =>
+            setMovieDescription((e.target as HTMLInputElement).value)
+          }
+          placeholder="This is a space movie."
+        />
       </div>
-      <Link to="/funding">Submit</Link>
+      <button onClick={submitMovie}>Submit</button>
     </>
   );
 };

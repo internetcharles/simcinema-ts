@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { adjustHype } from "../../Redux/Reducers/budgetSlice";
+import AdModal from "../Global/AdModal";
+import CompanyHeader from "../Global/CompanyHeader";
+import MovieInfoHeader from "../Global/MovieInfoHeader";
 
 interface Props {}
 
 const FilmingHome: React.FC<Props> = (props) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [percentDone, setPercentDone] = useState<number>(0);
   const [readyForRelease, setReadyForRelease] = useState<boolean>(false);
+  const [isAdModalOpen, setIsAdModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (percentDone >= 100) {
@@ -18,6 +26,9 @@ const FilmingHome: React.FC<Props> = (props) => {
 
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
+    if (budgetInfo.hype > 0) {
+      dispatch(adjustHype(-1));
+    }
     if (percentDone < 100) {
       setPercentDone(percentDone + 10);
     }
@@ -27,12 +38,15 @@ const FilmingHome: React.FC<Props> = (props) => {
     navigate("/release-home");
   };
 
+  const handleAdModalPress = (): void => {
+    setIsAdModalOpen(!isAdModalOpen);
+  };
+
   return (
     <>
-      <div>Film Name</div>
-      <div>Date</div>
-      <div>Budget: 0 million</div>
-      <div>Popularity: 0</div>
+      <CompanyHeader />
+      <MovieInfoHeader />
+      <div>Hype: {budgetInfo.hype}</div>
       <div>{`Current week: ${currentWeek}`}</div>
       <div>{`Percent done: ${percentDone}%`}</div>
       <div className="advertising-section">
@@ -44,11 +58,12 @@ const FilmingHome: React.FC<Props> = (props) => {
       </div>
       <div className="buttons">
         <button>Terminate</button>
-        <button>Advertise</button>
+        <button onClick={handleAdModalPress}>Advertise</button>
         <button onClick={advanceWeek}>Pass Week</button>
         <button>Content</button>
         {readyForRelease && <button onClick={releaseFilm}>Release</button>}
       </div>
+      {isAdModalOpen && <AdModal />}
     </>
   );
 };
