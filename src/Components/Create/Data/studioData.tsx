@@ -74,9 +74,8 @@ const getRandomArbitrary = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min) + min) + 1;
 };
 
-export const requestOffer = (studio: Studio): void => {
+export const requestOffer = (studio: Studio): Studio[] => {
   const randomNum = getRandomInt(29);
-  console.log(randomNum);
   switch (studio.id) {
     case 0:
       if (randomNum > 15) {
@@ -95,8 +94,7 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[0].offer = -1;
       }
-      console.log("hello");
-      break;
+      return studios;
     case 1:
       if (randomNum > 0) {
         studios[1].offer = getRandomArbitrary(10, 20);
@@ -114,7 +112,7 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[1].offer = -1;
       }
-      break;
+      return studios;
     case 2:
       if (randomNum >= 10 && randomNum <= 15) {
         studios[2].offer = getRandomArbitrary(20, 30);
@@ -132,7 +130,7 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[2].offer = -1;
       }
-      break;
+      return studios;
     case 3:
       if (randomNum >= 10) {
         studios[3].offer = getRandomArbitrary(15, 35);
@@ -150,7 +148,7 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[3].offer = -1;
       }
-      break;
+      return studios;
     case 4:
       if (randomNum >= 20) {
         studios[4].offer = getRandomArbitrary(15, 45);
@@ -168,7 +166,7 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[4].offer = -1;
       }
-      break;
+      return studios;
     case 5:
       if (randomNum >= 5) {
         studios[5].offer = getRandomArbitrary(15, 25);
@@ -186,7 +184,7 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[5].offer = -1;
       }
-      break;
+      return studios;
     case 6:
       if (randomNum >= 25) {
         studios[6].offer = getRandomArbitrary(35, 45);
@@ -204,8 +202,14 @@ export const requestOffer = (studio: Studio): void => {
           ].message;
         studios[6].offer = -1;
       }
-      break;
+      return studios;
+    default:
+      return studios;
   }
+};
+
+export const getStudios = (): Studio[] => {
+  return studios;
 };
 
 const rejectedMessages = [

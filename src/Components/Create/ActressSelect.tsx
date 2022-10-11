@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MovieInfoHeader from "../Global/MovieInfoHeader";
 import { actresses } from "./Data/movieData";
 
 interface Props {}
@@ -7,6 +8,7 @@ interface Props {}
 const ActressSelect: React.FC<Props> = (props) => {
   return (
     <>
+      <MovieInfoHeader />
       <div>Actress Select</div>
       <div>
         {actresses.map((actress) => (
