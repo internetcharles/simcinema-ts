@@ -7,6 +7,7 @@ import ComposerSelect from "./Components/Create/ComposerSelect";
 import CreateCompany from "./Components/Create/CreateCompany";
 import Create from "./Components/Create/CreateMovie";
 import Funding from "./Components/Create/Funding";
+import OptionSelect from "./Components/Create/OptionSelect";
 import SFXSelect from "./Components/Create/SFXSelect";
 import VFXSelect from "./Components/Create/VFXSelect";
 import FilmingHome from "./Components/Filming/FilmingHome";
@@ -33,6 +34,7 @@ function App(): JSX.Element {
           <Route path="/create-company" element={<CreateCompany />} />
           <Route path="/create-movie" element={<Create />} />
           <Route path="/funding" element={<Funding />} />
+          <Route path="/cast-select" element={<OptionSelect />} />
           <Route path="/actor-select" element={<ActorSelect />} />
           <Route path="/actress-select" element={<ActressSelect />} />
           <Route path="/composer-select" element={<ComposerSelect />} />

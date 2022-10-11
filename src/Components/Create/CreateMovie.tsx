@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useAppDispatch } from "../../Redux/hooks";
-import { setMovieInfo } from "../../Redux/Reducers/movieInfoSlice";
+import {
+  resetMovieInfo,
+  setMovieInfo,
+} from "../../Redux/Reducers/movieInfoSlice";
 import { RootState } from "../../Redux/store";
-import CompanyHeader from "../Global/MovieInfoHeader";
+import CompanyHeader from "../Global/CompanyHeader";
 import { Option } from "./Interfaces/CreateInterface";
 
 interface Props {}
@@ -19,6 +22,10 @@ const CreateMovie: React.FC<Props> = (props) => {
   const [movieName, setMovieName] = useState<string>("");
   const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
   const [movieDescription, setMovieDescription] = useState<string>("");
+
+  useEffect(() => {
+    dispatch(resetMovieInfo());
+  }, [dispatch]);
 
   const options: Option[] = [
     { label: "Action/Adventure", value: "action-adventure" },
