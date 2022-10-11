@@ -1,18 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { studios } from "./Data/studioData";
+import MovieInfoHeader from "../Global/MovieInfoHeader";
+import { requestOffer, studios } from "./Data/studioData";
+import { Studio } from "./Interfaces/CreateInterface";
 import StudioButton from "./StudioButton";
 
 const Funding: React.FC = () => {
-  const onStudioClick = (): void => console.log("Clicked");
+  const onStudioClick = (studio: Studio): void => {
+    requestOffer(studio);
+  };
+
   return (
     <>
+      <MovieInfoHeader />
       <div>Funding</div>
       <div>
-        {studios.map((studio) => (
+        {studios.map((studio, idx) => (
           <StudioButton
             key={studio.studioName}
-            onStudioClick={onStudioClick}
+            onStudioClick={() => onStudioClick(studio)}
             studio={studio}
           />
         ))}
