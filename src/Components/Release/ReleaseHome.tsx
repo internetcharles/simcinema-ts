@@ -49,6 +49,11 @@ const ReleaseHome: React.FC<Props> = (props) => {
 
   const continueToSummary = (): void => {
     dispatch(adjustEarnings(earnings));
+    console.log({
+      title: movieInfo.title,
+      averageScore: qualityInfo.reviews.averageScore,
+      earnings: budgetInfo.earnings,
+    });
     dispatch(
       addMovieToHistory({
         title: movieInfo.title,
