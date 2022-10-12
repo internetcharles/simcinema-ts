@@ -7,7 +7,9 @@ import {
   addTvCommercials,
 } from "../../Redux/Reducers/budgetSlice";
 
-const AdModal: React.FC = () => {
+interface Props {}
+
+const AdModal: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const { adInfo } = budgetInfo;
@@ -51,25 +53,25 @@ const AdModal: React.FC = () => {
       <div>
         <div>TV Commercials</div>
         <div>Price: $6 million</div>
-        <div>You have: ${adInfo.tvCommercials} million</div>
+        <div>You have: {adInfo.tvCommercials}</div>
         <button onClick={() => handleAdBuy(0)}>Buy</button>
       </div>
       <div>
         <div>Movie trailers</div>
         <div>Price: $4 million</div>
-        <div>You have: ${adInfo.movieTrailers} million</div>
+        <div>You have: {adInfo.movieTrailers}</div>
         <button onClick={() => handleAdBuy(1)}>Buy</button>
       </div>
       <div>
         <div>Magazine/Newspaper ads</div>
         <div>Price: $2 million</div>
-        <div>You have: ${adInfo.magazineNewspaperAds} million</div>
+        <div>You have: {adInfo.magazineNewspaperAds}</div>
         <button onClick={() => handleAdBuy(2)}>Buy</button>
       </div>
       <div>
         <div>Posters</div>
         <div>Price: $1 million</div>
-        <div>You have: ${adInfo.posters} million</div>
+        <div>You have: {adInfo.posters}</div>
         <button onClick={() => handleAdBuy(3)}>Buy</button>
       </div>
     </>

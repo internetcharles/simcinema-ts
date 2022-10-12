@@ -8,6 +8,7 @@ import {
   resetMovieInfo,
   setMovieInfo,
 } from "../../Redux/Reducers/movieInfoSlice";
+import { resetQuality } from "../../Redux/Reducers/qualitySlice";
 import { RootState } from "../../Redux/store";
 import CompanyHeader from "../Global/CompanyHeader";
 import { Option } from "./Interfaces/CreateInterface";
@@ -27,6 +28,7 @@ const CreateMovie: React.FC<Props> = (props) => {
   useEffect(() => {
     dispatch(resetMovieInfo());
     dispatch(resetBudget());
+    dispatch(resetQuality());
   }, [dispatch]);
 
   const options: Option[] = [

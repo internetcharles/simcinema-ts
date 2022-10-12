@@ -1,3 +1,9 @@
+export interface Movie {
+  title: string;
+  averageScore: number;
+  earnings: number;
+}
+
 export interface Option {
   label: string;
   value: string;
@@ -24,4 +30,5 @@ export interface MovieOption {
   price: number;
   status: string;
   portrait: string;
+  quality: number;
 }

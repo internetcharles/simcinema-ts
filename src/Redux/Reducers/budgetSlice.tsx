@@ -5,6 +5,8 @@ export interface BudgetState {
   budget: number;
   moneyRemaining: number;
   hype: number;
+  targetHype: number;
+  earnings: number;
   adInfo: {
     tvCommercials: number;
     movieTrailers: number;
@@ -17,6 +19,8 @@ const initialState: BudgetState = {
   budget: 0,
   moneyRemaining: 0,
   hype: 0,
+  targetHype: 0,
+  earnings: 0,
   adInfo: {
     tvCommercials: 0,
     movieTrailers: 0,
@@ -40,26 +44,32 @@ export const budgetSlice = createSlice({
       return initialState;
     },
     adjustHype: (state, action: PayloadAction<number>) => {
-      state.hype += action.payload;
+      state.hype = action.payload;
+    },
+    adjustTargetHype: (state, action: PayloadAction<number>) => {
+      state.targetHype = action.payload;
+    },
+    adjustEarnings: (state, action: PayloadAction<number>) => {
+      state.earnings = action.payload;
     },
     addTvCommercials: (state) => {
       state.adInfo.tvCommercials += 1;
-      state.hype += 6;
+      state.targetHype += 12;
       state.moneyRemaining -= 6;
     },
     addMovieTrailers: (state) => {
       state.adInfo.movieTrailers += 1;
-      state.hype += 4;
+      state.targetHype += 8;
       state.moneyRemaining -= 4;
     },
     addMagazineNewspaperAds: (state) => {
       state.adInfo.magazineNewspaperAds += 1;
-      state.hype += 2;
+      state.targetHype += 4;
       state.moneyRemaining -= 2;
     },
     addPosters: (state) => {
       state.adInfo.posters += 1;
-      state.hype += 1;
+      state.targetHype += 2;
       state.moneyRemaining -= 1;
     },
   },
@@ -70,6 +80,8 @@ export const {
   adjustMoneyRemaining,
   resetBudget,
   adjustHype,
+  adjustTargetHype,
+  adjustEarnings,
   addMagazineNewspaperAds,
   addMovieTrailers,
   addPosters,
