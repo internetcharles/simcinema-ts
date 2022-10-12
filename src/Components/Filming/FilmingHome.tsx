@@ -56,10 +56,6 @@ const FilmingHome: React.FC<Props> = (props) => {
     setIsAdModalOpen(!isAdModalOpen);
   };
 
-  const handlePurchase = (): void => {
-    console.log("hello");
-  };
-
   return (
     <>
       <CompanyHeader />
@@ -83,7 +79,7 @@ const FilmingHome: React.FC<Props> = (props) => {
         <button>Content</button>
         {readyForRelease && <button onClick={releaseFilm}>Release</button>}
       </div>
-      {isAdModalOpen && <AdModal handlePurchase={handlePurchase} />}
+      {isAdModalOpen && <AdModal />}
     </>
   );
 };

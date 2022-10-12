@@ -21,6 +21,7 @@ const CreateCompany: React.FC = (props: Props) => {
       setCompanyInfo({
         companyName,
         playerName,
+        history: [],
       }),
     );
     navigate("/create-movie");

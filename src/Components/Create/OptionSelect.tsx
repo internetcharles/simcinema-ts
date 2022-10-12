@@ -43,6 +43,14 @@ const OptionSelect: React.FC<Props> = (props) => {
       );
       setCurrentOption(currentOption + 1);
     } else {
+      dispatch(adjustMoneyRemaining(option.price));
+      dispatch(adjustQuality(option.quality));
+      dispatch(
+        setMovieInfo({
+          ...movieInfo,
+          [optionPath[currentOption].category]: option.name,
+        }),
+      );
       setCurrentOption(0);
       navigate("/filming-home");
     }

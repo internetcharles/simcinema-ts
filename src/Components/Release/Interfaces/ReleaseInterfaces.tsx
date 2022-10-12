@@ -4,4 +4,5 @@ export interface Reviews {
   nationalRetainer: number;
   wizardWeekly: number;
   newtonNews: number;
+  averageScore: number;
 }

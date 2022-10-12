@@ -29,12 +29,13 @@ export const generateNextHypeNumber = (min: number, max: number): number => {
     console.log(arr);
     return Math.floor(arr[1] - 1);
   } else {
-    // arr[0] = min;
-    // arr[Math.floor(length / 2)] = 0;
-    // for (let i = 1; i < Math.floor(length / 2); i++) {
-    //   arr[i] = arr[i - 1] - (min - 0) / Math.floor(length / 2);
-    // }
-    // console.log(arr);
     return 0;
   }
+};
+
+export const generateInitialTheaters = (
+  hype: number,
+  quality: number,
+): number => {
+  return hype * 23 + quality * 10;
 };

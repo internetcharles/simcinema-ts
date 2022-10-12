@@ -21,12 +21,32 @@ export const generateReviews = (quality: number): Reviews => {
   };
 
   // Determine each rating by review score dropoff
+  const sodaCityTimesReview: number = reviewScore(sodaCityTimesSkew);
+  const dailySpillReview: number = reviewScore(dailySpillSkew);
+  const nationalRetainerReview: number = reviewScore(nationalRetainerSkew);
+  const wizardWeeklyReview: number = reviewScore(wizardWeeklySkew);
+  const newtonNewsReview: number = reviewScore(newtonNewsSkew);
+
+  const averageScore: number =
+    ((Math.round(
+      sodaCityTimesReview +
+        dailySpillReview +
+        nationalRetainerReview +
+        wizardWeeklyReview +
+        newtonNewsReview,
+    ) /
+      5) *
+      10) /
+    10;
+
+  console.log(averageScore);
 
   return {
-    sodaCityTimes: reviewScore(sodaCityTimesSkew),
-    dailySpill: reviewScore(dailySpillSkew),
-    nationalRetainer: reviewScore(nationalRetainerSkew),
-    wizardWeekly: reviewScore(wizardWeeklySkew),
-    newtonNews: reviewScore(newtonNewsSkew),
+    sodaCityTimes: sodaCityTimesReview,
+    dailySpill: dailySpillReview,
+    nationalRetainer: nationalRetainerReview,
+    wizardWeekly: wizardWeeklyReview,
+    newtonNews: newtonNewsReview,
+    averageScore,
   };
 };

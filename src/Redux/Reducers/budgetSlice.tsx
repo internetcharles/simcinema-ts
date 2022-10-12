@@ -6,6 +6,7 @@ export interface BudgetState {
   moneyRemaining: number;
   hype: number;
   targetHype: number;
+  earnings: number;
   adInfo: {
     tvCommercials: number;
     movieTrailers: number;
@@ -19,6 +20,7 @@ const initialState: BudgetState = {
   moneyRemaining: 0,
   hype: 0,
   targetHype: 0,
+  earnings: 0,
   adInfo: {
     tvCommercials: 0,
     movieTrailers: 0,
@@ -46,6 +48,9 @@ export const budgetSlice = createSlice({
     },
     adjustTargetHype: (state, action: PayloadAction<number>) => {
       state.targetHype = action.payload;
+    },
+    adjustEarnings: (state, action: PayloadAction<number>) => {
+      state.earnings = action.payload;
     },
     addTvCommercials: (state) => {
       state.adInfo.tvCommercials += 1;
@@ -76,6 +81,7 @@ export const {
   resetBudget,
   adjustHype,
   adjustTargetHype,
+  adjustEarnings,
   addMagazineNewspaperAds,
   addMovieTrailers,
   addPosters,

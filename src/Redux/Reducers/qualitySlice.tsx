@@ -9,6 +9,7 @@ export interface QualityState {
     nationalRetainer: number;
     wizardWeekly: number;
     newtonNews: number;
+    averageScore: number;
   };
 }
 
@@ -20,6 +21,7 @@ const initialState: QualityState = {
     nationalRetainer: 0,
     wizardWeekly: 0,
     newtonNews: 0,
+    averageScore: 0,
   },
 };
 

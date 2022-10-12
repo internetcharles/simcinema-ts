@@ -7,9 +7,7 @@ import {
   addTvCommercials,
 } from "../../Redux/Reducers/budgetSlice";
 
-interface Props {
-  handlePurchase?: () => void;
-}
+interface Props {}
 
 const AdModal: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
@@ -21,7 +19,6 @@ const AdModal: React.FC<Props> = (props) => {
       case 0:
         if (budgetInfo.moneyRemaining >= 6) {
           dispatch(addTvCommercials());
-          props.handlePurchase?.();
         } else {
           alert("Not enough money!");
         }
@@ -29,7 +26,6 @@ const AdModal: React.FC<Props> = (props) => {
       case 1:
         if (budgetInfo.moneyRemaining >= 4) {
           dispatch(addMovieTrailers());
-          props.handlePurchase?.();
         } else {
           alert("Not enough money!");
         }
@@ -37,7 +33,6 @@ const AdModal: React.FC<Props> = (props) => {
       case 2:
         if (budgetInfo.moneyRemaining >= 2) {
           dispatch(addMagazineNewspaperAds());
-          props.handlePurchase?.();
         } else {
           alert("Not enough money!");
         }
@@ -45,7 +40,6 @@ const AdModal: React.FC<Props> = (props) => {
       case 3:
         if (budgetInfo.moneyRemaining >= 1) {
           dispatch(addPosters());
-          props.handlePurchase?.();
         } else {
           alert("Not enough money!");
         }

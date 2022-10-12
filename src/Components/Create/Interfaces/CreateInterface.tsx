@@ -1,3 +1,9 @@
+export interface Movie {
+  title: string;
+  averageScore: number;
+  earnings: number;
+}
+
 export interface Option {
   label: string;
   value: string;
