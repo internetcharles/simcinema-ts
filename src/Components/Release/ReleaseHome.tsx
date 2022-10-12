@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../Redux/hooks";
@@ -13,7 +14,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
 
   useEffect(() => {
     setTheaters(budgetInfo.hype * 1000);
-  }, [budgetInfo.hype]);
+  }, []);
 
   useEffect(() => {
     if (theaters < 0) {

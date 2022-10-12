@@ -24,4 +24,5 @@ export interface MovieOption {
   price: number;
   status: string;
   portrait: string;
+  quality: number;
 }

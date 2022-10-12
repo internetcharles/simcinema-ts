@@ -1,5 +1,7 @@
 import { MovieOption } from "../Interfaces/CreateInterface";
 
+export const maxQuality: number = 280;
+
 export const movieOptions: MovieOption[][] = [
   [
     {
@@ -7,54 +9,63 @@ export const movieOptions: MovieOption[][] = [
       price: 20,
       status: "Available",
       portrait: "",
+      quality: 90,
     },
     {
       name: "Harrison Ford",
       price: 20,
       status: "Available",
       portrait: "",
+      quality: 95,
     },
     {
       name: "Jeff Goldblum",
       price: 5,
       status: "Available",
       portrait: "",
+      quality: 50,
     },
     {
       name: "Tom Hanks",
       price: 20,
       status: "Available",
       portrait: "",
+      quality: 92,
     },
     {
       name: "Samuel L. Jackson",
       price: 5,
       status: "Available",
       portrait: "",
+      quality: 55,
     },
     {
       name: "Arnold Schwarzenegger",
       price: 25,
       status: "Available",
       portrait: "",
+      quality: 100,
     },
     {
       name: "Will Smith",
       price: 10,
       status: "Available",
       portrait: "",
+      quality: 65,
     },
     {
       name: "Sylvester Stallone",
       price: 20,
       status: "Available",
       portrait: "",
+      quality: 92,
     },
     {
       name: "None",
       price: 0,
       status: "None",
       portrait: "",
+      quality: -20,
     },
   ],
   [
@@ -63,54 +74,63 @@ export const movieOptions: MovieOption[][] = [
       price: 7,
       status: "Available",
       portrait: "",
+      quality: 40,
     },
     {
       name: "Jodie Foster",
       price: 10,
       status: "Available",
       portrait: "",
+      quality: 50,
     },
     {
       name: "Helen Hunt",
       price: 5,
       status: "Available",
       portrait: "",
+      quality: 35,
     },
     {
       name: "Demi Moore",
       price: 10,
       status: "Available",
       portrait: "",
+      quality: 45,
     },
     {
       name: "Julianne Moore",
       price: 2,
       status: "Available",
       portrait: "",
+      quality: 20,
     },
     {
       name: "Julia Roberts",
       price: 10,
       status: "Available",
       portrait: "",
+      quality: 50,
     },
     {
       name: "Meg Ryan",
       price: 10,
       status: "Available",
       portrait: "",
+      quality: 48,
     },
     {
       name: "Susan Sarandon",
       price: 6,
       status: "Available",
       portrait: "",
+      quality: 35,
     },
     {
       name: "None",
       price: 0,
       status: "None",
       portrait: "",
+      quality: -15,
     },
   ],
   [
@@ -119,36 +139,42 @@ export const movieOptions: MovieOption[][] = [
       price: 4,
       status: "Available",
       portrait: "",
+      quality: 25,
     },
     {
       name: "James Horner",
       price: 4,
       status: "Available",
       portrait: "",
+      quality: 25,
     },
     {
       name: "Mark Mancina",
       price: 2,
       status: "Available",
       portrait: "",
+      quality: 15,
     },
     {
       name: "Alan Silvestri",
       price: 2,
       status: "Available",
       portrait: "",
+      quality: 15,
     },
     {
       name: "John Williams",
       price: 6,
       status: "Available",
       portrait: "",
+      quality: 30,
     },
     {
       name: "None",
       price: 0,
       status: "None",
       portrait: "",
+      quality: -6,
     },
   ],
   [
@@ -157,30 +183,35 @@ export const movieOptions: MovieOption[][] = [
       price: 15,
       status: "Available",
       portrait: "",
+      quality: 65,
     },
     {
       name: "Dream Quest",
       price: 8,
       status: "Available",
       portrait: "",
+      quality: 40,
     },
     {
       name: "Industrial Lights & Magic",
       price: 20,
       status: "Available",
       portrait: "",
+      quality: 80,
     },
     {
       name: "Matte World Digital",
       price: 8,
       status: "Available",
       portrait: "",
+      quality: 42,
     },
     {
       name: "None",
       price: 0,
       status: "None",
       portrait: "",
+      quality: -13,
     },
   ],
   [
@@ -189,251 +220,37 @@ export const movieOptions: MovieOption[][] = [
       price: 1,
       status: "Available",
       portrait: "",
+      quality: 5,
     },
     {
       name: "Dolby Digital",
       price: 5,
       status: "Available",
       portrait: "",
+      quality: 20,
     },
     {
       name: "DTS Digital",
       price: 3,
       status: "Available",
       portrait: "",
+      quality: 12,
     },
     {
       name: "SDDS",
       price: 3,
       status: "Available",
       portrait: "",
+      quality: 12,
     },
     {
       name: "None",
       price: 0,
       status: "None",
       portrait: "",
+      quality: -5,
     },
   ],
-];
-
-export const actors: MovieOption[] = [
-  {
-    name: "Jim Carrey",
-    price: 20,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Harrison Ford",
-    price: 20,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Jeff Goldblum",
-    price: 5,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Tom Hanks",
-    price: 20,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Samuel L. Jackson",
-    price: 5,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Arnold Schwarzenegger",
-    price: 25,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Will Smith",
-    price: 10,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Sylvester Stallone",
-    price: 20,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "None",
-    price: 0,
-    status: "None",
-    portrait: "",
-  },
-];
-
-export const actresses: MovieOption[] = [
-  {
-    name: "Sandra Bullock",
-    price: 7,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Jodie Foster",
-    price: 10,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Helen Hunt",
-    price: 5,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Demi Moore",
-    price: 10,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Julianne Moore",
-    price: 2,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Julia Roberts",
-    price: 10,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Meg Ryan",
-    price: 10,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Susan Sarandon",
-    price: 6,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "None",
-    price: 0,
-    status: "None",
-    portrait: "",
-  },
-];
-
-export const composers: MovieOption[] = [
-  {
-    name: "Danny Elfman",
-    price: 4,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "James Horner",
-    price: 4,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Mark Mancina",
-    price: 2,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Alan Silvestri",
-    price: 2,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "John Williams",
-    price: 6,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "None",
-    price: 0,
-    status: "None",
-    portrait: "",
-  },
-];
-
-export const vfx: MovieOption[] = [
-  {
-    name: "Digital Domain",
-    price: 15,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Dream Quest",
-    price: 8,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Industrial Lights & Magic",
-    price: 20,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Matte World Digital",
-    price: 8,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "None",
-    price: 0,
-    status: "None",
-    portrait: "",
-  },
-];
-
-export const sfx: MovieOption[] = [
-  {
-    name: "Dolby",
-    price: 1,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "Dolby Digital",
-    price: 5,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "DTS Digital",
-    price: 3,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "SDDS",
-    price: 3,
-    status: "Available",
-    portrait: "",
-  },
-  {
-    name: "None",
-    price: 0,
-    status: "None",
-    portrait: "",
-  },
 ];
 
 export const optionPath = [

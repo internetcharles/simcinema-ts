@@ -9,6 +9,10 @@ import {
   selectMovieInfo,
   setMovieInfo,
 } from "../../Redux/Reducers/movieInfoSlice";
+import {
+  adjustQuality,
+  selectQuality,
+} from "../../Redux/Reducers/qualitySlice";
 import CompanyHeader from "../Global/CompanyHeader";
 import MovieInfoHeader from "../Global/MovieInfoHeader";
 import { movieOptions, optionPath } from "./Data/movieData";
@@ -21,6 +25,7 @@ const OptionSelect: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector(selectMovieInfo);
   const budgetInfo = useAppSelector(selectBudget);
+  const qualityInfo = useAppSelector(selectQuality);
 
   const [currentOption, setCurrentOption] = useState<number>(0);
 
@@ -29,6 +34,7 @@ const OptionSelect: React.FC<Props> = (props) => {
       alert("Not enough money!");
     } else if (currentOption < optionPath.length - 1) {
       dispatch(adjustMoneyRemaining(option.price));
+      dispatch(adjustQuality(option.quality));
       dispatch(
         setMovieInfo({
           ...movieInfo,
@@ -47,9 +53,10 @@ const OptionSelect: React.FC<Props> = (props) => {
       <CompanyHeader />
       <MovieInfoHeader />
       <div>Actor Select</div>
+      <div>DEBUG quality: {qualityInfo.quality}</div>
       <div>
         {movieOptions[currentOption].map((option) => (
-          <>
+          <div key={option.name}>
             <img src={option.portrait} alt="" />
             <div>{option.name}</div>
             <div>{`${option.price} million`}</div>
@@ -59,7 +66,7 @@ const OptionSelect: React.FC<Props> = (props) => {
                 <button onClick={() => selectOption(option)}>Select</button>
               ) : null}
             </div>
-          </>
+          </div>
         ))}
       </div>
     </>

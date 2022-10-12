@@ -5,6 +5,7 @@ import CreateCompany from "./Components/Create/CreateCompany";
 import Create from "./Components/Create/CreateMovie";
 import Funding from "./Components/Create/Funding";
 import OptionSelect from "./Components/Create/OptionSelect";
+import MathPlayground from "./Components/Debug/MathPlayground";
 import FilmingHome from "./Components/Filming/FilmingHome";
 import Header from "./Components/Global/Header";
 import ReleaseHome from "./Components/Release/ReleaseHome";
@@ -33,6 +34,7 @@ function App(): JSX.Element {
           <Route path="/filming-home" element={<FilmingHome />} />
           <Route path="/release-home" element={<ReleaseHome />} />
           <Route path="/summary" element={<Summary />} />
+          <Route path="/math" element={<MathPlayground />} />
         </Route>
       </Routes>
     </MemoryRouter>

@@ -12,6 +12,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
+  const qualityInfo = useAppSelector((state) => state.quality);
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [percentDone, setPercentDone] = useState<number>(0);
   const [readyForRelease, setReadyForRelease] = useState<boolean>(false);
@@ -46,6 +47,7 @@ const FilmingHome: React.FC<Props> = (props) => {
     <>
       <CompanyHeader />
       <MovieInfoHeader />
+      <div>DEBUG (quality): {qualityInfo.quality}</div>
       <div>Hype: {budgetInfo.hype}</div>
       <div>{`Current week: ${currentWeek}`}</div>
       <div>{`Percent done: ${percentDone}%`}</div>
