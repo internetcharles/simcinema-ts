@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../Redux/hooks";
 import { setCompanyInfo } from "../../Redux/Reducers/companyInfoSlice";
+import Window from "../Global/Window";
 
-interface Props {}
+interface Props {
+  closeModal: () => void;
+}
 
-const CreateCompany: React.FC = (props: Props) => {
+const CreateCompany: React.FC<Props> = ({ closeModal }) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [companyName, setCompanyName] = useState<string>("");
   const [playerName, setPlayerName] = useState<string>("");
@@ -24,11 +26,11 @@ const CreateCompany: React.FC = (props: Props) => {
         history: [],
       }),
     );
-    navigate("/create-movie");
+    closeModal();
   };
 
   return (
-    <>
+    <Window size="small" label="Create Company">
       <div>Create Company</div>
       <div className="company-name-input">
         <div>Your name:</div>
@@ -47,7 +49,7 @@ const CreateCompany: React.FC = (props: Props) => {
         />
       </div>
       <button onClick={submitCompanyInfo}>Submit</button>
-    </>
+    </Window>
   );
 };
 

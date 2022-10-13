@@ -6,8 +6,8 @@ const CompanyHeader: React.FC = () => {
 
   return (
     <>
-      <h1 className="header">{companyInfo.companyName}</h1>
-      <h2>{companyInfo.playerName}</h2>
+      <h1 className="header">Studio: {companyInfo.companyName}</h1>
+      <h2>Executive: {companyInfo.playerName}</h2>
     </>
   );
 };

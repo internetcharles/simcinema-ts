@@ -1,0 +1,66 @@
+.start-page-container {
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+  overflow: auto;
+}
+
+.start-page-films-produced {
+  font-family: "Sysfont";
+  font-size: 10pt;
+}
+
+.start-page-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.start-page-content-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.start-page-history-container {
+  height: 100%;
+}
+
+.start-page-history-box {
+  height: 90%;
+  background-color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 2px solid grey;
+}
+
+.no-history-text {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.start-page-info-window {
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+}
+
+.start-page-info-window-text {
+  font-size: 10pt;
+  margin-left: 10px;
+}
+
+.start-page-bottom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.history-item {
+  margin-left: 5px;
+  margin-top: 5px;
+}
