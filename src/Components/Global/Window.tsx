@@ -9,7 +9,7 @@ interface Props {
 
 const Window: React.FC<Props> = ({ label, children, size }) => {
   return (
-    <div className={size === "large" ? "whole-window" : "small-window"}>
+    <div className={size}>
       <div className="inner-border">
         <div className="document-bar">
           <div className="line-container">

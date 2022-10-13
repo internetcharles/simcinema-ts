@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
 import { useAppDispatch } from "../../Redux/hooks";
 import { resetBudget } from "../../Redux/Reducers/budgetSlice";
 import {
@@ -10,8 +9,10 @@ import {
 } from "../../Redux/Reducers/movieInfoSlice";
 import { resetQuality } from "../../Redux/Reducers/qualitySlice";
 import { RootState } from "../../Redux/store";
-import CompanyHeader from "../Global/CompanyHeader";
+import Window from "../Global/Window";
 import { Option } from "./Interfaces/CreateInterface";
+import { TbMovie } from "react-icons/tb";
+import "./Styles/CreateMovie.scss";
 
 interface Props {}
 
@@ -31,17 +32,7 @@ const CreateMovie: React.FC<Props> = (props) => {
     dispatch(resetQuality());
   }, [dispatch]);
 
-  const options: Option[] = [
-    { label: "Action/Adventure", value: "action-adventure" },
-    { label: "Comedy", value: "comedy" },
-    { label: "Drama", value: "drama" },
-    { label: "Romance", value: "romance" },
-    { label: "Horror", value: "horror" },
-    { label: "Sci-Fi", value: "sci-fi" },
-    { label: "Animated", value: "animated" },
-  ];
-
-  const handleGenreChange = (selectedOption: Option | null): void => {
+  const handleGenreChange = (selectedOption: any): void => {
     setSelectedGenre(selectedOption);
   };
 
@@ -62,32 +53,110 @@ const CreateMovie: React.FC<Props> = (props) => {
   };
 
   return (
-    <>
-      <CompanyHeader />
-      <div className="title-container">
-        <div>Title:</div>
-        <input
-          value={movieName}
-          onInput={(e) => setMovieName((e.target as HTMLInputElement).value)}
-          placeholder="Star Wars"
-        />
+    <Window label="Create Movie" size={"medium-window"}>
+      <div className="create-movie-container">
+        <div className="create-movie-title-container">
+          <TbMovie size={50} />
+          <div className="create-movie-title-header">New movie info:</div>
+        </div>
+        <div className="create-movie-title-container">
+          <div className="create-movie-title-text">Title:</div>
+          <input
+            className="create-movie-title-input"
+            value={movieName}
+            onInput={(e) => setMovieName((e.target as HTMLInputElement).value)}
+            placeholder="Star Wars"
+          />
+        </div>
+        <div className="create-movie-flex-container">
+          <div className="create-movie-bottom-container">
+            <div className="create-movie-genre-header-label">Genre:</div>
+            <div className="create-movie-genre-container">
+              <div
+                onChange={handleGenreChange}
+                className="create-movie-genre-list"
+              >
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="action-adventure"
+                  name="genre"
+                />
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="comedy"
+                  name="genre"
+                />
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="drama"
+                  name="genre"
+                />
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="romance"
+                  name="genre"
+                />
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="horror"
+                  name="genre"
+                />
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="sci-fi"
+                  name="genre"
+                />
+                <input
+                  className="create-movie-genre-option"
+                  type="radio"
+                  value="animated"
+                  name="genre"
+                />
+              </div>
+              <div>
+                <div className="create-movie-genre-label">Action/Adventure</div>
+                <div className="create-movie-genre-label">Comedy</div>
+                <div className="create-movie-genre-label">Drama</div>
+                <div className="create-movie-genre-label">Romance</div>
+                <div className="create-movie-genre-label">Horror</div>
+                <div className="create-movie-genre-label">Sci-Fi</div>
+                <div className="create-movie-genre-label">Animated</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="create-movie-description-container">
+              <div>Description (optional):</div>
+              <textarea
+                className="create-movie-description-input"
+                value={movieDescription}
+                onInput={(e) =>
+                  setMovieDescription((e.target as HTMLInputElement).value)
+                }
+                placeholder="This is a space movie."
+              />
+              <div className="create-movie-button-container">
+                <button
+                  className="create-movie-description-button-okay"
+                  onClick={submitMovie}
+                >
+                  Okay
+                </button>
+                <button className="create-movie-description-button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="genre-container">
-        <div>Genre:</div>
-        <Select options={options} onChange={handleGenreChange} />
-      </div>
-      <div className="description-container">
-        <div>Description (optional):</div>
-        <input
-          value={movieDescription}
-          onInput={(e) =>
-            setMovieDescription((e.target as HTMLInputElement).value)
-          }
-          placeholder="This is a space movie."
-        />
-      </div>
-      <button onClick={submitMovie}>Submit</button>
-    </>
+    </Window>
   );
 };
 

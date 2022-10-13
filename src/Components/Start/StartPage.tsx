@@ -28,12 +28,12 @@ const StartPage: React.FC = (props) => {
   };
 
   const handleNewCompanyPress = (): void => {
-    navigate("/create-company");
+    setShowCompanyModal(false);
   };
 
   return (
     <>
-      <Window size="large" label="SimCinema">
+      <Window size="large-window" label="SimCinema">
         <div className="start-page-container">
           <InfoHeader
             playerName={companyInfo.playerName}
@@ -78,7 +78,7 @@ const StartPage: React.FC = (props) => {
         </div>
       </Window>
       {showCompanyModal && (
-        <CreateCompany closeModal={() => setShowCompanyModal(false)} />
+        <CreateCompany handleNewCompanyPress={() => handleNewCompanyPress()} />
       )}
     </>
   );

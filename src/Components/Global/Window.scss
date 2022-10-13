@@ -1,4 +1,4 @@
-.whole-window {
+.large-window {
   border: 3px solid;
   border-color: #f1f1f1;
   width: 80%;
@@ -12,11 +12,25 @@
   display: flex;
 }
 
+.medium-window {
+  border: 3px solid;
+  border-color: #f1f1f1;
+  width: 30%;
+  height: 40%;
+  background-color: white;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
 .small-window {
   border: 3px solid;
   border-color: #f1f1f1;
-  width: 40%;
-  height: 40%;
+  width: 22%;
+  height: 30%;
   background-color: white;
   position: fixed;
   top: 40%;
