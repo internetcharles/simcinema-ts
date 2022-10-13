@@ -1,0 +1,29 @@
+.start-page-container {
+  width: 100%;
+  background-color: rgb(250, 250, 250);
+  font-family: "Sysfont";
+  font-size: 15pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+}
+
+.film-reel-background {
+  height: 64px;
+  background-image: url("../../../Assets/FilmReel.png");
+  width: 100%;
+}
+
+.start-page-films-produced {
+  margin-left: 10px;
+}
+
+.info {
+  margin-left: 10px;
+}
+
+.info-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}

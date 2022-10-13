@@ -1,0 +1,101 @@
+.create-movie-container {
+  font-family: "Sysfont";
+  background-color: rgb(238, 238, 238);
+  height: calc(100% - 10px);
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.create-movie-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.create-movie-title-header {
+  font-size: 15pt;
+  margin-left: 10px;
+}
+
+.create-movie-title-text {
+  margin-right: 10px;
+}
+
+.create-movie-genre-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-movie-genre-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.create-movie-bottom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.create-movie-description-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 60px;
+  align-items: baseline;
+}
+
+.create-movie-genre-option {
+  margin-bottom: 5.8px;
+}
+
+.create-movie-genre-label {
+  margin-left: 5px;
+  margin-bottom: 4px;
+}
+
+.create-movie-genre-header-label {
+  margin-bottom: 10px;
+}
+
+.create-movie-description-input {
+  font-family: "Sysfont";
+  height: 120px;
+  width: 100%;
+  resize: none;
+}
+
+.create-movie-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.create-movie-button-container button {
+  margin-right: 5px;
+  margin-top: 5px;
+  height: 30px;
+  width: 80px;
+  font-size: 12pt;
+  font-family: "Sysfont";
+}
+
+.create-movie-description-button-okay {
+  margin-right: 5px;
+  margin-top: 5px;
+  height: 30px;
+  width: 80px;
+  font-size: 12pt;
+  border: 2px solid rgb(85, 85, 85);
+  border-radius: 5%;
+}
+
+.create-movie-title-input {
+  font-family: "Sysfont";
+}
+
+.create-movie-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

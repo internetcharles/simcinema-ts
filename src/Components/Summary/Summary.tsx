@@ -13,7 +13,7 @@ const Summary: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
   const getRandomArbitrary = (min: number, max: number): number => {
-    return Math.floor(Math.random() * (max - min) + min) + 1;
+    return Math.random() * (max - min) + min;
   };
 
   const calculateDIEarnings = (): number[] => {

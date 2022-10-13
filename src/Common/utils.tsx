@@ -18,7 +18,6 @@ export const generateNextHypeNumber = (min: number, max: number): number => {
         arr[i] = arr[i - 1] - (max - 0) / Math.floor(length / 2);
       }
     }
-    console.log(arr);
     return Math.floor(arr[1] - 1);
   } else if (max > 0) {
     arr[0] = min;
@@ -26,7 +25,6 @@ export const generateNextHypeNumber = (min: number, max: number): number => {
     for (let i = 1; i < Math.floor(length / 2); i++) {
       arr[i] = arr[i - 1] - (min - max) / Math.floor(length / 2);
     }
-    console.log(arr);
     return Math.floor(arr[1] - 1);
   } else {
     return 0;
@@ -38,4 +36,14 @@ export const generateInitialTheaters = (
   quality: number,
 ): number => {
   return hype * 23 + quality * 10;
+};
+
+export const convertToMillions = (num: number): number => {
+  if (num >= 10000000) {
+    const first2Str = String(num).slice(0, 3);
+    return Number(first2Str) / 10;
+  } else {
+    const first2Str = String(num).slice(0, 2);
+    return Number(first2Str) / 10;
+  }
 };

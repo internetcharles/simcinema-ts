@@ -20,6 +20,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const [adModalOpen, setAdModalOpen] = useState<boolean>(false);
   const [earnings, setEarnings] = useState<number>(0);
   const reviews = generateReviews(qualityInfo.quality);
+  console.log(reviews);
 
   useEffect(() => {
     setTheaters(generateInitialTheaters(budgetInfo.hype, qualityInfo.quality));
@@ -37,7 +38,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
       return;
     }
     if (theaters > 0) {
-      setEarnings(earnings + theaters * 411);
+      setEarnings(earnings + theaters * 311);
       if (budgetInfo.hype > 0) {
         dispatch(adjustHype(Math.floor(budgetInfo.hype - 1)));
       }
@@ -49,16 +50,11 @@ const ReleaseHome: React.FC<Props> = (props) => {
 
   const continueToSummary = (): void => {
     dispatch(adjustEarnings(earnings));
-    console.log({
-      title: movieInfo.title,
-      averageScore: qualityInfo.reviews.averageScore,
-      earnings: budgetInfo.earnings,
-    });
     dispatch(
       addMovieToHistory({
         title: movieInfo.title,
-        averageScore: qualityInfo.reviews.averageScore,
-        earnings: budgetInfo.earnings,
+        averageScore: reviews.averageScore,
+        earnings,
       }),
     );
     navigate("/summary");

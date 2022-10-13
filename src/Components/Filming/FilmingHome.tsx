@@ -40,7 +40,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
     if (targetHype > 0) {
-      dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1) * 2));
+      dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
     }
     dispatch(adjustHype(generateNextHypeNumber(hype, targetHype)));
     if (percentDone < 100) {
