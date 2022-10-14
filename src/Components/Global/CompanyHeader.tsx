@@ -1,14 +1,15 @@
 import React from "react";
 import { useAppSelector } from "../../Redux/hooks";
+import "./Styles/CompanyHeader.scss";
 
 const CompanyHeader: React.FC = () => {
   const companyInfo = useAppSelector((state) => state.companyInfo);
 
   return (
-    <>
-      <h1 className="header">Studio: {companyInfo.companyName}</h1>
-      <h2>Executive: {companyInfo.playerName}</h2>
-    </>
+    <div className="company-header-container">
+      <div className="header">Studio: {companyInfo.companyName}</div>
+      <div>Executive: {companyInfo.playerName}</div>
+    </div>
   );
 };
 

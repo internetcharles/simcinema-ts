@@ -1,0 +1,103 @@
+.studio-button-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.studio-button-container {
+  width: 224px;
+  height: 224px;
+  background-color: rgb(255, 255, 255);
+  outline: 4px solid rgb(128, 128, 128);
+  border-radius: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Sysfont";
+}
+
+.studio-button-image {
+  width: 224px;
+  height: 224px;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.studio-button-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.studio-button-bottom-outline {
+  border: 2px solid grey;
+  width: 99%;
+  margin-top: 10px;
+  border-radius: 6%;
+}
+
+.studio-button-bottom-container {
+  height: 85px;
+  font-family: "Sysfont";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(219, 219, 219);
+  border: 2px solid rgb(151, 151, 151);
+  border-radius: 5%;
+}
+
+.studio-button-container-accepted {
+  width: 224px;
+  height: 224px;
+  background-color: rgb(199, 189, 255);
+  outline: 4px solid rgb(30, 145, 15);
+  border-radius: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Sysfont";
+}
+
+.studio-button-container-rejected {
+  width: 224px;
+  height: 224px;
+  background-color: rgb(199, 189, 255);
+  outline: 4px solid rgb(255, 0, 0);
+  border-radius: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Sysfont";
+}
+
+.studio-button-take {
+  font-family: "Sysfont";
+  background-color: rgb(209, 209, 209);
+  outline: 1px solid grey;
+  border: 1px solid white;
+}
+
+.studio-button-studio-name {
+  font-size: 18pt;
+}
+
+.studio-button-studio-ask {
+  font-size: 10pt;
+}
+
+.studio-button-studio-offer {
+  font-size: 15pt;
+}

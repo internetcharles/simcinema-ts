@@ -1,0 +1,37 @@
+.option-select-option-container {
+  height: calc(100% - 60px);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding-top: 10px;
+  background-image: url("../../../Assets/FilmCamera.png");
+  background-position: 20%;
+  animation: marquee 90s infinite linear;
+  overflow: auto;
+}
+
+.option-select-reject-container {
+  display: flex;
+  font-family: "Sysfont";
+  font-size: 20pt;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.option-select-money-header {
+  font-size: 30pt;
+  height: 50px;
+  font-family: "Sysfont";
+  text-align: center;
+  background-color: rgb(218, 221, 236);
+}
+
+.option-select-reject-money-remaining {
+  color: red;
+}

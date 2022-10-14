@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAppSelector } from "../../Redux/hooks";
 import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
@@ -33,6 +33,7 @@ const StartPage: React.FC = (props) => {
 
   return (
     <>
+      <Link to="/cast-select">DEBUG CAST</Link>
       <Window size="large-window" label="SimCinema">
         <div className="start-page-container">
           <InfoHeader
