@@ -25,6 +25,7 @@ const CreateMovie: React.FC<Props> = (props) => {
   const [movieName, setMovieName] = useState<string>("");
   const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
   const [movieDescription, setMovieDescription] = useState<string>("");
+  const [warningVisible, setWarningVisible] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(resetMovieInfo());
@@ -38,7 +39,7 @@ const CreateMovie: React.FC<Props> = (props) => {
 
   const submitMovie = (): void => {
     if (movieName === "" || selectedGenre === null) {
-      alert("Please enter a name and pick a genre!");
+      setWarningVisible(true);
       return;
     }
     dispatch(
@@ -58,6 +59,11 @@ const CreateMovie: React.FC<Props> = (props) => {
         <div className="create-movie-title-container">
           <TbMovie size={50} />
           <div className="create-movie-title-header">New movie info:</div>
+          {warningVisible && (
+            <div className="create-movie-title-warning">
+              Please enter a movie name and pick a genre!
+            </div>
+          )}
         </div>
         <div className="create-movie-title-container">
           <div className="create-movie-title-text">Title:</div>

@@ -9,14 +9,12 @@ import {
   selectMovieInfo,
   setMovieInfo,
 } from "../../Redux/Reducers/movieInfoSlice";
-import {
-  adjustQuality,
-  selectQuality,
-} from "../../Redux/Reducers/qualitySlice";
-import CompanyHeader from "../Global/CompanyHeader";
-import MovieInfoHeader from "../Global/MovieInfoHeader";
+import { adjustQuality } from "../../Redux/Reducers/qualitySlice";
+import Window from "../Global/Window";
 import { movieOptions, optionPath } from "./Data/movieData";
 import { MovieOption } from "./Interfaces/CreateInterface";
+import OptionButton from "./OptionButton";
+import "./Styles/OptionSelect.scss";
 
 interface Props {}
 
@@ -25,58 +23,123 @@ const OptionSelect: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector(selectMovieInfo);
   const budgetInfo = useAppSelector(selectBudget);
-  const qualityInfo = useAppSelector(selectQuality);
 
   const [currentOption, setCurrentOption] = useState<number>(0);
+  const [showAcceptWindow, setShowAcceptWindow] = useState<boolean>(false);
+  const [currentActor, setCurrentActor] = useState<MovieOption | null>(null);
+  const [enoughMoneyBool, setEnoughMoneyBool] = useState<boolean>(false);
 
   const selectOption = (option: MovieOption): void => {
+    setCurrentActor(option);
     if (option.price > budgetInfo.moneyRemaining) {
-      alert("Not enough money!");
-    } else if (currentOption < optionPath.length - 1) {
-      dispatch(adjustMoneyRemaining(option.price));
-      dispatch(adjustQuality(option.quality));
+      setEnoughMoneyBool(false);
+      setShowAcceptWindow(true);
+    } else {
+      setEnoughMoneyBool(true);
+      setShowAcceptWindow(true);
+    }
+  };
+
+  const acceptOption = (): void => {
+    if (currentOption < optionPath.length - 1) {
+      if (currentActor) {
+        dispatch(adjustMoneyRemaining(currentActor?.price));
+        dispatch(adjustQuality(currentActor?.quality));
+      }
       dispatch(
         setMovieInfo({
           ...movieInfo,
-          [optionPath[currentOption].category]: option.name,
+          [optionPath[currentOption].category]: currentActor?.name,
         }),
       );
       setCurrentOption(currentOption + 1);
+      setShowAcceptWindow(false);
     } else {
-      dispatch(adjustMoneyRemaining(option.price));
-      dispatch(adjustQuality(option.quality));
+      if (currentActor) {
+        dispatch(adjustMoneyRemaining(currentActor?.price));
+        dispatch(adjustQuality(currentActor?.quality));
+      }
       dispatch(
         setMovieInfo({
           ...movieInfo,
-          [optionPath[currentOption].category]: option.name,
+          [optionPath[currentOption].category]: currentActor?.name,
         }),
       );
       setCurrentOption(0);
+      setShowAcceptWindow(false);
       navigate("/filming-home");
     }
   };
 
+  const rejectOption = (): void => {
+    setShowAcceptWindow(false);
+  };
+
   return (
     <>
-      <CompanyHeader />
-      <MovieInfoHeader />
-      <div>Actor Select</div>
-      <div>DEBUG quality: {qualityInfo.quality}</div>
-      <div>
-        {movieOptions[currentOption].map((option) => (
-          <div key={option.name}>
-            <img src={option.portrait} alt="" />
-            <div>{option.name}</div>
-            <div>{`${option.price} million`}</div>
-            <div>{option.status}</div>
-            <div>
-              {option.status === "Available" || option.status === "None" ? (
-                <button onClick={() => selectOption(option)}>Select</button>
-              ) : null}
-            </div>
+      <Window label="Cast Select" size="large-window">
+        <div className="option-select-money-header">
+          Money Remaining: ${budgetInfo.moneyRemaining} million
+        </div>
+        <div className="option-select-option-container">
+          {movieOptions[currentOption].map((option) => (
+            <OptionButton
+              onOptionClick={() => selectOption(option)}
+              key={option.name}
+              option={option}
+            />
+          ))}
+        </div>
+      </Window>
+      {showAcceptWindow && (
+        <Window label="Alert" size="small-window">
+          <div className="funding-accept-window-container">
+            {enoughMoneyBool ? (
+              <>
+                <div className="funding-accept-window-header">
+                  <div>Hire option?</div>
+                  <div className="funding-accept-window-studio">
+                    <div>{currentActor?.name}</div>
+                    <div>${currentActor?.price} million</div>
+                    <div>
+                      Money Remaining: ${budgetInfo.moneyRemaining} million
+                    </div>
+                  </div>
+                </div>
+                <div className="funding-accept-button-container">
+                  <button
+                    onClick={acceptOption}
+                    className="funding-accept-button"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    onClick={rejectOption}
+                    className="funding-accept-button"
+                  >
+                    No
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="option-select-reject-container">
+                  <div>Not enough money</div>
+                  <div className="option-select-reject-money-remaining">
+                    You have: ${budgetInfo.moneyRemaining} million remaining
+                  </div>
+                  <button
+                    className="funding-accept-button"
+                    onClick={rejectOption}
+                  >
+                    OK
+                  </button>
+                </div>
+              </>
+            )}
           </div>
-        ))}
-      </div>
+        </Window>
+      )}
     </>
   );
 };
