@@ -1,10 +1,11 @@
 import { Studio } from "../Interfaces/CreateInterface";
+import questionMark from "../../../Assets/QuestionMark.png";
 
 export let studios: Studio[] = [
   {
     id: 0,
     studioName: "20th Century Fox",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -13,7 +14,7 @@ export let studios: Studio[] = [
   {
     id: 1,
     studioName: "Warner Bros.",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -22,7 +23,7 @@ export let studios: Studio[] = [
   {
     id: 2,
     studioName: "Universal",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -31,7 +32,7 @@ export let studios: Studio[] = [
   {
     id: 3,
     studioName: "Paramount",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -40,7 +41,7 @@ export let studios: Studio[] = [
   {
     id: 4,
     studioName: "Columbia",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -49,7 +50,7 @@ export let studios: Studio[] = [
   {
     id: 5,
     studioName: "TriStar",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -58,7 +59,7 @@ export let studios: Studio[] = [
   {
     id: 6,
     studioName: "Miramax",
-    image: "",
+    image: questionMark,
     offerRequested: false,
     rejected: false,
     offer: 0,

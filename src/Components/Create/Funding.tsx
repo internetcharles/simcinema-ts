@@ -1,40 +1,45 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../Redux/hooks";
 import { setBudget } from "../../Redux/Reducers/budgetSlice";
-import CompanyHeader from "../Global/CompanyHeader";
-import MovieInfoHeader from "../Global/MovieInfoHeader";
-import { requestOffer, resetData, studios } from "./Data/studioData";
+import Window from "../Global/Window";
+import { requestOffer, studios } from "./Data/studioData";
 import { Studio } from "./Interfaces/CreateInterface";
 import StudioButton from "./StudioButton";
+import "./Styles/Funding.scss";
 
 const Funding: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [studioList, setStudioList] = useState<Studio[]>([...studios]);
+  const [showOfferWindow, setShowOfferWindow] = useState<boolean>(false);
+  const [currentOffer, setCurrentOffer] = useState<Studio | null>(null);
 
   const onStudioClick = (studio: Studio): void => {
     if (!studio.offerRequested) {
       setStudioList([...requestOffer(studio)]);
     } else if (studio.offer > 0) {
-      // eslint-disable-next-line no-restricted-globals
-      if (confirm("Accept the offer?")) {
-        dispatch(setBudget(studio.offer));
-        resetData();
-        navigate("/cast-select");
-      } else {
-        console.log("no");
-      }
+      setShowOfferWindow(true);
+      setCurrentOffer(studio);
     }
   };
 
+  const acceptOffer = (): void => {
+    if (currentOffer) {
+      dispatch(setBudget(currentOffer.offer));
+    }
+    navigate("/cast-select");
+  };
+
+  const rejectOffer = (): void => {
+    setShowOfferWindow(false);
+  };
+
+  // TODO: Add max selections
   return (
-    <>
-      <CompanyHeader />
-      <MovieInfoHeader />
-      <div>Funding</div>
-      <div>
+    <Window size="large-window" label="Funding">
+      <div className="funding-studio-container">
         {studioList.map((studio) => (
           <StudioButton
             key={studio.studioName}
@@ -42,9 +47,29 @@ const Funding: React.FC = () => {
             studio={studio}
           />
         ))}
-        <Link to="/actor-select">DEBUG CONTINUE</Link>
       </div>
-    </>
+      {showOfferWindow && (
+        <Window label="Offer" size="small-window">
+          <div className="funding-accept-window-container">
+            <div className="funding-accept-window-header">
+              <div>Accept the offer?</div>
+              <div className="funding-accept-window-studio">
+                <div>{currentOffer?.studioName}</div>
+                <div>${currentOffer?.offer} million</div>
+              </div>
+            </div>
+            <div className="funding-accept-button-container">
+              <button onClick={acceptOffer} className="funding-accept-button">
+                Yes
+              </button>
+              <button onClick={rejectOffer} className="funding-accept-button">
+                No
+              </button>
+            </div>
+          </div>
+        </Window>
+      )}
+    </Window>
   );
 };
 
