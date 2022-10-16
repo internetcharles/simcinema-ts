@@ -1,0 +1,21 @@
+.release-modal-container {
+  width: 100%;
+  height: 100%;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.release-modal-header {
+  font-family: "Sysfont";
+  font-size: 20pt;
+  text-align: center;
+}
+
+.release-modal-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}

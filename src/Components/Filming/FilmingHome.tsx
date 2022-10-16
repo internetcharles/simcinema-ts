@@ -7,8 +7,13 @@ import {
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { adjustHype, adjustTargetHype } from "../../Redux/Reducers/budgetSlice";
 import AdModal from "../Global/AdModal";
-import CompanyHeader from "../Global/CompanyHeader";
+import ButtonContainer from "./FilmingButtonContainer";
+import FilmNotificationBox from "../Global/FilmNotificationBox";
+import FilmReelDecoration from "../Global/FilmReelDecoration";
 import MovieInfoHeader from "../Global/MovieInfoHeader";
+import Window from "../Global/Window";
+import AdvertisingBox from "./AdvertisingBox";
+import ReleaseModal from "./ReleaseModal";
 
 interface Props {}
 
@@ -21,6 +26,9 @@ const FilmingHome: React.FC<Props> = (props) => {
   const [percentDone, setPercentDone] = useState<number>(0);
   const [readyForRelease, setReadyForRelease] = useState<boolean>(false);
   const [isAdModalOpen, setIsAdModalOpen] = useState<boolean>(false);
+  const [infoExpanded, setInfoExpanded] = useState(false);
+  const [showMovieDetails, setShowMovieDetails] = useState<boolean>(false);
+  const [showReleaseModal, setShowReleaseModal] = useState<boolean>(false);
   const { hype, targetHype } = budgetInfo;
 
   useEffect(() => {
@@ -37,8 +45,14 @@ const FilmingHome: React.FC<Props> = (props) => {
     }
   }, [percentDone]);
 
+  const handleArrowClick = (): void => {
+    setInfoExpanded(!infoExpanded);
+    setShowMovieDetails(!showMovieDetails);
+  };
+
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
+    setIsAdModalOpen(false);
     if (targetHype > 0) {
       dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
     }
@@ -49,38 +63,41 @@ const FilmingHome: React.FC<Props> = (props) => {
   };
 
   const releaseFilm = (): void => {
-    navigate("/release-home");
+    setShowReleaseModal(true);
   };
 
   const handleAdModalPress = (): void => {
     setIsAdModalOpen(!isAdModalOpen);
   };
 
+  const handleReleaseFilmPress = (answer: boolean): void => {
+    answer ? navigate("/release-home") : setShowReleaseModal(false);
+  };
+
   return (
-    <>
-      <CompanyHeader />
-      <MovieInfoHeader />
-      <div>DEBUG (quality): {qualityInfo.quality}</div>
-      <div>Hype: {hype}</div>
-      <div>Hype Target: {targetHype}</div>
-      <div>{`Current week: ${currentWeek}`}</div>
-      <div>{`Percent done: ${percentDone}%`}</div>
-      <div className="advertising-section">
-        <div>Advertising</div>
-        <div>TV Commercials: 0 million</div>
-        <div>Movie trailers: 0 million</div>
-        <div>Magazine/Newspaper ads: 0 million</div>
-        <div>Posters: 0 million</div>
-      </div>
-      <div className="buttons">
-        <button>Terminate</button>
-        <button onClick={handleAdModalPress}>Advertise</button>
-        <button onClick={advanceWeek}>Pass Week</button>
-        <button>Content</button>
-        {readyForRelease && <button onClick={releaseFilm}>Release</button>}
-      </div>
-      {isAdModalOpen && <AdModal />}
-    </>
+    <Window label="Filming" size="large-window">
+      <FilmReelDecoration />
+      <MovieInfoHeader
+        handleArrowClick={handleArrowClick}
+        showMovieDetails={showMovieDetails}
+        percentDone={percentDone}
+        currentWeek={currentWeek}
+      />
+      <AdvertisingBox budgetInfo={budgetInfo} />
+      <FilmNotificationBox expandedInfo={infoExpanded} />
+      <ButtonContainer
+        readyForRelease={readyForRelease}
+        advanceWeek={advanceWeek}
+        handleAdModalPress={handleAdModalPress}
+        releaseFilm={releaseFilm}
+      />
+      {isAdModalOpen && (
+        <AdModal handleDonePress={() => handleAdModalPress()} />
+      )}
+      {showReleaseModal && (
+        <ReleaseModal handleReleaseFilmPress={handleReleaseFilmPress} />
+      )}
+    </Window>
   );
 };
 

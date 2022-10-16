@@ -34,7 +34,8 @@ const CreateMovie: React.FC<Props> = (props) => {
   }, [dispatch]);
 
   const handleGenreChange = (selectedOption: any): void => {
-    setSelectedGenre(selectedOption);
+    setSelectedGenre(selectedOption.target);
+    console.log(selectedOption.target);
   };
 
   const submitMovie = (): void => {
@@ -85,43 +86,43 @@ const CreateMovie: React.FC<Props> = (props) => {
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="action-adventure"
+                  value="Action-Adventure"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="comedy"
+                  value="Comedy"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="drama"
+                  value="Drama"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="romance"
+                  value="Romance"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="horror"
+                  value="Horror"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="sci-fi"
+                  value="Sci-fi"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="animated"
+                  value="Animated"
                   name="genre"
                 />
               </div>

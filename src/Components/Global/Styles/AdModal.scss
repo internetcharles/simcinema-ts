@@ -1,0 +1,88 @@
+.ad-modal-ad-type-container {
+  background-color: white;
+  font-family: "Sysfont";
+}
+
+.ad-modal-container {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(207, 207, 207);
+  text-align: center;
+  width: 100%;
+  align-items: center;
+}
+
+.ad-modal-container table {
+  background-color: rgb(138, 138, 138);
+}
+
+.ad-modal-container table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-modal-ad-type-title {
+  padding-right: 10px;
+  color: black;
+}
+
+.ad-modal-ad-type-have {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.ad-modal-ad-header-container {
+  font-size: 20px;
+  font-family: "Sysfont";
+  margin-bottom: 10px;
+}
+
+.ad-modal-ad-header-container {
+  display: flex;
+  align-items: center;
+}
+
+.ad-modal-outer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: "Sysfont";
+  background-color: rgb(233, 233, 233);
+  overflow: auto;
+  justify-content: center;
+}
+
+.ad-modal-category-header {
+  color: white;
+  font-weight: 100;
+}
+
+.ad-modal-money-remaining {
+  font-size: 15pt;
+  margin-top: 10px;
+  margin-left: 5px;
+  align-self: center;
+}
+
+.ad-modal-not-enough-money {
+  color: red;
+  margin-bottom: 5px;
+  align-self: center;
+}
+
+.ad-modal-mini-button-container {
+  align-self: flex-end;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.ad-modal-buy-button {
+  background-color: lightgrey;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

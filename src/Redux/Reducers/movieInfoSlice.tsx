@@ -8,7 +8,7 @@ export interface MovieInfoState {
   leadActor: string;
   leadActress: string;
   composer: string;
-  sfx: string;
+  vfx: string;
   audio: string;
 }
 
@@ -19,7 +19,7 @@ const initialState: MovieInfoState = {
   leadActor: "",
   leadActress: "",
   composer: "",
-  sfx: "",
+  vfx: "",
   audio: "",
 };
 

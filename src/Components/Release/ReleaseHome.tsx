@@ -75,7 +75,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
       <div>Newton News: {reviews.newtonNews}/10</div>
       <div>Daily Spill: {reviews.dailySpill}/10</div>
       <div>Wizard Weekly: {reviews.wizardWeekly}/10</div>
-      {adModalOpen && <AdModal />}
+      {adModalOpen && <AdModal handleDonePress={() => {}} />}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../Redux/hooks";
-import { setBudget } from "../../Redux/Reducers/budgetSlice";
+import { setBudget, setDistributor } from "../../Redux/Reducers/budgetSlice";
 import Window from "../Global/Window";
 import { requestOffer, studios } from "./Data/studioData";
 import { Studio } from "./Interfaces/CreateInterface";
@@ -27,6 +27,7 @@ const Funding: React.FC = () => {
 
   const acceptOffer = (): void => {
     if (currentOffer) {
+      dispatch(setDistributor(currentOffer.studioName));
       dispatch(setBudget(currentOffer.offer));
     }
     navigate("/cast-select");

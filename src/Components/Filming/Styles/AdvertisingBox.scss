@@ -1,0 +1,26 @@
+.advertising-box-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(238, 238, 238);
+  justify-content: center;
+  align-items: center;
+}
+
+.advertising-box-header {
+  font-family: "Sysfont";
+  background-color: rgb(238, 238, 238);
+  padding-left: 2.5%;
+  padding-top: 20px;
+}
+
+.advertising-box-details-container {
+  font-family: "Sysfont";
+  background-color: white;
+  width: 95%;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border: 1px solid grey;
+}

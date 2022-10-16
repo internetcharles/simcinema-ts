@@ -33,7 +33,7 @@ const StartPage: React.FC = (props) => {
 
   return (
     <>
-      <Link to="/cast-select">DEBUG CAST</Link>
+      <Link to="/filming-home">DEBUG FILMING</Link>
       <Window size="large-window" label="SimCinema">
         <div className="start-page-container">
           <InfoHeader

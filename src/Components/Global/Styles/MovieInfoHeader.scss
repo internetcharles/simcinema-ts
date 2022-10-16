@@ -1,0 +1,40 @@
+.movie-info-header-container {
+  background-color: rgb(221, 221, 221);
+  font-family: "Sysfont";
+  border-bottom: 1px solid black;
+}
+
+.movie-info-header-movie-title {
+  font-size: 20pt;
+}
+
+.movie-info-header-movie-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.movie-info-header-details-baseline-container {
+  width: 95%;
+}
+
+.movie-info-header-details-container {
+  display: flex;
+  width: 95%;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(247, 247, 247);
+  border: 1px solid grey;
+  justify-content: baseline;
+}
+
+.movie-info-header-details-outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-info-header-details-second-info {
+  margin-left: 40%;
+}
