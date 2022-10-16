@@ -13,14 +13,14 @@ export interface MovieInfoState {
 }
 
 const initialState: MovieInfoState = {
-  title: "",
-  genre: "",
-  description: "",
-  leadActor: "",
-  leadActress: "",
-  composer: "",
-  vfx: "",
-  audio: "",
+  title: "A",
+  genre: "A",
+  description: "A",
+  leadActor: "A",
+  leadActress: "A",
+  composer: "A",
+  vfx: "A",
+  audio: "A",
 };
 
 export const movieInfoSlice = createSlice({

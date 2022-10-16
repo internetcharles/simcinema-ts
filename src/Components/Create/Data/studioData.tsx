@@ -236,7 +236,7 @@ export const resetData = (): void => {
     {
       id: 0,
       studioName: "20th Century Fox",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -245,7 +245,7 @@ export const resetData = (): void => {
     {
       id: 1,
       studioName: "Warner Bros.",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -254,7 +254,7 @@ export const resetData = (): void => {
     {
       id: 2,
       studioName: "Universal",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -263,7 +263,7 @@ export const resetData = (): void => {
     {
       id: 3,
       studioName: "Paramount",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -272,7 +272,7 @@ export const resetData = (): void => {
     {
       id: 4,
       studioName: "Columbia",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -281,7 +281,7 @@ export const resetData = (): void => {
     {
       id: 5,
       studioName: "TriStar",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -290,7 +290,7 @@ export const resetData = (): void => {
     {
       id: 6,
       studioName: "Miramax",
-      image: "",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,

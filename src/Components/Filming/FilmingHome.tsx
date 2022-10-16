@@ -14,6 +14,8 @@ import MovieInfoHeader from "../Global/MovieInfoHeader";
 import Window from "../Global/Window";
 import AdvertisingBox from "./AdvertisingBox";
 import ReleaseModal from "./ReleaseModal";
+import { FilmingEvent } from "./Interfaces/FilmingInterface";
+import { generateFilmingEvent } from "./Data/eventData";
 
 interface Props {}
 
@@ -26,9 +28,10 @@ const FilmingHome: React.FC<Props> = (props) => {
   const [percentDone, setPercentDone] = useState<number>(0);
   const [readyForRelease, setReadyForRelease] = useState<boolean>(false);
   const [isAdModalOpen, setIsAdModalOpen] = useState<boolean>(false);
-  const [infoExpanded, setInfoExpanded] = useState(false);
-  const [showMovieDetails, setShowMovieDetails] = useState<boolean>(false);
+  const [infoExpanded, setInfoExpanded] = useState(true);
+  const [showMovieDetails, setShowMovieDetails] = useState<boolean>(true);
   const [showReleaseModal, setShowReleaseModal] = useState<boolean>(false);
+  const [notifications, setNotifications] = useState<string[]>([]);
   const { hype, targetHype } = budgetInfo;
 
   useEffect(() => {
@@ -53,12 +56,32 @@ const FilmingHome: React.FC<Props> = (props) => {
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
     setIsAdModalOpen(false);
+    const weekEvent: FilmingEvent = generateFilmingEvent();
+    const hypeAdjustment = generateNextHypeNumber(
+      hype + weekEvent.hypeDifference,
+      targetHype,
+    );
+    const hypeDifference = hypeAdjustment - hype;
     if (targetHype > 0) {
       dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
+      dispatch(adjustHype(hypeAdjustment));
     }
-    dispatch(adjustHype(generateNextHypeNumber(hype, targetHype)));
     if (percentDone < 100) {
-      setPercentDone(percentDone + 10);
+      setPercentDone(percentDone + weekEvent.progress);
+      setNotifications([
+        ...notifications,
+        `${weekEvent.description} Hype changes by ${hypeDifference}.`,
+      ]);
+    } else if (hype > 0) {
+      setNotifications([
+        ...notifications,
+        `Film is ready for release! Hype changes by ${hypeDifference}.`,
+      ]);
+    } else {
+      setNotifications([
+        ...notifications,
+        "Film is ready for release! Hype remains the same.",
+      ]);
     }
   };
 
@@ -78,13 +101,17 @@ const FilmingHome: React.FC<Props> = (props) => {
     <Window label="Filming" size="large-window">
       <FilmReelDecoration />
       <MovieInfoHeader
+        theaters={-1}
         handleArrowClick={handleArrowClick}
         showMovieDetails={showMovieDetails}
         percentDone={percentDone}
         currentWeek={currentWeek}
       />
-      <AdvertisingBox budgetInfo={budgetInfo} />
-      <FilmNotificationBox expandedInfo={infoExpanded} />
+      <AdvertisingBox budgetInfo={budgetInfo} halved={false} />
+      <FilmNotificationBox
+        expandedInfo={infoExpanded}
+        notifications={notifications}
+      />
       <ButtonContainer
         readyForRelease={readyForRelease}
         advanceWeek={advanceWeek}

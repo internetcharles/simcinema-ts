@@ -3,9 +3,13 @@ import "./Styles/FilmNotificationBox.scss";
 
 interface Props {
   expandedInfo: boolean;
+  notifications: string[];
 }
 
-const FilmNotificationBox: React.FC<Props> = ({ expandedInfo }) => {
+const FilmNotificationBox: React.FC<Props> = ({
+  expandedInfo,
+  notifications,
+}) => {
   return (
     <div
       className={
@@ -15,7 +19,13 @@ const FilmNotificationBox: React.FC<Props> = ({ expandedInfo }) => {
       }
     >
       <div className="film-notification-notification-box">
-        <div className="film-notification-items">Notifications go here</div>
+        <div className="film-notification-items">
+          {notifications.map((notification, idx) => {
+            return (
+              <div key={notification + idx.toString()}>{notification}</div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

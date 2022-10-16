@@ -9,6 +9,7 @@ interface Props {
   percentDone: number;
   showMovieDetails: boolean;
   handleArrowClick: () => void;
+  theaters: number;
 }
 
 const MovieInfoHeader: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const MovieInfoHeader: React.FC<Props> = ({
   percentDone,
   showMovieDetails,
   handleArrowClick,
+  theaters,
 }) => {
   const movieInfo = useAppSelector((state) => state.movieInfo);
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
@@ -47,6 +49,7 @@ const MovieInfoHeader: React.FC<Props> = ({
         <div className="movie-info-header-details-outer-container">
           {showMovieDetails && (
             <MovieInfoHeaderDetails
+              theaters={theaters}
               companyInfo={companyInfo}
               budgetInfo={budgetInfo}
               movieInfo={movieInfo}

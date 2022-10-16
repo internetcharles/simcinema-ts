@@ -1,0 +1,20 @@
+.release-home-ad-reviews {
+  display: flex;
+  flex-direction: row;
+  height: 24%;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(238, 238, 238);
+}
+
+.release-home-earnings {
+  font-family: "Sysfont";
+  font-size: 24pt;
+}
+
+.release-home-earnings-number {
+  font-family: "Sysfont";
+  font-size: 24pt;
+  color: green;
+}

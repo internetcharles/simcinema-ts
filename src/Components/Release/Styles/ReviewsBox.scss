@@ -1,12 +1,4 @@
-.advertising-box-container {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(238, 238, 238);
-  justify-content: center;
-  align-items: center;
-}
-
-.advertising-box-container-half {
+.reviews-box-container {
   display: flex;
   flex-direction: column;
   background-color: rgb(238, 238, 238);
@@ -15,14 +7,14 @@
   width: 500px;
 }
 
-.advertising-box-header {
+.reviews-box-header {
   font-family: "Sysfont";
   background-color: rgb(238, 238, 238);
   padding-left: 2.5%;
   padding-top: 20px;
 }
 
-.advertising-box-details-container {
+.reviews-box-details-container {
   font-family: "Sysfont";
   background-color: white;
   width: 95%;
