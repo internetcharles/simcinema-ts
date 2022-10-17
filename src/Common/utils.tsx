@@ -39,11 +39,22 @@ export const generateInitialTheaters = (
 };
 
 export const convertToMillions = (num: number): number => {
-  if (num >= 10000000) {
+  if (num >= 100000000) {
+    const first3Str = String(num).slice(0, 4);
+    return Number(first3Str) / 10;
+  } else if (num >= 10000000) {
     const first2Str = String(num).slice(0, 3);
     return Number(first2Str) / 10;
   } else {
     const first2Str = String(num).slice(0, 2);
     return Number(first2Str) / 10;
+  }
+};
+
+export const gradeMovie = (earnings: number, budget: number): string => {
+  if (earnings > budget) {
+    return "Success";
+  } else {
+    return "Failure";
   }
 };

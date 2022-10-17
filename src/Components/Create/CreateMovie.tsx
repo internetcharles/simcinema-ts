@@ -26,6 +26,7 @@ const CreateMovie: React.FC<Props> = (props) => {
   const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
   const [movieDescription, setMovieDescription] = useState<string>("");
   const [warningVisible, setWarningVisible] = useState<boolean>(false);
+  const [dismissed, setDismissed] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(resetMovieInfo());
@@ -35,7 +36,6 @@ const CreateMovie: React.FC<Props> = (props) => {
 
   const handleGenreChange = (selectedOption: any): void => {
     setSelectedGenre(selectedOption.target);
-    console.log(selectedOption.target);
   };
 
   const submitMovie = (): void => {
@@ -51,11 +51,19 @@ const CreateMovie: React.FC<Props> = (props) => {
         description: movieDescription,
       }),
     );
-    navigate("/funding");
+    setDismissed(true);
+    setTimeout(() => {
+      navigate("/funding");
+    }, 400);
   };
 
   return (
-    <Window label="Create Movie" size={"medium-window"}>
+    <Window
+      isAnimated={true}
+      dismissed={dismissed}
+      label="Create Movie"
+      size={"medium-window"}
+    >
       <div className="create-movie-container">
         <div className="create-movie-title-container">
           <TbMovie size={50} />

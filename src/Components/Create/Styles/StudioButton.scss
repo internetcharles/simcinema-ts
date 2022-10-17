@@ -27,6 +27,7 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  image-rendering: pixelated;
 }
 
 .studio-button-title-container {
@@ -98,6 +99,12 @@
   font-size: 10pt;
 }
 
+.studio-button-studio-ask-rejected {
+  font-size: 12pt;
+  color: red;
+}
+
 .studio-button-studio-offer {
   font-size: 15pt;
+  color: green;
 }

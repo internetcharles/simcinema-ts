@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./Styles/FilmNotificationBox.scss";
 
 interface Props {
@@ -10,6 +10,16 @@ const FilmNotificationBox: React.FC<Props> = ({
   expandedInfo,
   notifications,
 }) => {
+  const notificationsEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = (): void => {
+    notificationsEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [notifications]);
+
   return (
     <div
       className={
@@ -25,6 +35,7 @@ const FilmNotificationBox: React.FC<Props> = ({
               <div key={notification + idx.toString()}>{notification}</div>
             );
           })}
+          <div ref={notificationsEndRef} />
         </div>
       </div>
     </div>

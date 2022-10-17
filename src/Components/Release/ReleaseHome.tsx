@@ -6,7 +6,11 @@ import {
   generateNextHypeNumber,
 } from "../../Common/utils";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { adjustEarnings, adjustHype } from "../../Redux/Reducers/budgetSlice";
+import {
+  adjustEarnings,
+  adjustHype,
+  adjustTargetHype,
+} from "../../Redux/Reducers/budgetSlice";
 import { addMovieToHistory } from "../../Redux/Reducers/companyInfoSlice";
 import AdvertisingBox from "../Filming/AdvertisingBox";
 import { generateReleaseEvent } from "../Filming/Data/eventData";
@@ -37,10 +41,9 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [notifications, setNotifications] = useState<string[]>([]);
   const [theaterFallOff, setTheaterFallOff] = useState<number>(10);
-  const reviews = generateReviews(qualityInfo.quality);
-  const { hype } = budgetInfo;
-
-  console.log(reviews);
+  const { hype, targetHype } = budgetInfo;
+  const { quality } = qualityInfo;
+  const reviews = generateReviews(quality);
 
   useEffect(() => {
     setTheaters(generateInitialTheaters(hype, qualityInfo.quality));
@@ -57,9 +60,14 @@ const ReleaseHome: React.FC<Props> = (props) => {
     setAdModalOpen(false);
     setTheaterFallOff(theaterFallOff * 1.6);
     const weekEvent: ReleaseEvent = generateReleaseEvent();
-    const hypeAdjustment = hype + weekEvent.hypeDifference - 5;
+    const hypeAdjustment =
+      generateNextHypeNumber(hype + weekEvent.hypeDifference, targetHype) - 1;
     const theaterAdjustment =
-      theaters - Math.floor(300 / (hype + Math.random() * 2 + 1));
+      hype > 0
+        ? theaters -
+          Math.floor(300 / (hype + Math.random() * 2 + 1) + (200 - quality))
+        : theaters -
+          Math.floor(300 / (Math.random() * 2 + 1) + (200 - quality));
     if (theaters <= 0) {
       setTheaters(0);
       setNotifications([
@@ -69,9 +77,10 @@ const ReleaseHome: React.FC<Props> = (props) => {
       return;
     }
     if (theaters > 0) {
-      setEarnings(earnings + theaters * 311);
-      if (hype > 0) {
+      setEarnings(earnings + theaters * 700);
+      if (hype + hypeAdjustment > 0) {
         dispatch(adjustHype(hypeAdjustment));
+        dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
       } else {
         dispatch(adjustHype(0));
       }
@@ -85,7 +94,6 @@ const ReleaseHome: React.FC<Props> = (props) => {
         }.`,
       ]);
     }
-    console.log(hype);
   };
 
   const handleReviewPress = (): void => {
@@ -105,6 +113,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
         addMovieToHistory({
           title: movieInfo.title,
           averageScore: reviews.averageScore,
+          budget: budgetInfo.budget,
           earnings,
         }),
       );

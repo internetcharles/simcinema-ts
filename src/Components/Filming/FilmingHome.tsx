@@ -98,7 +98,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   };
 
   return (
-    <Window label="Filming" size="large-window">
+    <Window isAnimated={true} label="Filming" size="large-window">
       <FilmReelDecoration />
       <MovieInfoHeader
         theaters={-1}

@@ -90,7 +90,6 @@ const defaultReleaseEvent = (): ReleaseEvent => {
 
 export const generateReleaseEvent = (): ReleaseEvent => {
   const randomInt = getRandomInt(100);
-  console.log("randomint", randomInt);
   if (randomInt >= 0 && randomInt <= 33) {
     return negativeReleaseEvents[
       getRandomArbitrary(0, negativeReleaseEvents.length)
