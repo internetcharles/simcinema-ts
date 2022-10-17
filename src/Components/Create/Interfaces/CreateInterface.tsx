@@ -2,6 +2,7 @@ export interface Movie {
   title: string;
   averageScore: number;
   earnings: number;
+  budget: number;
 }
 
 export interface Option {

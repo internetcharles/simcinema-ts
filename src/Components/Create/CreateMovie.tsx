@@ -26,6 +26,7 @@ const CreateMovie: React.FC<Props> = (props) => {
   const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
   const [movieDescription, setMovieDescription] = useState<string>("");
   const [warningVisible, setWarningVisible] = useState<boolean>(false);
+  const [dismissed, setDismissed] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(resetMovieInfo());
@@ -34,7 +35,7 @@ const CreateMovie: React.FC<Props> = (props) => {
   }, [dispatch]);
 
   const handleGenreChange = (selectedOption: any): void => {
-    setSelectedGenre(selectedOption);
+    setSelectedGenre(selectedOption.target);
   };
 
   const submitMovie = (): void => {
@@ -50,11 +51,19 @@ const CreateMovie: React.FC<Props> = (props) => {
         description: movieDescription,
       }),
     );
-    navigate("/funding");
+    setDismissed(true);
+    setTimeout(() => {
+      navigate("/funding");
+    }, 400);
   };
 
   return (
-    <Window label="Create Movie" size={"medium-window"}>
+    <Window
+      isAnimated={true}
+      dismissed={dismissed}
+      label="Create Movie"
+      size={"medium-window"}
+    >
       <div className="create-movie-container">
         <div className="create-movie-title-container">
           <TbMovie size={50} />
@@ -85,43 +94,43 @@ const CreateMovie: React.FC<Props> = (props) => {
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="action-adventure"
+                  value="Action-Adventure"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="comedy"
+                  value="Comedy"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="drama"
+                  value="Drama"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="romance"
+                  value="Romance"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="horror"
+                  value="Horror"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="sci-fi"
+                  value="Sci-fi"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="animated"
+                  value="Animated"
                   name="genre"
                 />
               </div>

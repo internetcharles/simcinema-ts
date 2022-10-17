@@ -1,8 +1,8 @@
 .large-window {
   border: 3px solid;
   border-color: #f1f1f1;
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   background-color: white;
   position: fixed;
   top: 50%;
@@ -10,6 +10,8 @@
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
   display: flex;
+  overflow: auto;
+  align-items: stretch;
 }
 
 .medium-window {
@@ -94,6 +96,6 @@
 .inner-inner-border {
   border: 2px solid;
   border-color: #696969;
-  width: 99.5%;
+  width: 99.9%;
   height: calc(100% - 28px);
 }

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 export interface BudgetState {
+  distributor: string;
   budget: number;
   moneyRemaining: number;
   hype: number;
@@ -16,6 +17,7 @@ export interface BudgetState {
 }
 
 const initialState: BudgetState = {
+  distributor: "",
   budget: 0,
   moneyRemaining: 0,
   hype: 0,
@@ -33,6 +35,9 @@ export const budgetSlice = createSlice({
   name: "budgetInfo",
   initialState,
   reducers: {
+    setDistributor: (state, action: PayloadAction<string>) => {
+      state.distributor = action.payload;
+    },
     setBudget: (state, action: PayloadAction<number>) => {
       state.budget = action.payload;
       state.moneyRemaining = action.payload;
@@ -76,6 +81,7 @@ export const budgetSlice = createSlice({
 });
 
 export const {
+  setDistributor,
   setBudget,
   adjustMoneyRemaining,
   resetBudget,

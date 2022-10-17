@@ -1,0 +1,33 @@
+.film-notification-box-container {
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  border-top: 1px solid black;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.film-notification-box-container-shrink {
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  border-top: 1px solid black;
+  height: 43.3%;
+  display: flex;
+  justify-content: center;
+}
+
+.film-notification-notification-box {
+  margin-top: 20px;
+  background-color: white;
+  width: 96%;
+  height: 90%;
+  border: 1px solid black;
+  overflow: auto;
+}
+
+.film-notification-items {
+  font-family: "Sysfont";
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 20px;
+}

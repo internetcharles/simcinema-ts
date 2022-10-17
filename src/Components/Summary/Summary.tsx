@@ -4,12 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../Redux/hooks";
 import { resetBudget } from "../../Redux/Reducers/budgetSlice";
 import { resetMovieInfo } from "../../Redux/Reducers/movieInfoSlice";
+import { resetData } from "../Create/Data/studioData";
+import MiniButton from "../Global/MiniButton";
+import Window from "../Global/Window";
+import "./Styles/Summary.scss";
 
 interface Props {}
 
 const Summary: React.FC<Props> = (props) => {
   const navigate = useNavigate();
   const earnings = useAppSelector((state) => state.budgetInfo.earnings);
+  const movieInfo = useAppSelector((state) => state.movieInfo);
   const dispatch = useDispatch();
 
   const getRandomArbitrary = (min: number, max: number): number => {
@@ -20,8 +25,6 @@ const Summary: React.FC<Props> = (props) => {
     const domestic = getRandomArbitrary(4, 6);
     const international = 10 - domestic;
 
-    console.log(domestic);
-    console.log(international);
     const dGross = Math.floor(earnings * (domestic / 10));
     const iGross = Math.floor(earnings * (international / 10));
 
@@ -31,6 +34,8 @@ const Summary: React.FC<Props> = (props) => {
   const reset = (): void => {
     dispatch(resetMovieInfo());
     dispatch(resetBudget());
+    dispatch(resetMovieInfo());
+    resetData();
   };
 
   const navigateHome = (): void => {
@@ -39,13 +44,22 @@ const Summary: React.FC<Props> = (props) => {
   };
 
   return (
-    <>
-      <div>Summary</div>
-      <div>Domestic Gross: ${calculateDIEarnings()[0]}</div>
-      <div>International Gross: ${calculateDIEarnings()[1]}</div>
-      <div>Total Gross: ${earnings}</div>
-      <button onClick={navigateHome}>Return to Home</button>
-    </>
+    <Window label="Summary" size="small-window">
+      <div className="summary-container">
+        <div className="summary-header">Summary</div>
+        <div className="summary-title-header">{movieInfo.title}</div>
+        <div className="summary-earnings-container">
+          <div>Domestic Gross: ${calculateDIEarnings()[0]}</div>
+          <div>International Gross: ${calculateDIEarnings()[1]}</div>
+          <div>Total Gross: ${earnings}</div>
+        </div>
+        <MiniButton
+          icon=""
+          handleButtonPress={() => navigateHome()}
+          label="Home"
+        />
+      </div>
+    </Window>
   );
 };
 

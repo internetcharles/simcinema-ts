@@ -8,7 +8,6 @@ export const generateReviews = (quality: number): Reviews => {
   const nationalRetainerSkew = -0.15;
   const wizardWeeklySkew = 0;
   const newtonNewsSkew = -0.08;
-  console.log(quality);
 
   const reviewScore = (reviewerSkew: number): number => {
     if (Math.floor((quality / 280 + reviewerSkew) * 10) > 10) {
@@ -38,8 +37,6 @@ export const generateReviews = (quality: number): Reviews => {
       5) *
       10) /
     10;
-
-  console.log(averageScore);
 
   return {
     sodaCityTimes: sodaCityTimesReview,

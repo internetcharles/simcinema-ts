@@ -32,11 +32,11 @@ const StudioButton: React.FC<Props> = ({ studio, onStudioClick }) => {
           <div className="studio-button-studio-ask">
             {offerRequested ? "Asked" : "Haven't Asked"}
           </div>
-          <div className="studio-button-studio-ask">
+          <div className="studio-button-studio-ask-rejected">
             {offerRequested && rejected ? "Rejected!" : null}
           </div>
           <div className="studio-button-studio-offer">
-            {offerRequested && !rejected ? `${offer} million` : null}
+            {offerRequested && !rejected ? `$${offer} million` : null}
           </div>
           {offerRequested && !rejected ? (
             <button onClick={onStudioClick} className="studio-button-take">

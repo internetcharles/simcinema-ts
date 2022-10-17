@@ -7,9 +7,15 @@ import "./Styles/CreateCompany.scss";
 
 interface Props {
   handleNewCompanyPress: () => void;
+  isAnimated: boolean;
+  dismissed: boolean;
 }
 
-const CreateCompany: React.FC<Props> = ({ handleNewCompanyPress }) => {
+const CreateCompany: React.FC<Props> = ({
+  handleNewCompanyPress,
+  dismissed,
+  isAnimated,
+}) => {
   const dispatch = useAppDispatch();
 
   const [companyName, setCompanyName] = useState<string>("");
@@ -32,7 +38,12 @@ const CreateCompany: React.FC<Props> = ({ handleNewCompanyPress }) => {
   };
 
   return (
-    <Window size="small-window" label="Create Company">
+    <Window
+      size="small-window"
+      label="Create Company"
+      isAnimated={isAnimated}
+      dismissed={dismissed}
+    >
       <div className="company-container">
         <div className="company-title-container">
           <div className="company-header-icon-container">

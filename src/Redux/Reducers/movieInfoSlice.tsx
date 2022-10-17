@@ -8,19 +8,19 @@ export interface MovieInfoState {
   leadActor: string;
   leadActress: string;
   composer: string;
-  sfx: string;
+  vfx: string;
   audio: string;
 }
 
 const initialState: MovieInfoState = {
-  title: "",
-  genre: "",
-  description: "",
-  leadActor: "",
-  leadActress: "",
-  composer: "",
-  sfx: "",
-  audio: "",
+  title: "A",
+  genre: "A",
+  description: "A",
+  leadActor: "A",
+  leadActress: "A",
+  composer: "A",
+  vfx: "A",
+  audio: "A",
 };
 
 export const movieInfoSlice = createSlice({

@@ -51,6 +51,43 @@
   text-align: center;
 }
 
+.funding-proposal-window-container {
+  background-color: lightgray;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Sysfont";
+  text-align: center;
+}
+
+.funding-proposal-window-studio-header {
+  font-size: 20pt;
+  margin-top: 20px;
+}
+
+.funding-proposal-window-button-container {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.funding-proposal-window-offer {
+  font-size: 15pt;
+  color: green;
+}
+
+.funding-proposal-window-offer-rejected {
+  font-size: 25pt;
+  color: rgb(255, 0, 0);
+}
+
+.funding-proposal-window-message {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 @keyframes marquee {
   0% {
     background-position: 0;

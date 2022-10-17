@@ -1,22 +1,65 @@
 import React from "react";
 import { useAppSelector } from "../../Redux/hooks";
+import { RiArrowDropRightFill, RiArrowDropDownFill } from "react-icons/ri";
+import MovieInfoHeaderDetails from "./MovieInfoHeaderDetails";
+import "./Styles/MovieInfoHeader.scss";
 
-const MovieInfoHeader: React.FC = () => {
+interface Props {
+  currentWeek: number;
+  percentDone: number;
+  showMovieDetails: boolean;
+  handleArrowClick: () => void;
+  theaters: number;
+}
+
+const MovieInfoHeader: React.FC<Props> = ({
+  currentWeek,
+  percentDone,
+  showMovieDetails,
+  handleArrowClick,
+  theaters,
+}) => {
   const movieInfo = useAppSelector((state) => state.movieInfo);
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
+  const companyInfo = useAppSelector((state) => state.companyInfo);
 
   return (
-    <>
-      {movieInfo.title && <h2>{movieInfo.title}</h2>}
-      {budgetInfo.budget > 0 && (
-        <h3>Budget: {budgetInfo.moneyRemaining} million</h3>
-      )}
-      {movieInfo.leadActor && <div>Lead Actor: {movieInfo.leadActor}</div>}
-      {movieInfo.leadActress && (
-        <div>Lead Actress: {movieInfo.leadActress}</div>
-      )}
-      {movieInfo.composer && <div>Composer: {movieInfo.composer}</div>}
-    </>
+    <div>
+      <div className="movie-info-header-container">
+        {movieInfo.title && (
+          <div className="movie-info-header-movie-title-container">
+            {showMovieDetails ? (
+              <RiArrowDropDownFill
+                onClick={handleArrowClick}
+                size={50}
+                color="darkblue"
+              />
+            ) : (
+              <RiArrowDropRightFill
+                color="darkblue"
+                size={50}
+                onClick={handleArrowClick}
+              />
+            )}
+            <div className="movie-info-header-movie-title">
+              {movieInfo.title}
+            </div>
+          </div>
+        )}
+        <div className="movie-info-header-details-outer-container">
+          {showMovieDetails && (
+            <MovieInfoHeaderDetails
+              theaters={theaters}
+              companyInfo={companyInfo}
+              budgetInfo={budgetInfo}
+              movieInfo={movieInfo}
+              currentWeek={currentWeek}
+              percentDone={percentDone}
+            />
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -28,6 +28,7 @@ const OptionSelect: React.FC<Props> = (props) => {
   const [showAcceptWindow, setShowAcceptWindow] = useState<boolean>(false);
   const [currentActor, setCurrentActor] = useState<MovieOption | null>(null);
   const [enoughMoneyBool, setEnoughMoneyBool] = useState<boolean>(false);
+  const [dismissed, setDismissed] = useState<boolean>(false);
 
   const selectOption = (option: MovieOption): void => {
     setCurrentActor(option);
@@ -65,9 +66,13 @@ const OptionSelect: React.FC<Props> = (props) => {
           [optionPath[currentOption].category]: currentActor?.name,
         }),
       );
-      setCurrentOption(0);
+      setDismissed(true);
       setShowAcceptWindow(false);
-      navigate("/filming-home");
+      setTimeout(() => {
+        setCurrentOption(0);
+        setShowAcceptWindow(false);
+        navigate("/filming-home");
+      }, 400);
     }
   };
 
@@ -77,7 +82,12 @@ const OptionSelect: React.FC<Props> = (props) => {
 
   return (
     <>
-      <Window label="Cast Select" size="large-window">
+      <Window
+        isAnimated={true}
+        dismissed={dismissed}
+        label="Cast Select"
+        size="large-window"
+      >
         <div className="option-select-money-header">
           Money Remaining: ${budgetInfo.moneyRemaining} million
         </div>

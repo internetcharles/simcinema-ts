@@ -268,7 +268,7 @@ export const optionPath = [
     title: "Composer",
   },
   {
-    category: "sfx",
+    category: "vfx",
     title: "VFX Studio",
   },
   {

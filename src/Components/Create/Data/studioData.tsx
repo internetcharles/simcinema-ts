@@ -1,11 +1,15 @@
 import { Studio } from "../Interfaces/CreateInterface";
 import questionMark from "../../../Assets/QuestionMark.png";
+import twentyCatImage from "../../../Assets/21Cat.png";
+import badMovieCoImage from "../../../Assets/BadMovieCo.png";
+import bigBoyImage from "../../../Assets/BigBoy.png";
+import everestImage from "../../../Assets/Everest.png";
 
 export let studios: Studio[] = [
   {
     id: 0,
-    studioName: "20th Century Fox",
-    image: questionMark,
+    studioName: "21st Century Cats",
+    image: twentyCatImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -13,8 +17,8 @@ export let studios: Studio[] = [
   },
   {
     id: 1,
-    studioName: "Warner Bros.",
-    image: questionMark,
+    studioName: "Bad Movie Co.",
+    image: badMovieCoImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -22,8 +26,8 @@ export let studios: Studio[] = [
   },
   {
     id: 2,
-    studioName: "Universal",
-    image: questionMark,
+    studioName: "Big Boy Studios",
+    image: bigBoyImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -31,8 +35,8 @@ export let studios: Studio[] = [
   },
   {
     id: 3,
-    studioName: "Paramount",
-    image: questionMark,
+    studioName: "Everest",
+    image: everestImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -40,7 +44,7 @@ export let studios: Studio[] = [
   },
   {
     id: 4,
-    studioName: "Columbia",
+    studioName: "Big Papi Pictures",
     image: questionMark,
     offerRequested: false,
     rejected: false,
@@ -49,7 +53,7 @@ export let studios: Studio[] = [
   },
   {
     id: 5,
-    studioName: "TriStar",
+    studioName: "Domik Productions",
     image: questionMark,
     offerRequested: false,
     rejected: false,
@@ -58,7 +62,7 @@ export let studios: Studio[] = [
   },
   {
     id: 6,
-    studioName: "Miramax",
+    studioName: "Banana Bros.",
     image: questionMark,
     offerRequested: false,
     rejected: false,
@@ -75,6 +79,35 @@ const getRandomArbitrary = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min) + min) + 1;
 };
 
+const rejectedMessageSet = new Set();
+const acceptedMessageSet = new Set();
+
+const generateAcceptedMessage = (): string => {
+  let randomAcceptMessage =
+    acceptedMessages[getRandomArbitrary(0, acceptedMessages.length - 1)]
+      .message;
+  while (acceptedMessageSet.has(randomAcceptMessage)) {
+    randomAcceptMessage =
+      acceptedMessages[getRandomArbitrary(0, acceptedMessages.length - 1)]
+        .message;
+  }
+  acceptedMessageSet.add(randomAcceptMessage);
+  return randomAcceptMessage;
+};
+
+const generateRejectedMessage = (): string => {
+  let randomRejectedMessage =
+    rejectedMessages[getRandomArbitrary(0, rejectedMessages.length - 1)]
+      .message;
+  while (rejectedMessageSet.has(randomRejectedMessage)) {
+    randomRejectedMessage =
+      rejectedMessages[getRandomArbitrary(0, rejectedMessages.length - 1)]
+        .message;
+  }
+  rejectedMessageSet.add(randomRejectedMessage);
+  return randomRejectedMessage;
+};
+
 export const requestOffer = (studio: Studio): Studio[] => {
   const randomNum = getRandomInt(29);
   switch (studio.id) {
@@ -82,17 +115,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum > 15) {
         studios[0].offer = getRandomArbitrary(50, 70);
         studios[0].offerRequested = true;
-        studios[0].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[0].message = generateAcceptedMessage();
       } else {
         studios[0].offerRequested = true;
         studios[0].rejected = true;
-        studios[0].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[0].message = generateRejectedMessage();
         studios[0].offer = -1;
       }
       return studios;
@@ -100,17 +127,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum > 0) {
         studios[1].offer = getRandomArbitrary(30, 40);
         studios[1].offerRequested = true;
-        studios[1].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[1].message = generateAcceptedMessage();
       } else {
         studios[1].offerRequested = true;
         studios[1].rejected = true;
-        studios[1].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[1].message = generateRejectedMessage();
         studios[1].offer = -1;
       }
       return studios;
@@ -118,17 +139,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum >= 10 && randomNum <= 15) {
         studios[2].offer = getRandomArbitrary(40, 50);
         studios[2].offerRequested = true;
-        studios[2].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[2].message = generateAcceptedMessage();
       } else {
         studios[2].offerRequested = true;
         studios[2].rejected = true;
-        studios[2].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[2].message = generateRejectedMessage();
         studios[2].offer = -1;
       }
       return studios;
@@ -136,17 +151,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum >= 10) {
         studios[3].offer = getRandomArbitrary(35, 55);
         studios[3].offerRequested = true;
-        studios[3].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[3].message = generateAcceptedMessage();
       } else {
         studios[3].offerRequested = true;
         studios[3].rejected = true;
-        studios[3].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[3].message = generateRejectedMessage();
         studios[3].offer = -1;
       }
       return studios;
@@ -154,17 +163,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum >= 20) {
         studios[4].offer = getRandomArbitrary(35, 65);
         studios[4].offerRequested = true;
-        studios[4].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[4].message = generateAcceptedMessage();
       } else {
         studios[4].offerRequested = true;
         studios[4].rejected = true;
-        studios[4].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[4].message = generateRejectedMessage();
         studios[4].offer = -1;
       }
       return studios;
@@ -172,17 +175,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum >= 5) {
         studios[5].offer = getRandomArbitrary(35, 45);
         studios[5].offerRequested = true;
-        studios[5].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[5].message = generateAcceptedMessage();
       } else {
         studios[5].rejected = true;
         studios[5].offerRequested = true;
-        studios[5].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[5].message = generateRejectedMessage();
         studios[5].offer = -1;
       }
       return studios;
@@ -190,17 +187,11 @@ export const requestOffer = (studio: Studio): Studio[] => {
       if (randomNum >= 25) {
         studios[6].offer = getRandomArbitrary(55, 65);
         studios[6].offerRequested = true;
-        studios[6].message =
-          acceptedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[6].message = generateAcceptedMessage();
       } else {
         studios[6].rejected = true;
         studios[6].offerRequested = true;
-        studios[6].message =
-          rejectedMessages[
-            getRandomArbitrary(0, rejectedMessages.length - 1)
-          ].message;
+        studios[6].message = generateRejectedMessage();
         studios[6].offer = -1;
       }
       return studios;
@@ -215,19 +206,62 @@ export const getStudios = (): Studio[] => {
 
 const rejectedMessages = [
   {
-    message: "No thank you",
+    message:
+      "No thanks, we're not a big fan of the script. Plus, you smelled awful when you came to pitch it, which made us very concerned. Please take a shower.",
   },
   {
-    message: "Screw you!",
+    message:
+      "Screw you! We hate your idea! Maybe next time use your frontal lobe a bit, ya dummy!",
+  },
+  {
+    message:
+      "No. The script was actually great, but I'm having a bad day and I need to take it out on somebody. So get out of here.",
+  },
+  {
+    message:
+      "What's wrong with you? This script is perverse. I'm not going to peddle this garbage. Find another sucker to release this trash!",
+  },
+  {
+    message:
+      "Have you ever tried Nakagawa Sushi down the street. It's delicious. Oh, the script? I was busy and didn't read it. Maybe come back another day.",
+  },
+  {
+    message:
+      "Sorry, I can't commit to any new projects right now. My hamster passed away and I'm still mourning.",
+  },
+  {
+    message: "Sorry, we're broke. Can I borrow 40 dollars?",
   },
 ];
 
 const acceptedMessages = [
   {
-    message: "Yes please!",
+    message:
+      "Yes, please! Work with us, we're eco-friendly and you can bring your pets into the office.",
   },
   {
-    message: "We love the script!",
+    message:
+      "We love the script! The part about, uhhhh, the uhhhh, well... I didn't read it, but I like the cut of your gib.",
+  },
+  {
+    message:
+      "I'm going to put all my chips on the table here. We want to distribute your film. What do you want? I'll give you my watch right now if you sign with us.",
+  },
+  {
+    message:
+      "I'm in real hot water with my boss, so I need a blockbuster, and this looks like exactly what I'm looking for.",
+  },
+  {
+    message:
+      "How many millions do you want? I'll sell a kidney to finance this film. That's how serious I am. My name is A.J. by the way, forgot to introduce myself.",
+  },
+  {
+    message:
+      "I'm locking the door and keeping you here until you agree to let us distribute your film. I'm not kidding!",
+  },
+  {
+    message:
+      "Hey, not only do I love your film, I'm also in love with you. Sorry, that's inappropriate, but yes, I'd like to distribute your film.",
   },
 ];
 
@@ -235,8 +269,8 @@ export const resetData = (): void => {
   studios = [
     {
       id: 0,
-      studioName: "20th Century Fox",
-      image: "",
+      studioName: "21st Century Cats",
+      image: twentyCatImage,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -244,8 +278,8 @@ export const resetData = (): void => {
     },
     {
       id: 1,
-      studioName: "Warner Bros.",
-      image: "",
+      studioName: "Bad Movie Co.",
+      image: badMovieCoImage,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -253,8 +287,8 @@ export const resetData = (): void => {
     },
     {
       id: 2,
-      studioName: "Universal",
-      image: "",
+      studioName: "Big Boy Studios",
+      image: bigBoyImage,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -262,8 +296,8 @@ export const resetData = (): void => {
     },
     {
       id: 3,
-      studioName: "Paramount",
-      image: "",
+      studioName: "Everest",
+      image: everestImage,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -271,8 +305,8 @@ export const resetData = (): void => {
     },
     {
       id: 4,
-      studioName: "Columbia",
-      image: "",
+      studioName: "Big Papi Pictures",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -280,8 +314,8 @@ export const resetData = (): void => {
     },
     {
       id: 5,
-      studioName: "TriStar",
-      image: "",
+      studioName: "Domik Productions",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -289,12 +323,14 @@ export const resetData = (): void => {
     },
     {
       id: 6,
-      studioName: "Miramax",
-      image: "",
+      studioName: "Banana Bros.",
+      image: questionMark,
       offerRequested: false,
       rejected: false,
       offer: 0,
       message: "",
     },
   ];
+  acceptedMessageSet.clear();
+  rejectedMessageSet.clear();
 };
