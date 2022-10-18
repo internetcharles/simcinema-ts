@@ -81,7 +81,7 @@ export const movieOptions: MovieOption[][] = [
       },
     },
     {
-      name: "Arnold Schwarzenegger",
+      name: "Arnold Schwarz",
       price: 25,
       status: "Available",
       portrait: questionMark,
@@ -108,21 +108,6 @@ export const movieOptions: MovieOption[][] = [
         horror: 65,
         sciFi: 80,
         animated: 80,
-      },
-    },
-    {
-      name: "Sylvester Stallone",
-      price: 20,
-      status: "Available",
-      portrait: questionMark,
-      quality: {
-        actionAdventure: 110,
-        comedy: 75,
-        drama: 80,
-        romance: 50,
-        horror: 65,
-        sciFi: 65,
-        animated: 75,
       },
     },
     {
@@ -185,21 +170,6 @@ export const movieOptions: MovieOption[][] = [
         horror: 30,
         sciFi: 30,
         animated: 35,
-      },
-    },
-    {
-      name: "Demi Moore",
-      price: 10,
-      status: "Available",
-      portrait: questionMark,
-      quality: {
-        actionAdventure: 55,
-        comedy: 40,
-        drama: 40,
-        romance: 40,
-        horror: 35,
-        sciFi: 50,
-        animated: 40,
       },
     },
     {

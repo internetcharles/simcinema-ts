@@ -21,6 +21,7 @@ import { generateReleaseEvent } from "../Filming/Data/eventData";
 import { ReleaseEvent } from "../Filming/Interfaces/FilmingInterface";
 import AdModal from "../Global/AdModal";
 import FilmNotificationBox from "../Global/FilmNotificationBox";
+import FilmReelDecoration from "../Global/FilmReelDecoration";
 import MovieInfoHeader from "../Global/MovieInfoHeader";
 import Window from "../Global/Window";
 import { generateReviews } from "./Data/reviewData";
@@ -155,35 +156,41 @@ const ReleaseHome: React.FC<Props> = (props) => {
 
   return (
     <Window size="large-window" label="Release">
-      <MovieInfoHeader
-        theaters={theaters}
-        handleArrowClick={handleMovieDetailsClick}
-        showMovieDetails={showMovieDetails}
-        currentWeek={currentWeek}
-        percentDone={-10}
-      />
-      <div className="release-home-ad-reviews">
-        <div className="release-home-earnings">
-          Earnings:{" "}
-          <div className="release-home-earnings-number">${earnings}</div>
+      <FilmReelDecoration />
+      <div className="release-home-container">
+        <MovieInfoHeader
+          theaters={theaters}
+          handleArrowClick={handleMovieDetailsClick}
+          showMovieDetails={showMovieDetails}
+          currentWeek={currentWeek}
+          percentDone={-10}
+        />
+        <div className="release-home-ad-reviews">
+          <div className="release-home-earnings">
+            Earnings:{" "}
+            <div className="release-home-earnings-number">${earnings}</div>
+          </div>
+          <AdvertisingBox halved={true} budgetInfo={budgetInfo} />
+          <ReviewsBox reviews={reviews} />
         </div>
-        <AdvertisingBox halved={true} budgetInfo={budgetInfo} />
-        <ReviewsBox reviews={reviews} />
+        <FilmNotificationBox
+          notifications={notifications}
+          expandedInfo={showMovieDetails}
+        />
+        <ReleaseButtonContainer
+          theaters={theaters}
+          handleAdModalPress={handleAdPress}
+          advanceWeek={advanceWeek}
+          continueToSummary={continueToSummary}
+        />
+        {adModalOpen && <AdModal handleDonePress={handleAdPress} />}
+        {reviewsModalOpen && (
+          <ReviewsModal
+            handleButtonPress={handleReviewPress}
+            reviews={reviews}
+          />
+        )}
       </div>
-      <FilmNotificationBox
-        notifications={notifications}
-        expandedInfo={showMovieDetails}
-      />
-      <ReleaseButtonContainer
-        theaters={theaters}
-        handleAdModalPress={handleAdPress}
-        advanceWeek={advanceWeek}
-        continueToSummary={continueToSummary}
-      />
-      {adModalOpen && <AdModal handleDonePress={handleAdPress} />}
-      {reviewsModalOpen && (
-        <ReviewsModal handleButtonPress={handleReviewPress} reviews={reviews} />
-      )}
     </Window>
   );
 };

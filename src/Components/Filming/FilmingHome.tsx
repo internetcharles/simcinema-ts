@@ -16,6 +16,7 @@ import AdvertisingBox from "./AdvertisingBox";
 import ReleaseModal from "./ReleaseModal";
 import { FilmingEvent } from "./Interfaces/FilmingInterface";
 import { generateFilmingEvent } from "./Data/eventData";
+import "./Styles/FilmingHome.scss";
 
 interface Props {}
 
@@ -102,30 +103,32 @@ const FilmingHome: React.FC<Props> = (props) => {
   return (
     <Window isAnimated={true} label="Filming" size="large-window">
       <FilmReelDecoration />
-      <MovieInfoHeader
-        theaters={-1}
-        handleArrowClick={handleArrowClick}
-        showMovieDetails={showMovieDetails}
-        percentDone={percentDone}
-        currentWeek={currentWeek}
-      />
-      <AdvertisingBox budgetInfo={budgetInfo} halved={false} />
-      <FilmNotificationBox
-        expandedInfo={infoExpanded}
-        notifications={notifications}
-      />
-      <ButtonContainer
-        readyForRelease={readyForRelease}
-        advanceWeek={advanceWeek}
-        handleAdModalPress={handleAdModalPress}
-        releaseFilm={releaseFilm}
-      />
-      {isAdModalOpen && (
-        <AdModal handleDonePress={() => handleAdModalPress()} />
-      )}
-      {showReleaseModal && (
-        <ReleaseModal handleReleaseFilmPress={handleReleaseFilmPress} />
-      )}
+      <div className="filming-home-container">
+        <MovieInfoHeader
+          theaters={-1}
+          handleArrowClick={handleArrowClick}
+          showMovieDetails={showMovieDetails}
+          percentDone={percentDone}
+          currentWeek={currentWeek}
+        />
+        <AdvertisingBox budgetInfo={budgetInfo} halved={true} />
+        <FilmNotificationBox
+          expandedInfo={infoExpanded}
+          notifications={notifications}
+        />
+        <ButtonContainer
+          readyForRelease={readyForRelease}
+          advanceWeek={advanceWeek}
+          handleAdModalPress={handleAdModalPress}
+          releaseFilm={releaseFilm}
+        />
+        {isAdModalOpen && (
+          <AdModal handleDonePress={() => handleAdModalPress()} />
+        )}
+        {showReleaseModal && (
+          <ReleaseModal handleReleaseFilmPress={handleReleaseFilmPress} />
+        )}
+      </div>
     </Window>
   );
 };

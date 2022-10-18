@@ -1,17 +1,22 @@
+.release-home-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+}
+
 .release-home-ad-reviews {
   display: flex;
   flex-direction: row;
-  height: 28%;
+  height: 22%;
   width: 100%;
   justify-content: baseline;
-  align-items: flex-start;
+  align-items: center;
   background-color: rgb(238, 238, 238);
 }
 
 .release-home-earnings {
   font-family: "Sysfont";
   font-size: 24pt;
-  margin-top: 40px;
   margin-left: 20px;
 }
 
@@ -19,4 +24,17 @@
   font-family: "Sysfont";
   font-size: 24pt;
   color: green;
+}
+
+@media screen and (max-width: 1900px) {
+  .release-home-ad-reviews {
+    display: flex;
+    flex-direction: row;
+    height: 23%;
+    width: 100%;
+    justify-content: baseline;
+    align-items: center;
+    background-color: rgb(238, 238, 238);
+    padding-bottom: 23px;
+  }
 }

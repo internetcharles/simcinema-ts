@@ -142,7 +142,9 @@ const CreateMovie: React.FC<Props> = (props) => {
           </div>
           <div>
             <div className="create-movie-description-container">
-              <div>Description (optional):</div>
+              <div className="create-movie-description-header">
+                Description (optional):
+              </div>
               <textarea
                 className="create-movie-description-input"
                 value={movieDescription}

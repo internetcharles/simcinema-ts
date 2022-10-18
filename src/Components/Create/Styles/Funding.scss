@@ -10,6 +10,7 @@
   background-image: url("../../../Assets/FilmCamera.png");
   background-position: 20%;
   animation: marquee 90s infinite linear;
+  overflow: auto;
 }
 
 .funding-accept-window-container {

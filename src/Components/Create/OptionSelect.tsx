@@ -9,10 +9,7 @@ import {
   selectMovieInfo,
   setMovieInfo,
 } from "../../Redux/Reducers/movieInfoSlice";
-import {
-  adjustQuality,
-  selectQuality,
-} from "../../Redux/Reducers/qualitySlice";
+import { adjustQuality } from "../../Redux/Reducers/qualitySlice";
 import Window from "../Global/Window";
 import { movieOptions, optionPath } from "./Data/movieData";
 import { MovieOption } from "./Interfaces/CreateInterface";
@@ -26,7 +23,6 @@ const OptionSelect: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector(selectMovieInfo);
   const budgetInfo = useAppSelector(selectBudget);
-  const qualityInfo = useAppSelector(selectQuality);
   const { genre } = movieInfo;
 
   const [currentOption, setCurrentOption] = useState<number>(0);
