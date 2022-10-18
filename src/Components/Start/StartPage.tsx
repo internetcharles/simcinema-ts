@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
 import { FaFilm } from "react-icons/fa";
@@ -9,12 +9,18 @@ import MiniButton from "../Global/MiniButton";
 import "./Styles/StartPage.scss";
 import CreateCompany from "./CreateCompany";
 import { convertToMillions, gradeMovie } from "../../Common/utils";
+import StudioInfoModal from "./StudioInfoModal";
+import { resetMovieInfo } from "../../Redux/Reducers/movieInfoSlice";
+import { resetBudget } from "../../Redux/Reducers/budgetSlice";
+import { resetData } from "../Create/Data/studioData";
 
 const StartPage: React.FC = (props) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const companyInfo = useAppSelector((state) => state.companyInfo);
 
   const [showCompanyModal, setShowCompanyModal] = useState(false);
+  const [showStudioInfoModal, setShowStudioInfoModal] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [largeWindowDismissed, setLargeWindowDismissed] = useState(false);
 
@@ -22,11 +28,18 @@ const StartPage: React.FC = (props) => {
     if (companyInfo.companyName === "") {
       setShowCompanyModal(true);
     }
+    console.log(companyInfo.history);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const reset = (): void => {
+    dispatch(resetMovieInfo());
+    dispatch(resetBudget());
+    resetData();
+  };
 
   const handleNewMoviePress = (): void => {
     if (companyInfo.companyName !== "") {
+      reset();
       setLargeWindowDismissed(true);
       setTimeout(() => {
         navigate("/create-movie");
@@ -41,6 +54,10 @@ const StartPage: React.FC = (props) => {
     setTimeout(() => {
       setShowCompanyModal(false);
     }, 400);
+  };
+
+  const handleStudioInfoPress = (): void => {
+    setShowStudioInfoModal(!showStudioInfoModal);
   };
 
   return (
@@ -88,9 +105,9 @@ const StartPage: React.FC = (props) => {
                     label="New Film"
                   />
                   <MiniButton
-                    handleButtonPress={handleNewCompanyPress}
+                    handleButtonPress={handleStudioInfoPress}
                     icon={<BsFillCameraReelsFill size={14} />}
-                    label="New Studio"
+                    label="Studio Info"
                   />
                 </div>
                 <div className="start-page-info-window">
@@ -109,6 +126,9 @@ const StartPage: React.FC = (props) => {
           dismissed={dismissed}
           handleNewCompanyPress={() => handleNewCompanyPress()}
         />
+      )}
+      {showStudioInfoModal && (
+        <StudioInfoModal handleStudioInfoPress={handleStudioInfoPress} />
       )}
     </>
   );

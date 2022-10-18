@@ -1,26 +1,99 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { MovieOption } from "../../Components/Create/Interfaces/CreateInterface";
 import { RootState } from "../store";
 
 export interface MovieInfoState {
   title: string;
   genre: string;
   description: string;
-  leadActor: string;
-  leadActress: string;
-  composer: string;
-  vfx: string;
-  audio: string;
+  leadActor: MovieOption;
+  leadActress: MovieOption;
+  composer: MovieOption;
+  vfx: MovieOption;
+  audio: MovieOption;
+  cast: MovieOption[];
 }
 
 const initialState: MovieInfoState = {
   title: "A",
   genre: "A",
   description: "A",
-  leadActor: "A",
-  leadActress: "A",
-  composer: "A",
-  vfx: "A",
-  audio: "A",
+  leadActor: {
+    name: "A",
+    price: 0,
+    status: "A",
+    portrait: "",
+    quality: {
+      actionAdventure: 0,
+      comedy: 0,
+      drama: 0,
+      romance: 0,
+      horror: 0,
+      sciFi: 0,
+      animated: 0,
+    },
+  },
+  leadActress: {
+    name: "A",
+    price: 0,
+    status: "A",
+    portrait: "",
+    quality: {
+      actionAdventure: 0,
+      comedy: 0,
+      drama: 0,
+      romance: 0,
+      horror: 0,
+      sciFi: 0,
+      animated: 0,
+    },
+  },
+  composer: {
+    name: "A",
+    price: 0,
+    status: "A",
+    portrait: "",
+    quality: {
+      actionAdventure: 0,
+      comedy: 0,
+      drama: 0,
+      romance: 0,
+      horror: 0,
+      sciFi: 0,
+      animated: 0,
+    },
+  },
+  vfx: {
+    name: "A",
+    price: 0,
+    status: "A",
+    portrait: "",
+    quality: {
+      actionAdventure: 0,
+      comedy: 0,
+      drama: 0,
+      romance: 0,
+      horror: 0,
+      sciFi: 0,
+      animated: 0,
+    },
+  },
+  audio: {
+    name: "A",
+    price: 0,
+    status: "A",
+    portrait: "",
+    quality: {
+      actionAdventure: 0,
+      comedy: 0,
+      drama: 0,
+      romance: 0,
+      horror: 0,
+      sciFi: 0,
+      animated: 0,
+    },
+  },
+  cast: [],
 };
 
 export const movieInfoSlice = createSlice({

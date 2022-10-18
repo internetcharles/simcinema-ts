@@ -1,3 +1,5 @@
+import { Movie } from "../Components/Create/Interfaces/CreateInterface";
+
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 export const generateInitialHype = (quality: number): number => {
   return Math.round(quality / 10);
@@ -51,10 +53,83 @@ export const convertToMillions = (num: number): number => {
   }
 };
 
+export const convertBudgetToFullNumber = (num: number): number => {
+  return num * 1000000;
+};
+
 export const gradeMovie = (earnings: number, budget: number): string => {
-  if (earnings > budget) {
+  if (earnings > budget * 2) {
+    return "Massive Success";
+  } else if (earnings > budget) {
     return "Success";
   } else {
     return "Failure";
+  }
+};
+
+export const calculateStudioNet = (history: Movie[]): number => {
+  let totalEarnings: number = 0;
+  let totalBudgets: number = 0;
+
+  if (history.length > 0) {
+    history.forEach((movie) => (totalEarnings += movie.earnings));
+    history.forEach(
+      (movie) => (totalBudgets += convertBudgetToFullNumber(movie.budget)),
+    );
+  }
+
+  return totalEarnings - totalBudgets;
+};
+
+export const convertGenreName = (genre: string): string => {
+  switch (genre) {
+    case "actionAdventure":
+      return "Action-Adventure";
+    case "comedy":
+      return "Comedy";
+    case "drama":
+      return "Drama";
+    case "romance":
+      return "Romance";
+    case "horror":
+      return "Horror";
+    case "sciFi":
+      return "Sci-fi";
+    case "animated":
+      return "Animated";
+    default:
+      return "Unknown";
+  }
+};
+
+export const reputationCalc = (budget: number, earnings: number): number => {
+  const adjustedBudget = convertBudgetToFullNumber(budget);
+  if (earnings / 2 > adjustedBudget) {
+    return 3;
+  }
+  if (earnings > adjustedBudget) {
+    return 2;
+  }
+  if (adjustedBudget > earnings) {
+    return -2;
+  }
+  if (adjustedBudget / 2 > earnings) {
+    return -3;
+  }
+  return 0;
+};
+
+export const reputationString = (
+  reputation: number,
+  history: Movie[],
+): string => {
+  if (history.length < 5) {
+    return "New kid on the block";
+  } else if (reputation < 0) {
+    return "Garbage fire";
+  } else if (reputation > 10) {
+    return "Stunning studio";
+  } else {
+    return "Pretty good";
   }
 };

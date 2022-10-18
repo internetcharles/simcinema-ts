@@ -43,9 +43,10 @@ const FilmingHome: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (percentDone >= 100) {
-      setPercentDone(100);
       setReadyForRelease(true);
+      setNotifications([...notifications, `Film is ready for release!`]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [percentDone]);
 
   const handleArrowClick = (): void => {
@@ -57,6 +58,7 @@ const FilmingHome: React.FC<Props> = (props) => {
     setCurrentWeek(currentWeek + 1);
     setIsAdModalOpen(false);
     const weekEvent: FilmingEvent = generateFilmingEvent();
+    setPercentDone(percentDone + weekEvent.progress);
     const hypeAdjustment = generateNextHypeNumber(
       hype + weekEvent.hypeDifference,
       targetHype,
@@ -65,23 +67,23 @@ const FilmingHome: React.FC<Props> = (props) => {
     if (targetHype > 0) {
       dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
       dispatch(adjustHype(hypeAdjustment));
+    } else if (hypeAdjustment < 0) {
+      dispatch(adjustHype(0));
+    } else {
+      dispatch(adjustHype(0));
     }
     if (percentDone < 100) {
-      setPercentDone(percentDone + weekEvent.progress);
       setNotifications([
         ...notifications,
         `${weekEvent.description} Hype changes by ${hypeDifference}.`,
       ]);
-    } else if (hype > 0) {
+    } else if (hype > 0 || targetHype > 0) {
       setNotifications([
         ...notifications,
-        `Film is ready for release! Hype changes by ${hypeDifference}.`,
+        `Hype changes by ${hypeDifference}.`,
       ]);
     } else {
-      setNotifications([
-        ...notifications,
-        "Film is ready for release! Hype remains the same.",
-      ]);
+      setNotifications([...notifications, "Hype remains the same."]);
     }
   };
 

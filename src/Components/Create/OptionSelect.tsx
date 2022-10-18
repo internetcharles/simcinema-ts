@@ -9,7 +9,10 @@ import {
   selectMovieInfo,
   setMovieInfo,
 } from "../../Redux/Reducers/movieInfoSlice";
-import { adjustQuality } from "../../Redux/Reducers/qualitySlice";
+import {
+  adjustQuality,
+  selectQuality,
+} from "../../Redux/Reducers/qualitySlice";
 import Window from "../Global/Window";
 import { movieOptions, optionPath } from "./Data/movieData";
 import { MovieOption } from "./Interfaces/CreateInterface";
@@ -23,12 +26,15 @@ const OptionSelect: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector(selectMovieInfo);
   const budgetInfo = useAppSelector(selectBudget);
+  const qualityInfo = useAppSelector(selectQuality);
+  const { genre } = movieInfo;
 
   const [currentOption, setCurrentOption] = useState<number>(0);
   const [showAcceptWindow, setShowAcceptWindow] = useState<boolean>(false);
   const [currentActor, setCurrentActor] = useState<MovieOption | null>(null);
   const [enoughMoneyBool, setEnoughMoneyBool] = useState<boolean>(false);
   const [dismissed, setDismissed] = useState<boolean>(false);
+  const [cast, setCast] = useState<MovieOption[]>([]);
 
   const selectOption = (option: MovieOption): void => {
     setCurrentActor(option);
@@ -44,28 +50,39 @@ const OptionSelect: React.FC<Props> = (props) => {
   const acceptOption = (): void => {
     if (currentOption < optionPath.length - 1) {
       if (currentActor) {
+        setCast([...cast, currentActor]);
         dispatch(adjustMoneyRemaining(currentActor?.price));
-        dispatch(adjustQuality(currentActor?.quality));
+        dispatch(
+          adjustQuality(
+            currentActor?.quality[genre as keyof typeof currentActor.quality],
+          ),
+        );
       }
       dispatch(
         setMovieInfo({
           ...movieInfo,
-          [optionPath[currentOption].category]: currentActor?.name,
+          [optionPath[currentOption].category]: currentActor,
         }),
       );
       setCurrentOption(currentOption + 1);
       setShowAcceptWindow(false);
     } else {
       if (currentActor) {
+        setCast([...cast, currentActor]);
         dispatch(adjustMoneyRemaining(currentActor?.price));
-        dispatch(adjustQuality(currentActor?.quality));
+        dispatch(
+          adjustQuality(
+            currentActor?.quality[genre as keyof typeof currentActor.quality],
+          ),
+        );
+        dispatch(
+          setMovieInfo({
+            ...movieInfo,
+            [optionPath[currentOption].category]: currentActor,
+            cast: [...cast, currentActor],
+          }),
+        );
       }
-      dispatch(
-        setMovieInfo({
-          ...movieInfo,
-          [optionPath[currentOption].category]: currentActor?.name,
-        }),
-      );
       setDismissed(true);
       setShowAcceptWindow(false);
       setTimeout(() => {

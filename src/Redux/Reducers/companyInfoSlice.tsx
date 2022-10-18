@@ -6,12 +6,16 @@ export interface CompanyInfoState {
   playerName: string;
   companyName: string;
   history: Movie[];
+  reputation: number;
+  funds: number;
 }
 
 const initialState: CompanyInfoState = {
   playerName: "",
   companyName: "",
   history: [],
+  reputation: 0,
+  funds: 0,
 };
 
 export const companyInfoSlice = createSlice({
@@ -27,11 +31,22 @@ export const companyInfoSlice = createSlice({
     addMovieToHistory: (state, action: PayloadAction<Movie>) => {
       state.history.push(action.payload);
     },
+    adjustReputation: (state, action: PayloadAction<number>) => {
+      state.reputation += action.payload;
+    },
+    adjustFunds: (state, action: PayloadAction<number>) => {
+      state.funds += action.payload;
+    },
   },
 });
 
-export const { setCompanyInfo, resetCompanyInfo, addMovieToHistory } =
-  companyInfoSlice.actions;
+export const {
+  setCompanyInfo,
+  resetCompanyInfo,
+  addMovieToHistory,
+  adjustReputation,
+  adjustFunds,
+} = companyInfoSlice.actions;
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const selectCompanyInfo = (state: RootState) => state.companyInfo;

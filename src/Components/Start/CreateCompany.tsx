@@ -32,6 +32,8 @@ const CreateCompany: React.FC<Props> = ({
         playerName,
         companyName,
         history: [],
+        reputation: 0,
+        funds: 0,
       }),
     );
     handleNewCompanyPress();

@@ -4,6 +4,8 @@ import twentyCatImage from "../../../Assets/21Cat.png";
 import badMovieCoImage from "../../../Assets/BadMovieCo.png";
 import bigBoyImage from "../../../Assets/BigBoy.png";
 import everestImage from "../../../Assets/Everest.png";
+import filmFactoryImage from "../../../Assets/Factory.png";
+import { CompanyInfoState } from "../../../Redux/Reducers/companyInfoSlice";
 
 export let studios: Studio[] = [
   {
@@ -53,8 +55,8 @@ export let studios: Studio[] = [
   },
   {
     id: 5,
-    studioName: "Domik Productions",
-    image: questionMark,
+    studioName: "Film Factory",
+    image: filmFactoryImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -108,11 +110,15 @@ const generateRejectedMessage = (): string => {
   return randomRejectedMessage;
 };
 
-export const requestOffer = (studio: Studio): Studio[] => {
-  const randomNum = getRandomInt(29);
+export const requestOffer = (
+  studio: Studio,
+  company: CompanyInfoState,
+): Studio[] => {
+  const randomNum: number = getRandomInt(29);
+  const companyReputation: number = company.reputation + company.history.length;
   switch (studio.id) {
     case 0:
-      if (randomNum > 15) {
+      if (randomNum > 15 - companyReputation) {
         studios[0].offer = getRandomArbitrary(50, 70);
         studios[0].offerRequested = true;
         studios[0].message = generateAcceptedMessage();
@@ -136,7 +142,7 @@ export const requestOffer = (studio: Studio): Studio[] => {
       }
       return studios;
     case 2:
-      if (randomNum >= 10 && randomNum <= 15) {
+      if (randomNum >= 10 && randomNum <= 15 + companyReputation) {
         studios[2].offer = getRandomArbitrary(40, 50);
         studios[2].offerRequested = true;
         studios[2].message = generateAcceptedMessage();
@@ -160,7 +166,7 @@ export const requestOffer = (studio: Studio): Studio[] => {
       }
       return studios;
     case 4:
-      if (randomNum >= 20) {
+      if (randomNum >= 20 - companyReputation) {
         studios[4].offer = getRandomArbitrary(35, 65);
         studios[4].offerRequested = true;
         studios[4].message = generateAcceptedMessage();
@@ -172,7 +178,7 @@ export const requestOffer = (studio: Studio): Studio[] => {
       }
       return studios;
     case 5:
-      if (randomNum >= 5) {
+      if (randomNum >= 5 - companyReputation) {
         studios[5].offer = getRandomArbitrary(35, 45);
         studios[5].offerRequested = true;
         studios[5].message = generateAcceptedMessage();
@@ -184,7 +190,7 @@ export const requestOffer = (studio: Studio): Studio[] => {
       }
       return studios;
     case 6:
-      if (randomNum >= 25) {
+      if (randomNum >= 25 - companyReputation) {
         studios[6].offer = getRandomArbitrary(55, 65);
         studios[6].offerRequested = true;
         studios[6].message = generateAcceptedMessage();
@@ -314,8 +320,8 @@ export const resetData = (): void => {
     },
     {
       id: 5,
-      studioName: "Domik Productions",
-      image: questionMark,
+      studioName: "Film Factory",
+      image: filmFactoryImage,
       offerRequested: false,
       rejected: false,
       offer: 0,
