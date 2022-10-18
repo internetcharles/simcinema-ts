@@ -1,0 +1,35 @@
+.studio-info-modal-container {
+  display: flex;
+  height: 100%;
+  background-color: lightgrey;
+  font-family: "Sysfont";
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.studio-info-modal-company-header {
+  font-size: 24pt;
+  margin-bottom: 20px;
+}
+
+.studio-info-modal-funds {
+  margin-bottom: 15px;
+  font-size: 16pt;
+}
+
+.studio-info-modal-earnings-green {
+  color: green;
+  margin-bottom: 10px;
+  font-size: 20pt;
+}
+
+.studio-info-modal-earnings-red {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 20pt;
+}
+
+.studio-info-modal-button-container {
+  margin-top: 50px;
+}

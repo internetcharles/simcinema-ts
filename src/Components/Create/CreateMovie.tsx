@@ -94,43 +94,43 @@ const CreateMovie: React.FC<Props> = (props) => {
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Action-Adventure"
+                  value="actionAdventure"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Comedy"
+                  value="comedy"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Drama"
+                  value="drama"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Romance"
+                  value="romance"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Horror"
+                  value="horror"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Sci-fi"
+                  value="sciFi"
                   name="genre"
                 />
                 <input
                   className="create-movie-genre-option"
                   type="radio"
-                  value="Animated"
+                  value="animated"
                   name="genre"
                 />
               </div>

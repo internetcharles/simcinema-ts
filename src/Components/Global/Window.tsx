@@ -21,7 +21,7 @@ const Window: React.FC<Props> = ({
   const fnSmall = (): any => ({
     transform: `translate(-50%, -50%)`,
     from: {
-      transform: `translate(-300%, -50%)`,
+      transform: `translate(-400%, -50%)`,
     },
     config: {
       duration: 400,
@@ -39,7 +39,7 @@ const Window: React.FC<Props> = ({
   const fnLarge = (): any => ({
     transform: `translate(-50%, -50%)`,
     from: {
-      transform: `translate(-300%, -50%)`,
+      transform: `translate(-200%, -50%)`,
     },
     config: {
       duration: 400,
@@ -47,7 +47,7 @@ const Window: React.FC<Props> = ({
   });
 
   const fnSmallDismiss = (): any => ({
-    transform: `translate(300%, -50%)`,
+    transform: `translate(400%, -50%)`,
     from: {
       transform: `translate(-50%, -50%)`,
     },
@@ -61,16 +61,16 @@ const Window: React.FC<Props> = ({
       transform: `translate(-50%, -50%)`,
     },
     config: {
-      duration: 500,
+      duration: 400,
     },
   });
   const fnLargeDismiss = (): any => ({
-    transform: `translate(300%, -50%)`,
+    transform: `translate(200%, -50%)`,
     from: {
       transform: `translate(-50%, -50%)`,
     },
     config: {
-      duration: 600,
+      duration: 400,
     },
   });
 
@@ -92,7 +92,6 @@ const Window: React.FC<Props> = ({
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [spring, setSpring] = useState<any>(useSpring(springFn()));
 
   return (

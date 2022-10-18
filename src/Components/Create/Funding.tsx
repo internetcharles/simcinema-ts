@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { setBudget, setDistributor } from "../../Redux/Reducers/budgetSlice";
 import MiniButton from "../Global/MiniButton";
 import Window from "../Global/Window";
@@ -12,6 +12,7 @@ import "./Styles/Funding.scss";
 const Funding: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const companyInfo = useAppSelector((state) => state.companyInfo);
 
   const [studioList, setStudioList] = useState<Studio[]>([...studios]);
   const [showOfferWindow, setShowOfferWindow] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const Funding: React.FC = () => {
   const onStudioClick = (studio: Studio): void => {
     if (!studio.offerRequested) {
       setCurrentOffer(studio);
-      setStudioList([...requestOffer(studio)]);
+      setStudioList([...requestOffer(studio, companyInfo)]);
       setStudioMessage(studio.message);
       setShowProposalWindow(true);
     } else if (studio.offer > 0) {

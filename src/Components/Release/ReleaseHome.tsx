@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   generateInitialTheaters,
   generateNextHypeNumber,
+  reputationCalc,
 } from "../../Common/utils";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
@@ -11,7 +12,10 @@ import {
   adjustHype,
   adjustTargetHype,
 } from "../../Redux/Reducers/budgetSlice";
-import { addMovieToHistory } from "../../Redux/Reducers/companyInfoSlice";
+import {
+  addMovieToHistory,
+  adjustReputation,
+} from "../../Redux/Reducers/companyInfoSlice";
 import AdvertisingBox from "../Filming/AdvertisingBox";
 import { generateReleaseEvent } from "../Filming/Data/eventData";
 import { ReleaseEvent } from "../Filming/Interfaces/FilmingInterface";
@@ -20,6 +24,7 @@ import FilmNotificationBox from "../Global/FilmNotificationBox";
 import MovieInfoHeader from "../Global/MovieInfoHeader";
 import Window from "../Global/Window";
 import { generateReviews } from "./Data/reviewData";
+import { Reviews } from "./Interfaces/ReleaseInterfaces";
 import ReleaseButtonContainer from "./ReleaseButtonContainer";
 import ReviewsBox from "./ReviewsBox";
 import ReviewsModal from "./ReviewsModal";
@@ -41,12 +46,21 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [notifications, setNotifications] = useState<string[]>([]);
   const [theaterFallOff, setTheaterFallOff] = useState<number>(10);
+  const [reviews, setReviews] = useState<Reviews>({
+    sodaCityTimes: 0,
+    dailySpill: 0,
+    nationalRetainer: 0,
+    wizardWeekly: 0,
+    newtonNews: 0,
+    averageScore: 0,
+  });
   const { hype, targetHype } = budgetInfo;
   const { quality } = qualityInfo;
-  const reviews = generateReviews(quality);
 
   useEffect(() => {
+    setNotifications([]);
     setTheaters(generateInitialTheaters(hype, qualityInfo.quality));
+    setReviews(generateReviews(quality));
   }, []);
 
   useEffect(() => {
@@ -84,15 +98,27 @@ const ReleaseHome: React.FC<Props> = (props) => {
       } else {
         dispatch(adjustHype(0));
       }
-      setTheaters(theaterAdjustment);
-      setNotifications([
-        ...notifications,
-        `${weekEvent.description} ${
-          theaters - theaterAdjustment
-        } theaters have dropped your film. Hype changes by ${
-          hype > 0 ? hypeAdjustment - hype : 0
-        }.`,
-      ]);
+      if (theaterAdjustment > theaters) {
+        setNotifications([
+          ...notifications,
+          `${
+            weekEvent.description
+          } No theaters have dropped your film. Hype changes by ${
+            hype > 0 ? hypeAdjustment - hype : 0
+          }.`,
+        ]);
+        setTheaters(theaters);
+      } else {
+        setNotifications([
+          ...notifications,
+          `${weekEvent.description} ${
+            theaters - theaterAdjustment
+          } theaters have dropped your film. Hype changes by ${
+            hype > 0 ? hypeAdjustment - hype : 0
+          }.`,
+        ]);
+        setTheaters(theaterAdjustment);
+      }
     }
   };
 
@@ -115,8 +141,10 @@ const ReleaseHome: React.FC<Props> = (props) => {
           averageScore: reviews.averageScore,
           budget: budgetInfo.budget,
           earnings,
+          cast: movieInfo.cast,
         }),
       );
+      dispatch(adjustReputation(reputationCalc(budgetInfo.budget, earnings)));
       navigate("/summary");
     }
   };

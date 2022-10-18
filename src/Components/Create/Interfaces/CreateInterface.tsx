@@ -3,6 +3,7 @@ export interface Movie {
   averageScore: number;
   earnings: number;
   budget: number;
+  cast: MovieOption[];
 }
 
 export interface Option {
@@ -31,5 +32,13 @@ export interface MovieOption {
   price: number;
   status: string;
   portrait: string;
-  quality: number;
+  quality: {
+    actionAdventure: number;
+    comedy: number;
+    drama: number;
+    romance: number;
+    horror: number;
+    sciFi: number;
+    animated: number;
+  };
 }

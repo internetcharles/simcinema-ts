@@ -28,7 +28,7 @@ const negativeFilmingEvents: FilmingEvent[] = [
     progress: 5,
   },
   {
-    description: "Actor cums. Progress is only increased by 5.",
+    description: "Actor dies. Progress is only increased by 5.",
     hypeDifference: -2,
     progress: 5,
   },
