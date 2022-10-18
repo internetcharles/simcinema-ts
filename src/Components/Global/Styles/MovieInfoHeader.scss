@@ -38,3 +38,34 @@
 .movie-info-header-details-second-info {
   margin-left: 40%;
 }
+
+@media screen and (max-width: 1900px) {
+  .movie-info-header-movie-title {
+    font-size: 20pt;
+  }
+
+  .movie-info-header-details-container {
+    display: flex;
+    width: 95%;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid grey;
+    justify-content: baseline;
+  }
+
+  .movie-info-header-details-container {
+    display: flex;
+    width: 95%;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 10pt;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid grey;
+    justify-content: baseline;
+  }
+}

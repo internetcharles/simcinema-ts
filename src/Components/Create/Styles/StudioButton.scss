@@ -108,3 +108,88 @@
   font-size: 15pt;
   color: green;
 }
+
+@media screen and (max-width: 1900px) {
+  .studio-button-container {
+    width: 180px;
+    height: 180px;
+    background-color: rgb(255, 255, 255);
+    outline: 4px solid rgb(128, 128, 128);
+    border-radius: 5%;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Sysfont";
+  }
+
+  .studio-button-container-accepted {
+    width: 180px;
+    height: 180px;
+    background-color: rgb(199, 189, 255);
+    outline: 4px solid rgb(30, 145, 15);
+    border-radius: 5%;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Sysfont";
+  }
+
+  .studio-button-container-rejected {
+    width: 180px;
+    height: 180px;
+    background-color: rgb(199, 189, 255);
+    outline: 4px solid rgb(255, 0, 0);
+    border-radius: 5%;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Sysfont";
+  }
+
+  .studio-button-image {
+    width: 180px;
+    height: 180px;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    image-rendering: pixelated;
+  }
+
+  .studio-button-studio-name {
+    font-size: 12pt;
+  }
+
+  .studio-button-studio-ask {
+    font-size: 8pt;
+  }
+
+  .studio-button-studio-ask-rejected {
+    font-size: 8pt;
+    color: red;
+  }
+
+  .studio-button-studio-offer {
+    font-size: 10pt;
+    color: green;
+  }
+
+  .studio-button-bottom-container {
+    height: 70px;
+    font-family: "Sysfont";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(219, 219, 219);
+    border: 2px solid rgb(151, 151, 151);
+    border-radius: 5%;
+  }
+}

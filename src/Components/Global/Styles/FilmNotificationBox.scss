@@ -31,3 +31,30 @@
   margin-top: 20px;
   margin-left: 20px;
 }
+
+@media screen and (max-width: 1900px) {
+  .film-notification-box-container {
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    border-top: 1px solid black;
+    height: 53.5%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .film-notification-box-container-shrink {
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    border-top: 1px solid black;
+    height: 35.3%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .film-notification-items {
+    font-family: "Sysfont";
+    font-size: 14px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}

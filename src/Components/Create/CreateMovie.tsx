@@ -58,12 +58,7 @@ const CreateMovie: React.FC<Props> = (props) => {
   };
 
   return (
-    <Window
-      isAnimated={true}
-      dismissed={dismissed}
-      label="Create Movie"
-      size={"medium-window"}
-    >
+    <Window label="Create Movie" size={"medium-window"}>
       <div className="create-movie-container">
         <div className="create-movie-title-container">
           <TbMovie size={50} />

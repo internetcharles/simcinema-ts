@@ -105,3 +105,53 @@
 .option-button-option-offer {
   font-size: 15pt;
 }
+
+@media screen and (max-width: 1900px) {
+  .option-button-container {
+    width: 180px;
+    height: 180px;
+    background-color: rgb(255, 255, 255);
+    outline: 4px solid rgb(128, 128, 128);
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Sysfont";
+  }
+
+  .option-button-image {
+    width: 180px;
+    height: 180px;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .option-button-bottom-container {
+    height: 80px;
+    font-family: "Sysfont";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(219, 219, 219);
+    border: 2px solid rgb(151, 151, 151);
+    border-radius: 5%;
+    width: 100%;
+
+    .option-button-option-name {
+      font-size: 15pt;
+    }
+
+    .option-button-option-ask {
+      font-size: 8pt;
+    }
+
+    .option-button-option-offer {
+      font-size: 10pt;
+    }
+  }
+}
