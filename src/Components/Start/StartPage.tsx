@@ -63,12 +63,7 @@ const StartPage: React.FC = (props) => {
   return (
     <>
       {!showCompanyModal && (
-        <Window
-          size="large-window"
-          label="SimCinema"
-          isAnimated={true}
-          dismissed={largeWindowDismissed}
-        >
+        <Window size="large-window" label="SimCinema">
           <div className="start-page-container">
             <InfoHeader
               playerName={companyInfo.playerName}

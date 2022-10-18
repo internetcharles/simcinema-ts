@@ -1,16 +1,18 @@
 .release-home-ad-reviews {
   display: flex;
   flex-direction: row;
-  height: 24%;
+  height: 28%;
   width: 100%;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: baseline;
+  align-items: flex-start;
   background-color: rgb(238, 238, 238);
 }
 
 .release-home-earnings {
   font-family: "Sysfont";
   font-size: 24pt;
+  margin-top: 40px;
+  margin-left: 20px;
 }
 
 .release-home-earnings-number {

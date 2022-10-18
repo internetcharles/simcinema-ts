@@ -56,7 +56,7 @@ const Summary: React.FC<Props> = (props) => {
   };
 
   return (
-    <Window label="Summary" size="small-window">
+    <Window label="Summary" size="medium-window">
       <div className="summary-container">
         <div className="summary-header">Summary</div>
         <div className="summary-title-header">{movieInfo.title}</div>
@@ -66,7 +66,11 @@ const Summary: React.FC<Props> = (props) => {
           <div>Total Gross: ${convertToMillions(earnings)} million</div>
         </div>
         <div className="summary-profits-container">
-          <div>Profits: {calculateStudioEarnings()[2]}</div>
+          <div>
+            Profits: $
+            {calculateStudioEarnings()[2] ? calculateStudioEarnings()[2] : 0}{" "}
+            million
+          </div>
           <div>
             Distributor&lsquo;s Cut: ${calculateStudioEarnings()[0]} million
           </div>

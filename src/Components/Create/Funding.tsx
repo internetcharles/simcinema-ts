@@ -29,6 +29,7 @@ const Funding: React.FC = () => {
       setShowProposalWindow(true);
     } else if (studio.offer > 0) {
       setShowOfferWindow(true);
+      setShowProposalWindow(false);
       setCurrentOffer(studio);
     }
   };
