@@ -2,7 +2,7 @@
   width: 100%;
   background-color: rgb(230, 230, 230);
   border-top: 1px solid black;
-  height: 70%;
+  height: 60%;
   display: flex;
   justify-content: center;
 }
@@ -11,9 +11,10 @@
   width: 100%;
   background-color: rgb(230, 230, 230);
   border-top: 1px solid black;
-  height: 58%;
+  height: 60%;
   display: flex;
   justify-content: center;
+  overflow: auto;
 }
 
 .film-notification-notification-box {
@@ -30,9 +31,10 @@
   font-size: 16px;
   margin-top: 20px;
   margin-left: 20px;
+  overflow: auto;
 }
 
-@media screen and (max-width: 1900px) {
+@media screen and (max-width: 1800px) {
   .film-notification-box-container {
     width: 100%;
     background-color: rgb(230, 230, 230);
@@ -47,10 +49,10 @@
     width: 100%;
     background-color: rgb(230, 230, 230);
     border-top: 1px solid black;
-    height: 37%;
+    height: 35%;
     display: flex;
     justify-content: center;
-    padding-bottom: 10px;
+    padding-bottom: 21px;
   }
 
   .film-notification-items {

@@ -37,6 +37,8 @@ const Summary: React.FC<Props> = (props) => {
     return [dGross, iGross];
   };
 
+  const [dGross, iGross] = calculateDIEarnings();
+
   const calculateStudioEarnings = (): number[] => {
     const budgetInMillions = convertBudgetToFullNumber(budgetInfo.budget);
 
@@ -46,12 +48,14 @@ const Summary: React.FC<Props> = (props) => {
       const extraEarnings = earnings - budgetInMillions;
       const profits = convertToMillions(Math.floor(extraEarnings));
       const splitProfits = convertToMillions(Math.floor(extraEarnings / 2));
-      return [splitProfits, splitProfits, profits];
+      return [splitProfits, profits];
     }
   };
 
+  const [splitProfits, profits] = calculateStudioEarnings();
+
   const navigateHome = (): void => {
-    dispatch(adjustFunds(calculateStudioEarnings()[0]));
+    dispatch(adjustFunds(splitProfits));
     navigate("/");
   };
 
@@ -61,21 +65,24 @@ const Summary: React.FC<Props> = (props) => {
         <div className="summary-header">Summary</div>
         <div className="summary-title-header">{movieInfo.title}</div>
         <div className="summary-earnings-container">
-          <div>Domestic Gross: ${calculateDIEarnings()[0]} million</div>
-          <div>International Gross: ${calculateDIEarnings()[1]} million</div>
+          <div>Domestic Gross: ${dGross} million</div>
+          <div>International Gross: ${iGross} million</div>
           <div>Total Gross: ${convertToMillions(earnings)} million</div>
         </div>
         <div className="summary-profits-container">
-          <div>
-            Profits: $
-            {calculateStudioEarnings()[2] ? calculateStudioEarnings()[2] : 0}{" "}
-            million
+          <div>Budget: ${budgetInfo.budget} million</div>
+          <div
+            className={
+              profits > 0
+                ? "summary-earnings-profits"
+                : "summary-earnings-profits-red"
+            }
+          >
+            Profits: ${profits} million
           </div>
+          <div>Distributor&lsquo;s Cut: ${splitProfits} million</div>
           <div>
-            Distributor&lsquo;s Cut: ${calculateStudioEarnings()[0]} million
-          </div>
-          <div>
-            {companyName}&lsquo;s Cut: ${calculateStudioEarnings()[1]} million
+            {companyName}&lsquo;s Cut: ${splitProfits} million
           </div>
         </div>
         <MiniButton

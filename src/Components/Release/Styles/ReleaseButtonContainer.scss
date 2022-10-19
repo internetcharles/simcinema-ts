@@ -4,6 +4,8 @@
   height: 6%;
   display: flex;
   align-items: stretch;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .release-button-container-button {
@@ -39,7 +41,7 @@
   margin-right: 5px;
 }
 
-@media screen and (max-width: 1900px) {
+@media screen and (max-width: 1800px) {
   .release-button-container-buttons {
     background-color: rgb(192, 192, 192);
     width: 100%;

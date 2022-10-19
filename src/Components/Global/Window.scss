@@ -10,9 +10,9 @@
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
   display: flex;
-  overflow: auto;
+  overflow: hidden;
   align-items: stretch;
-  justify-content: c;
+  justify-content: center;
 }
 
 .medium-window {
@@ -99,4 +99,10 @@
   border-color: #696969;
   width: 99.9%;
   height: calc(100% - 28px);
+}
+
+@media screen and (max-width: 1800px) {
+  .large-window {
+    overflow: hidden;
+  }
 }

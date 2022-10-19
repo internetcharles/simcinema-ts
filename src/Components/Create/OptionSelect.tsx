@@ -84,7 +84,7 @@ const OptionSelect: React.FC<Props> = (props) => {
       setTimeout(() => {
         setCurrentOption(0);
         setShowAcceptWindow(false);
-        navigate("/filming-home");
+        navigate("/content-select");
       }, 400);
     }
   };

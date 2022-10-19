@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../../Redux/hooks";
 import { setCompanyInfo } from "../../Redux/Reducers/companyInfoSlice";
 import Window from "../Global/Window";
 import { BsFillFilePersonFill } from "react-icons/bs";
 import "./Styles/CreateCompany.scss";
+import { Auth, getAuth } from "firebase/auth";
+import { getCompany, saveCompany } from "../../firebase";
 
 interface Props {
   handleNewCompanyPress: () => void;
@@ -22,20 +25,33 @@ const CreateCompany: React.FC<Props> = ({
   const [playerName, setPlayerName] = useState<string>("");
   const [inputValid, setInputValid] = useState<boolean>(true);
 
-  const submitCompanyInfo = (): void => {
+  const auth: Auth = getAuth();
+
+  useEffect(() => {
+    if (auth.currentUser) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      const company = getCompany(auth.currentUser);
+      console.log(company);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const submitCompanyInfo = async (): Promise<any> => {
     if (playerName === "" || companyName === "") {
       setInputValid(false);
       return;
     }
-    dispatch(
-      setCompanyInfo({
-        playerName,
-        companyName,
-        history: [],
-        reputation: 0,
-        funds: 0,
-      }),
-    );
+    const companyInfo = {
+      playerName,
+      companyName,
+      history: [],
+      reputation: 0,
+      funds: 0,
+    };
+    dispatch(setCompanyInfo(companyInfo));
+    if (auth.currentUser) {
+      await saveCompany(auth.currentUser, companyInfo);
+    }
     handleNewCompanyPress();
   };
 

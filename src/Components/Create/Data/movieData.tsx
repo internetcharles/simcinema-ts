@@ -518,3 +518,51 @@ export const optionPath = [
     title: "SFX Studio",
   },
 ];
+
+export const ratingData: any = {
+  G: {
+    actionAdventure: 0,
+    comedy: 0,
+    drama: -10,
+    romance: -10,
+    horror: -20,
+    sciFi: -10,
+    animated: 20,
+  },
+  PG: {
+    actionAdventure: 6,
+    comedy: 6,
+    drama: -6,
+    romance: -10,
+    horror: -14,
+    sciFi: -10,
+    animated: 14,
+  },
+  "PG-13": {
+    actionAdventure: 14,
+    comedy: 14,
+    drama: 0,
+    romance: 0,
+    horror: 0,
+    sciFi: 6,
+    animated: -14,
+  },
+  R: {
+    actionAdventure: 14,
+    comedy: 10,
+    drama: 10,
+    romance: 10,
+    horror: 14,
+    sciFi: 10,
+    animated: -20,
+  },
+  "NC-17": {
+    actionAdventure: 0,
+    comedy: -12,
+    drama: 6,
+    romance: 6,
+    horror: 0,
+    sciFi: 0,
+    animated: -20,
+  },
+};

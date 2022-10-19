@@ -12,6 +12,7 @@ export interface MovieInfoState {
   vfx: MovieOption;
   audio: MovieOption;
   cast: MovieOption[];
+  rating: string;
 }
 
 const initialState: MovieInfoState = {
@@ -94,6 +95,7 @@ const initialState: MovieInfoState = {
     },
   },
   cast: [],
+  rating: "G",
 };
 
 export const movieInfoSlice = createSlice({

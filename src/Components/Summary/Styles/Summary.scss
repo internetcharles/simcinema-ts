@@ -10,7 +10,7 @@
 
 .summary-header {
   margin-bottom: 20px;
-  font-size: 30pt;
+  font-size: 15pt;
 }
 
 .summary-earnings-container {
@@ -33,10 +33,18 @@
 
 .summary-title-header {
   margin-bottom: 20px;
-  font-size: 40pt;
+  font-size: 30pt;
 }
 
-@media screen and (max-width: 1900px) {
+.summary-earnings-profits {
+  color: green;
+}
+
+.summary-earnings-profits-red {
+  color: red;
+}
+
+@media screen and (max-width: 1800px) {
   .summary-container {
     height: 100%;
     display: flex;
