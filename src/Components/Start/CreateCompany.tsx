@@ -47,6 +47,7 @@ const CreateCompany: React.FC<Props> = ({
       history: [],
       reputation: 0,
       funds: 0,
+      requestInProgress: false,
     };
     dispatch(setCompanyInfo(companyInfo));
     if (auth.currentUser) {

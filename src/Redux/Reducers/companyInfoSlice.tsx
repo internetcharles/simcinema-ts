@@ -1,8 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "@firebase/auth";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Movie } from "../../Components/Create/Interfaces/CreateInterface";
+import { getCompany } from "../../firebase";
 import { RootState } from "../store";
 
 export interface CompanyInfoState {
+  requestInProgress: boolean;
   playerName: string;
   companyName: string;
   history: Movie[];
@@ -11,12 +14,20 @@ export interface CompanyInfoState {
 }
 
 const initialState: CompanyInfoState = {
+  requestInProgress: false,
   playerName: "",
   companyName: "",
   history: [],
   reputation: 0,
   funds: 0,
 };
+
+export const fetchCompany = createAsyncThunk(
+  "companyInfo",
+  async (user: User) => {
+    return await getCompany(user).catch((error) => console.log(error));
+  },
+);
 
 export const companyInfoSlice = createSlice({
   name: "companyInfo",
@@ -36,6 +47,17 @@ export const companyInfoSlice = createSlice({
     },
     adjustFunds: (state, action: PayloadAction<number>) => {
       state.funds += action.payload;
+    },
+  },
+  extraReducers: {
+    [fetchCompany.pending.type]: (state, action) => {
+      return { ...initialState, requestInProgress: true };
+    },
+    [fetchCompany.fulfilled.type]: (state, action) => {
+      return action.payload;
+    },
+    [fetchCompany.rejected.type]: (state, action) => {
+      return initialState;
     },
   },
 });

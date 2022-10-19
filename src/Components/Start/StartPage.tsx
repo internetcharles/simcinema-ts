@@ -16,34 +16,29 @@ import StudioInfoModal from "./StudioInfoModal";
 import { resetMovieInfo } from "../../Redux/Reducers/movieInfoSlice";
 import { resetBudget } from "../../Redux/Reducers/budgetSlice";
 import { resetData } from "../Create/Data/studioData";
-import { collection, addDoc } from "firebase/firestore";
-import { CompanyInfoState } from "../../Redux/Reducers/companyInfoSlice";
-import { getCompany } from "../../firebase";
+import { fetchCompany } from "../../Redux/Reducers/companyInfoSlice";
 
 const StartPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const companyInfo = useAppSelector((state) => state.companyInfo);
+  const companyInfo2 = useAppSelector((state) => state.companyInfo);
   const [showCompanyModal, setShowCompanyModal] = useState(false);
   const [showStudioInfoModal, setShowStudioInfoModal] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [largeWindowDismissed, setLargeWindowDismissed] = useState(false);
-  const [company, setCompany] = useState<CompanyInfoState | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const auth: Auth = getAuth();
 
   useEffect(() => {
     if (!auth.currentUser) {
       navigate("/login");
     } else {
-      getCompany(auth.currentUser).then((data) => {
-        setCompany(data);
-      });
+      dispatch(fetchCompany(auth.currentUser));
+      console.log(dispatch(fetchCompany(auth.currentUser)));
     }
-    if (companyInfo.companyName === "") {
-      setShowCompanyModal(true);
-    }
-    console.log(companyInfo.history);
   }, []);
+
   const reset = (): void => {
     dispatch(resetMovieInfo());
     dispatch(resetBudget());
@@ -73,6 +68,7 @@ const StartPage: React.FC = () => {
     setShowStudioInfoModal(!showStudioInfoModal);
   };
 
+  if (companyInfo.requestInProgress) return <h1>loading</h1>;
   return (
     <>
       {!showCompanyModal && (

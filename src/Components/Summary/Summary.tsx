@@ -1,4 +1,5 @@
 import React from "react";
+import { Auth, getAuth } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 import {
   convertBudgetToFullNumber,
@@ -9,12 +10,14 @@ import { adjustFunds } from "../../Redux/Reducers/companyInfoSlice";
 import MiniButton from "../Global/MiniButton";
 import Window from "../Global/Window";
 import "./Styles/Summary.scss";
+import { saveCompany } from "../../firebase";
 
 interface Props {}
 
 const Summary: React.FC<Props> = (props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const auth: Auth = getAuth();
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const movieInfo = useAppSelector((state) => state.movieInfo);
   const companyInfo = useAppSelector((state) => state.companyInfo);
@@ -56,7 +59,9 @@ const Summary: React.FC<Props> = (props) => {
 
   const navigateHome = (): void => {
     dispatch(adjustFunds(splitProfits));
-    navigate("/");
+    if (auth.currentUser) {
+      saveCompany(auth.currentUser, companyInfo).then(() => navigate("/"));
+    }
   };
 
   return (

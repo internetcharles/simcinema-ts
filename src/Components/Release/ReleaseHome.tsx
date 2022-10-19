@@ -6,6 +6,7 @@ import {
   generateNextHypeNumber,
   reputationCalc,
 } from "../../Common/utils";
+import { saveCompany } from "../../firebase";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   adjustEarnings,
@@ -39,6 +40,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const movieInfo = useAppSelector((state) => state.movieInfo);
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const qualityInfo = useAppSelector((state) => state.quality);
+  const companyInfo = useAppSelector((state) => state.companyInfo);
   const [theaters, setTheaters] = useState<number>(0);
   const [adModalOpen, setAdModalOpen] = useState<boolean>(false);
   const [reviewsModalOpen, setReviewsModalOpen] = useState<boolean>(true);
@@ -146,7 +148,6 @@ const ReleaseHome: React.FC<Props> = (props) => {
         }),
       );
       dispatch(adjustReputation(reputationCalc(budgetInfo.budget, earnings)));
-      navigate("/summary");
     }
   };
 

@@ -123,7 +123,7 @@ const getCompany = async (user: User): Promise<any> => {
     const docRef = doc(db, `${user.uid}`, "company");
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      console.log(docSnap.data());
+      return docSnap.data().companyInfo as CompanyInfoState;
     }
   } catch (error: any) {
     console.log(error.message);
