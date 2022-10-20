@@ -17,6 +17,7 @@ import ReleaseModal from "./ReleaseModal";
 import { FilmingEvent } from "./Interfaces/FilmingInterface";
 import { generateFilmingEvent } from "./Data/eventData";
 import "./Styles/FilmingHome.scss";
+import ReadyForReleaseModal from "./ReadyForReleaseModal";
 
 interface Props {}
 
@@ -32,6 +33,10 @@ const FilmingHome: React.FC<Props> = (props) => {
   const [infoExpanded, setInfoExpanded] = useState(true);
   const [showMovieDetails, setShowMovieDetails] = useState<boolean>(true);
   const [showReleaseModal, setShowReleaseModal] = useState<boolean>(false);
+  const [showReadyForRelease, setShowReadyForRelease] =
+    useState<boolean>(false);
+  const [readyForReleaseShown, setReadyForReleaseShown] =
+    useState<boolean>(false);
   const [notifications, setNotifications] = useState<string[]>([]);
   const { hype, targetHype } = budgetInfo;
 
@@ -44,6 +49,9 @@ const FilmingHome: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (percentDone >= 100) {
+      if (!readyForReleaseShown) {
+        setShowReadyForRelease(true);
+      }
       setReadyForRelease(true);
       setNotifications([...notifications, `Film is ready for release!`]);
     }
@@ -96,6 +104,11 @@ const FilmingHome: React.FC<Props> = (props) => {
     setIsAdModalOpen(!isAdModalOpen);
   };
 
+  const handleReleaseModalPress = (): void => {
+    setReadyForReleaseShown(true);
+    setShowReadyForRelease(!showReadyForRelease);
+  };
+
   const handleReleaseFilmPress = (answer: boolean): void => {
     answer ? navigate("/release-home") : setShowReleaseModal(false);
   };
@@ -127,6 +140,9 @@ const FilmingHome: React.FC<Props> = (props) => {
         )}
         {showReleaseModal && (
           <ReleaseModal handleReleaseFilmPress={handleReleaseFilmPress} />
+        )}
+        {showReadyForRelease && (
+          <ReadyForReleaseModal handleButtonPress={handleReleaseModalPress} />
         )}
       </div>
     </Window>

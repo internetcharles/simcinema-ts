@@ -22,7 +22,6 @@ const MovieInfoHeaderDetails: React.FC<Props> = ({
   percentDone,
   theaters,
 }) => {
-  console.log(movieInfo);
   return (
     <div className="movie-info-header-details-baseline-container">
       <div className="movie-info-header-details-container">

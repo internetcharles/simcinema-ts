@@ -102,7 +102,6 @@ const registerWithEmailAndPassword = async (
 const sendPasswordReset = async (email: string): Promise<any> => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
   } catch (err: any) {
     console.error(err);
     alert(err.message);
@@ -139,7 +138,6 @@ const saveCompany = async (
       await setDoc(doc(db, user.uid, "company"), {
         companyInfo,
       });
-      console.log("Fuck");
     }
   } catch (error: any) {
     console.log(error.message);

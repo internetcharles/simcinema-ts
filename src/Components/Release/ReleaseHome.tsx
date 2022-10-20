@@ -145,9 +145,11 @@ const ReleaseHome: React.FC<Props> = (props) => {
           budget: budgetInfo.budget,
           earnings,
           cast: movieInfo.cast,
+          genre: movieInfo.genre,
         }),
       );
       dispatch(adjustReputation(reputationCalc(budgetInfo.budget, earnings)));
+      navigate("/summary");
     }
   };
 

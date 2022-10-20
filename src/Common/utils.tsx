@@ -123,6 +123,7 @@ export const reputationString = (
   reputation: number,
   history: Movie[],
 ): string => {
+  console.log(reputation);
   if (history.length < 5) {
     return "New kid on the block";
   } else if (reputation < 0) {
@@ -132,4 +133,15 @@ export const reputationString = (
   } else {
     return "Pretty good";
   }
+};
+
+export const genreRepeatCheck = (history: Movie[], genre: string): boolean => {
+  const lastThreeMovies = history.slice(history.length - 3, history.length);
+  console.log("HI", lastThreeMovies);
+  console.log(
+    "CHECK",
+    lastThreeMovies.some((element) => genre === element.genre),
+  );
+  if (lastThreeMovies.some((element) => genre === element.genre)) return true;
+  return false;
 };

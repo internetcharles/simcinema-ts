@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { Auth, getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { Auth, getAuth } from "firebase/auth";
 import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
 import { FaFilm } from "react-icons/fa";
 import { BsFillCameraReelsFill } from "react-icons/bs";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import MiniButton from "../Global/MiniButton";
 import "./Styles/StartPage.scss";
 import CreateCompany from "./CreateCompany";
@@ -17,25 +18,27 @@ import { resetMovieInfo } from "../../Redux/Reducers/movieInfoSlice";
 import { resetBudget } from "../../Redux/Reducers/budgetSlice";
 import { resetData } from "../Create/Data/studioData";
 import { fetchCompany } from "../../Redux/Reducers/companyInfoSlice";
+import { auth, logout } from "../../firebase";
+import { Movie } from "../Create/Interfaces/CreateInterface";
+import Loading from "../Global/Loading";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const StartPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const companyInfo = useAppSelector((state) => state.companyInfo);
-  const companyInfo2 = useAppSelector((state) => state.companyInfo);
   const [showCompanyModal, setShowCompanyModal] = useState(false);
   const [showStudioInfoModal, setShowStudioInfoModal] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [largeWindowDismissed, setLargeWindowDismissed] = useState(false);
-  const [loading, setLoading] = useState<boolean>(true);
-  const auth: Auth = getAuth();
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     if (!auth.currentUser) {
       navigate("/login");
     } else {
       dispatch(fetchCompany(auth.currentUser));
-      console.log(dispatch(fetchCompany(auth.currentUser)));
+      console.log("data fetched");
     }
   }, []);
 
@@ -64,11 +67,19 @@ const StartPage: React.FC = () => {
     }, 400);
   };
 
+  const handleLogoutPress = (): void => {
+    logout().then(() => {
+      navigate("/");
+    });
+  };
+
   const handleStudioInfoPress = (): void => {
     setShowStudioInfoModal(!showStudioInfoModal);
   };
 
-  if (companyInfo.requestInProgress) return <h1>loading</h1>;
+  const newMovieArray: Movie[] = [...companyInfo.history];
+
+  if (companyInfo.requestInProgress || loading) return <Loading />;
   return (
     <>
       {!showCompanyModal && (
@@ -82,9 +93,9 @@ const StartPage: React.FC = () => {
               <div className="start-page-history-container">
                 <div className="start-page-films-produced">Films produced:</div>
                 <div className="start-page-history-box">
-                  {companyInfo.history.length > 0 ? (
-                    companyInfo.history.map((movie) => (
-                      <div className="history-item" key={movie.earnings}>
+                  {newMovieArray.length > 0 ? (
+                    newMovieArray.reverse().map((movie, idx) => (
+                      <div className="history-item" key={idx}>
                         {movie.title}: {movie.averageScore}/10 ($
                         {convertToMillions(movie.earnings)} million) (
                         {gradeMovie(
@@ -112,6 +123,11 @@ const StartPage: React.FC = () => {
                     handleButtonPress={handleStudioInfoPress}
                     icon={<BsFillCameraReelsFill size={14} />}
                     label="Studio Info"
+                  />
+                  <MiniButton
+                    handleButtonPress={handleLogoutPress}
+                    label="Logout"
+                    icon={<RiLogoutBoxRLine size={14} />}
                   />
                 </div>
                 <div className="start-page-info-window">

@@ -1,0 +1,18 @@
+.ready-for-release-modal-container {
+  width: 100%;
+  height: 100%;
+  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ready-for-release-modal-container div {
+  font-family: "Sysfont";
+  font-size: 15pt;
+}
+
+.ready-for-release-modal-text {
+  margin-top: 25px;
+}

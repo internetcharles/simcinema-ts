@@ -9,25 +9,23 @@ import {
 } from "../../firebase";
 import Window from "../Global/Window";
 import "./Styles/Login.scss";
+import Loading from "../Global/Loading";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
     if (user) navigate("/start-page");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
+  if (loading) return <Loading />;
   return (
     <Window label="Welcome" size="large-window">
       <div className="login">
+        <div className="login-header">SimCinema</div>
         <div className="login__container">
           <input
             type="text"
@@ -61,7 +59,7 @@ const Login: React.FC<Props> = (props) => {
             <Link to="/reset">Forgot Password</Link>
           </div>
           <div>
-            Don`&apos;`t have an account? <Link to="/register">Register</Link>{" "}
+            Don&apos;t have an account? <Link to="/register">Register</Link>{" "}
             now.
           </div>
         </div>

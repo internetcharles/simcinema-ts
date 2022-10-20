@@ -4,6 +4,7 @@ export interface Movie {
   earnings: number;
   budget: number;
   cast: MovieOption[];
+  genre: string;
 }
 
 export interface Option {

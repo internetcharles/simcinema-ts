@@ -8,6 +8,7 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../../firebase";
+import Window from "../Global/Window";
 import "./Styles/Register.scss";
 
 interface Props {}
@@ -28,43 +29,45 @@ const Register: React.FC<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button className="register__btn" onClick={register}>
-          Register
-        </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
-          Register with Google
-        </button>
-        <div>
-          Already have an account? <Link to="/">Login</Link> now.
+    <Window label="Register" size="large-window">
+      <div className="register">
+        <div className="register__container">
+          <input
+            type="text"
+            className="register__textBox"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full Name"
+          />
+          <input
+            type="text"
+            className="register__textBox"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <input
+            type="password"
+            className="register__textBox"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button className="register__btn" onClick={register}>
+            Register
+          </button>
+          <button
+            className="register__btn register__google"
+            onClick={signInWithGoogle}
+          >
+            Register with Google
+          </button>
+          <div>
+            Already have an account? <Link to="/">Login</Link> now.
+          </div>
         </div>
       </div>
-    </div>
+    </Window>
   );
 };
 

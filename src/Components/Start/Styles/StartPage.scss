@@ -16,14 +16,16 @@
 }
 
 .start-page-content-container {
-  height: 100%;
+  margin-top: 1%;
+  height: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .start-page-history-container {
-  height: 100%;
+  margin-top: 1%;
+  height: 90%;
 }
 
 .start-page-history-box {
@@ -32,6 +34,7 @@
   margin-left: 10px;
   margin-right: 10px;
   border: 2px solid grey;
+  overflow: auto;
 }
 
 .no-history-text {
@@ -40,28 +43,48 @@
 }
 
 .start-page-info-window {
-  width: 80%;
+  width: 60%;
   height: 100%;
   background-color: white;
   border: 1px solid grey;
   display: flex;
   align-items: center;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .start-page-info-window-text {
-  font-size: 10pt;
+  font-size: 12pt;
   margin-left: 10px;
 }
 
 .start-page-bottom-container {
+  height: 2%;
+  margin-bottom: 2%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: flex-end;
-  margin-bottom: 10px;
 }
 
 .history-item {
   margin-left: 5px;
   margin-top: 5px;
+}
+
+@media screen and (max-width: 1800px), screen and (max-height: 1000px) {
+  .start-page-content-container {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .start-page-history-container {
+    height: 95%;
+  }
+
+  .start-page-history-container {
+    height: 80%;
+  }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Auth, getAuth } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 import {
@@ -57,8 +57,12 @@ const Summary: React.FC<Props> = (props) => {
 
   const [splitProfits, profits] = calculateStudioEarnings();
 
-  const navigateHome = (): void => {
+  useEffect(() => {
     dispatch(adjustFunds(splitProfits));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const navigateHome = (): void => {
     if (auth.currentUser) {
       saveCompany(auth.currentUser, companyInfo).then(() => navigate("/"));
     }

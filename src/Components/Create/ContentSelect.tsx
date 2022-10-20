@@ -68,7 +68,7 @@ const ContentSelect: React.FC<Props> = (props) => {
       dismissed={dismissed}
       isAnimated={true}
       label="Content"
-      size="small-window"
+      size="medium-window"
     >
       <div className="content-select-container">
         <div className="content-select-header">
