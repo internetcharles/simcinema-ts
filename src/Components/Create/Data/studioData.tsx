@@ -120,7 +120,7 @@ export const requestOffer = (
   switch (studio.id) {
     case 0:
       if (randomNum > 15 - companyReputation) {
-        studios[0].offer = getRandomArbitrary(50, 70);
+        studios[0].offer = getRandomArbitrary(80, 100);
         studios[0].offerRequested = true;
         studios[0].message = generateAcceptedMessage();
       } else {
@@ -132,7 +132,7 @@ export const requestOffer = (
       return studios;
     case 1:
       if (randomNum > 0) {
-        studios[1].offer = getRandomArbitrary(30, 40);
+        studios[1].offer = getRandomArbitrary(60, 70);
         studios[1].offerRequested = true;
         studios[1].message = generateAcceptedMessage();
       } else {
@@ -144,7 +144,7 @@ export const requestOffer = (
       return studios;
     case 2:
       if (randomNum >= 10 && randomNum <= 15 + companyReputation) {
-        studios[2].offer = getRandomArbitrary(40, 50);
+        studios[2].offer = getRandomArbitrary(70, 80);
         studios[2].offerRequested = true;
         studios[2].message = generateAcceptedMessage();
       } else {
@@ -156,7 +156,7 @@ export const requestOffer = (
       return studios;
     case 3:
       if (randomNum >= 10) {
-        studios[3].offer = getRandomArbitrary(35, 55);
+        studios[3].offer = getRandomArbitrary(65, 85);
         studios[3].offerRequested = true;
         studios[3].message = generateAcceptedMessage();
       } else {
@@ -168,7 +168,7 @@ export const requestOffer = (
       return studios;
     case 4:
       if (randomNum >= 20 - companyReputation) {
-        studios[4].offer = getRandomArbitrary(35, 65);
+        studios[4].offer = getRandomArbitrary(65, 95);
         studios[4].offerRequested = true;
         studios[4].message = generateAcceptedMessage();
       } else {
@@ -180,7 +180,7 @@ export const requestOffer = (
       return studios;
     case 5:
       if (randomNum >= 5 - companyReputation) {
-        studios[5].offer = getRandomArbitrary(35, 45);
+        studios[5].offer = getRandomArbitrary(65, 75);
         studios[5].offerRequested = true;
         studios[5].message = generateAcceptedMessage();
       } else {
@@ -192,7 +192,7 @@ export const requestOffer = (
       return studios;
     case 6:
       if (randomNum >= 25 - companyReputation) {
-        studios[6].offer = getRandomArbitrary(55, 65);
+        studios[6].offer = getRandomArbitrary(85, 95);
         studios[6].offerRequested = true;
         studios[6].message = generateAcceptedMessage();
       } else {

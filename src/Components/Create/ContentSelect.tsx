@@ -85,7 +85,6 @@ const ContentSelect: React.FC<Props> = (props) => {
                   type="radio"
                   onChange={(e) => setViolence(parseInt(e.target.value))}
                   value="1"
-                  checked={true}
                 />
                 Light
               </div>
@@ -118,7 +117,6 @@ const ContentSelect: React.FC<Props> = (props) => {
                   type="radio"
                   onChange={(e) => setProfanity(parseInt(e.target.value))}
                   value="1"
-                  checked={true}
                 />
                 Light
               </div>
@@ -151,7 +149,6 @@ const ContentSelect: React.FC<Props> = (props) => {
                   type="radio"
                   onChange={(e) => setSexNudity(parseInt(e.target.value))}
                   value="1"
-                  checked={true}
                 />
                 Light
               </div>

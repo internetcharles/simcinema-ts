@@ -7,8 +7,8 @@
 }
 
 .option-button-container {
-  width: 224px;
-  height: 224px;
+  width: 280px;
+  height: 280px;
   background-color: rgb(255, 255, 255);
   outline: 4px solid rgb(128, 128, 128);
   border-radius: 5%;
@@ -20,8 +20,8 @@
 }
 
 .option-button-image {
-  width: 224px;
-  height: 224px;
+  width: 280px;
+  height: 280px;
   -webkit-user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -47,7 +47,7 @@
 }
 
 .option-button-bottom-container {
-  height: 85px;
+  height: 120px;
   font-family: "Sysfont";
   display: flex;
   justify-content: center;
@@ -95,21 +95,39 @@
 }
 
 .option-button-option-name {
-  font-size: 18pt;
+  font-size: 24pt;
 }
 
 .option-button-option-ask {
-  font-size: 10pt;
+  font-size: 14pt;
 }
 
 .option-button-option-offer {
-  font-size: 15pt;
+  font-size: 20pt;
+}
+
+.option-button-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.option-button-info-icon {
+  margin-left: 10px;
+}
+
+.option-button-option-status {
+  font-size: 16pt;
+}
+
+.option-button-option-price {
+  font-size: 16pt;
 }
 
 @media screen and (max-width: 1800px) {
   .option-button-container {
-    width: 180px;
-    height: 180px;
+    width: 128px;
+    height: 128px;
     background-color: rgb(255, 255, 255);
     outline: 4px solid rgb(128, 128, 128);
     border-radius: 5%;
@@ -121,8 +139,8 @@
   }
 
   .option-button-image {
-    width: 180px;
-    height: 180px;
+    width: 128px;
+    height: 128px;
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
@@ -143,7 +161,7 @@
     width: 100%;
 
     .option-button-option-name {
-      font-size: 15pt;
+      font-size: 12pt;
     }
 
     .option-button-option-ask {
@@ -151,6 +169,14 @@
     }
 
     .option-button-option-offer {
+      font-size: 10pt;
+    }
+
+    .option-button-option-status {
+      font-size: 8pt;
+    }
+
+    .option-button-option-price {
       font-size: 10pt;
     }
   }

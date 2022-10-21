@@ -33,6 +33,7 @@ export interface MovieOption {
   price: number;
   status: string;
   portrait: string;
+  description: string;
   quality: {
     actionAdventure: number;
     comedy: number;

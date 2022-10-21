@@ -86,9 +86,9 @@ const ReleaseHome: React.FC<Props> = (props) => {
     const theaterAdjustment =
       hype > 0
         ? theaters -
-          Math.floor(300 / (hype + Math.random() * 2 + 1) + (200 - quality))
+          Math.floor(300 / (hype + Math.random() * 2 + 1) + (400 - quality))
         : theaters -
-          Math.floor(300 / (Math.random() * 2 + 1) + (200 - quality));
+          Math.floor(300 / (Math.random() * 2 + 1) + (400 - quality));
     if (theaters <= 0) {
       setTheaters(0);
       setNotifications([

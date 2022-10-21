@@ -82,7 +82,7 @@ const StartPage: React.FC = () => {
   if (companyInfo.requestInProgress || loading) return <Loading />;
   return (
     <>
-      <Link to="/filming-home">DEBUG FILMING</Link>
+      <Link to="/cast-select">DEBUG FILMING</Link>
       {!showCompanyModal && (
         <Window size="large-window" label="SimCinema">
           <div className="start-page-container">

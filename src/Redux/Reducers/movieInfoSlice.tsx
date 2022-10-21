@@ -24,6 +24,7 @@ const initialState: MovieInfoState = {
     price: 0,
     status: "A",
     portrait: "",
+    description: "A",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -39,6 +40,7 @@ const initialState: MovieInfoState = {
     price: 0,
     status: "A",
     portrait: "",
+    description: "A",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -54,6 +56,7 @@ const initialState: MovieInfoState = {
     price: 0,
     status: "A",
     portrait: "",
+    description: "A",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -69,6 +72,7 @@ const initialState: MovieInfoState = {
     price: 0,
     status: "A",
     portrait: "",
+    description: "",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -84,6 +88,7 @@ const initialState: MovieInfoState = {
     price: 0,
     status: "A",
     portrait: "",
+    description: "",
     quality: {
       actionAdventure: 0,
       comedy: 0,
