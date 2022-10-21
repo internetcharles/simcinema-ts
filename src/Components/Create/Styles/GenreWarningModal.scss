@@ -1,6 +1,6 @@
 .genre-warning-modal-container {
-  width: 100%;
   height: 100%;
+  width: 100%;
   background: lightgrey;
   display: flex;
   flex-direction: column;
@@ -30,4 +30,8 @@
 .genre-warning-modal-genre-container-text {
   font-size: 10pt;
   font-family: "Sysfont";
+}
+
+.genre-warning-modal-genre-button-container {
+  display: flex;
 }

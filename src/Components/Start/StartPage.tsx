@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { Auth, getAuth } from "firebase/auth";
 import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
 import { FaFilm } from "react-icons/fa";
@@ -30,15 +29,17 @@ const StartPage: React.FC = () => {
   const [showCompanyModal, setShowCompanyModal] = useState(false);
   const [showStudioInfoModal, setShowStudioInfoModal] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const [largeWindowDismissed, setLargeWindowDismissed] = useState(false);
-  const [user, loading] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     if (!auth.currentUser) {
       navigate("/login");
     } else {
-      dispatch(fetchCompany(auth.currentUser));
-      console.log("data fetched");
+      try {
+        dispatch(fetchCompany(auth.currentUser));
+      } catch {
+        console.log(error);
+      }
     }
   }, []);
 
@@ -51,7 +52,6 @@ const StartPage: React.FC = () => {
   const handleNewMoviePress = (): void => {
     if (companyInfo.companyName !== "") {
       reset();
-      setLargeWindowDismissed(true);
       setTimeout(() => {
         navigate("/create-movie");
       }, 400);

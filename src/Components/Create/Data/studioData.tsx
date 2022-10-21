@@ -5,6 +5,7 @@ import badMovieCoImage from "../../../Assets/BadMovieCo.png";
 import bigBoyImage from "../../../Assets/BigBoy.png";
 import everestImage from "../../../Assets/Everest.png";
 import filmFactoryImage from "../../../Assets/Factory.png";
+import bananaBrosImage from "../../../Assets/BananaBros.png";
 import { CompanyInfoState } from "../../../Redux/Reducers/companyInfoSlice";
 
 export let studios: Studio[] = [
@@ -65,7 +66,7 @@ export let studios: Studio[] = [
   {
     id: 6,
     studioName: "Banana Bros.",
-    image: questionMark,
+    image: bananaBrosImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -238,6 +239,9 @@ const rejectedMessages = [
   {
     message: "Sorry, we're broke. Can I borrow 40 dollars?",
   },
+  {
+    message: "Heck no.",
+  },
 ];
 
 const acceptedMessages = [
@@ -268,6 +272,9 @@ const acceptedMessages = [
   {
     message:
       "Hey, not only do I love your film, I'm also in love with you. Sorry, that's inappropriate, but yes, I'd like to distribute your film.",
+  },
+  {
+    message: "Heck yes.",
   },
 ];
 
@@ -330,7 +337,7 @@ export const resetData = (): void => {
     {
       id: 6,
       studioName: "Banana Bros.",
-      image: questionMark,
+      image: bananaBrosImage,
       offerRequested: false,
       rejected: false,
       offer: 0,

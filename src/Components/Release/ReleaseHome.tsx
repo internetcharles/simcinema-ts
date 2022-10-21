@@ -6,7 +6,6 @@ import {
   generateNextHypeNumber,
   reputationCalc,
 } from "../../Common/utils";
-import { saveCompany } from "../../firebase";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   adjustEarnings,
@@ -40,7 +39,6 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const movieInfo = useAppSelector((state) => state.movieInfo);
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const qualityInfo = useAppSelector((state) => state.quality);
-  const companyInfo = useAppSelector((state) => state.companyInfo);
   const [theaters, setTheaters] = useState<number>(0);
   const [adModalOpen, setAdModalOpen] = useState<boolean>(false);
   const [reviewsModalOpen, setReviewsModalOpen] = useState<boolean>(true);
@@ -77,8 +75,14 @@ const ReleaseHome: React.FC<Props> = (props) => {
     setAdModalOpen(false);
     setTheaterFallOff(theaterFallOff * 1.6);
     const weekEvent: ReleaseEvent = generateReleaseEvent();
-    const hypeAdjustment =
-      generateNextHypeNumber(hype + weekEvent.hypeDifference, targetHype) - 1;
+    console.log("HYPE", hype);
+    console.log("TARGET HYPE", targetHype);
+    console.log("WEEK EVENT", weekEvent.hypeDifference);
+    const hypeAdjustment = generateNextHypeNumber(
+      hype + weekEvent.hypeDifference,
+      targetHype - 1,
+    );
+    console.log("HYPE ADJUSTMENT", hypeAdjustment);
     const theaterAdjustment =
       hype > 0
         ? theaters -
@@ -95,9 +99,11 @@ const ReleaseHome: React.FC<Props> = (props) => {
     }
     if (theaters > 0) {
       setEarnings(earnings + theaters * 700);
-      if (hype + hypeAdjustment > 0) {
-        dispatch(adjustHype(hypeAdjustment));
+      if (targetHype > 0) {
         dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
+        dispatch(adjustHype(hypeAdjustment));
+      } else if (hypeAdjustment < 0) {
+        dispatch(adjustHype(0));
       } else {
         dispatch(adjustHype(0));
       }

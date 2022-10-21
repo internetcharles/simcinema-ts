@@ -32,7 +32,6 @@ const CreateMovie: React.FC<Props> = (props) => {
   const [genreWarningModalVisible, setGenreWarningModalVisible] =
     useState<boolean>(false);
   const [genreWarningShown, setGenreWarningShown] = useState<boolean>(false);
-  const [dismissed, setDismissed] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(resetMovieInfo());
@@ -44,7 +43,7 @@ const CreateMovie: React.FC<Props> = (props) => {
     setSelectedGenre(selectedOption.target);
   };
 
-  const handleGenreWarningModalPress = (): void => {
+  const handleCancelPress = (): void => {
     setGenreWarningModalVisible(!genreWarningModalVisible);
   };
 
@@ -76,7 +75,6 @@ const CreateMovie: React.FC<Props> = (props) => {
         description: movieDescription,
       }),
     );
-    setDismissed(true);
     setTimeout(() => {
       navigate("/funding");
     }, 400);
@@ -202,7 +200,8 @@ const CreateMovie: React.FC<Props> = (props) => {
       {genreWarningModalVisible && (
         <GenreWarningModal
           movieHistory={companyInfo.history}
-          handleButtonPress={handleGenreWarningModalPress}
+          handleCancelPress={handleCancelPress}
+          handleContinuePress={submitMovie}
         />
       )}
     </>

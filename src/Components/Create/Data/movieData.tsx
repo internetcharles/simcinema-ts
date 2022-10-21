@@ -17,7 +17,7 @@ export const movieOptions: MovieOption[][] = [
         romance: 50,
         horror: 65,
         sciFi: 65,
-        animated: 90,
+        animated: 100,
       },
     },
     {

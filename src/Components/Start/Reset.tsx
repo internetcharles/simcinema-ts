@@ -7,12 +7,14 @@ import "./Styles/Reset.scss";
 
 const Reset: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/start-page");
   }, [user, loading]);
+
   return (
     <Window label="Reset Password" size="medium-window">
       <div className="reset">

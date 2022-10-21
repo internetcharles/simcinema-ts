@@ -6,12 +6,14 @@ import { Movie } from "./Interfaces/CreateInterface";
 import "./Styles/GenreWarningModal.scss";
 
 interface Props {
-  handleButtonPress: () => void;
+  handleCancelPress: () => void;
+  handleContinuePress: () => void;
   movieHistory: Movie[];
 }
 
 const GenreWarningModal: React.FC<Props> = ({
-  handleButtonPress,
+  handleCancelPress,
+  handleContinuePress,
   movieHistory,
 }) => {
   const lastThreeMovies = movieHistory.slice(
@@ -35,7 +37,18 @@ const GenreWarningModal: React.FC<Props> = ({
             </div>
           ))}
         </div>
-        <MiniButton icon="" label="OK" handleButtonPress={handleButtonPress} />
+        <div className="genre-warning-modal-genre-button-container">
+          <MiniButton
+            icon=""
+            label="Continue"
+            handleButtonPress={handleContinuePress}
+          />
+          <MiniButton
+            icon=""
+            label="Cancel"
+            handleButtonPress={handleCancelPress}
+          />
+        </div>
       </div>
     </Window>
   );

@@ -37,7 +37,7 @@ const MovieInfoHeaderDetails: React.FC<Props> = ({
             <div>Percent done: {percentDone} percent</div>
           )}
           {percentDone >= 100 && <div>Percent done: 100 percent</div>}
-          {budgetInfo.hype >= 0 && <div>Hype: {budgetInfo.hype}</div>}
+          {<div>Hype: {budgetInfo.hype}</div>}
           {budgetInfo.moneyRemaining >= 0 && (
             <div>Money remaining: ${budgetInfo.moneyRemaining} million</div>
           )}

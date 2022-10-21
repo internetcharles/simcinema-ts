@@ -31,6 +31,8 @@ const Funding: React.FC = () => {
       setShowOfferWindow(true);
       setShowProposalWindow(false);
       setCurrentOffer(studio);
+    } else {
+      console.log("EDGE CASE");
     }
   };
 
