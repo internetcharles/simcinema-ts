@@ -18,6 +18,7 @@ import { FilmingEvent } from "./Interfaces/FilmingInterface";
 import { generateFilmingEvent } from "./Data/eventData";
 import "./Styles/FilmingHome.scss";
 import ReadyForReleaseModal from "./ReadyForReleaseModal";
+import ProgressBox from "./ProgressBox";
 
 interface Props {}
 
@@ -28,6 +29,13 @@ const FilmingHome: React.FC<Props> = (props) => {
   const qualityInfo = useAppSelector((state) => state.quality);
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [percentDone, setPercentDone] = useState<number>(0);
+  const [totalPercentDone, setTotalPercentDone] = useState<number>(0);
+  const [setsPropsProgress, setSetsPropsProgress] = useState<number>(0);
+  const [filmingProgress, setFilmingProgress] = useState<number>(0);
+  const [editingEffectsProgress, setEditingEffectsProgress] =
+    useState<number>(0);
+  const [composingProgress, setComposingProgress] = useState<number>(0);
+  const [currentFilmingPhase, setCurrentFilmingPhase] = useState<number>(0);
   const [readyForRelease, setReadyForRelease] = useState<boolean>(false);
   const [isAdModalOpen, setIsAdModalOpen] = useState<boolean>(false);
   const [infoExpanded, setInfoExpanded] = useState(true);
@@ -48,26 +56,81 @@ const FilmingHome: React.FC<Props> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (percentDone >= 100) {
+    if (setsPropsProgress >= 100 && currentFilmingPhase === 0) {
+      setSetsPropsProgress(100);
+      setCurrentFilmingPhase((currentFilmingPhase) => currentFilmingPhase + 1);
+      setPercentDone(0);
+    }
+    if (filmingProgress >= 100 && currentFilmingPhase === 1) {
+      setFilmingProgress(100);
+      setCurrentFilmingPhase((currentFilmingPhase) => currentFilmingPhase + 1);
+      setPercentDone(0);
+    }
+    if (editingEffectsProgress >= 100 && currentFilmingPhase === 2) {
+      setEditingEffectsProgress(100);
+      setCurrentFilmingPhase((currentFilmingPhase) => currentFilmingPhase + 1);
+      setPercentDone(0);
+    }
+    if (composingProgress >= 100 && currentFilmingPhase === 3) {
+      setComposingProgress(100);
+      setCurrentFilmingPhase((currentFilmingPhase) => currentFilmingPhase + 1);
+    }
+    if (currentFilmingPhase >= 4) {
       if (!readyForReleaseShown) {
         setShowReadyForRelease(true);
       }
       setReadyForRelease(true);
       setNotifications([...notifications, `Film is ready for release!`]);
     }
+    setTotalPercentDone(
+      setsPropsProgress +
+        filmingProgress +
+        editingEffectsProgress +
+        composingProgress,
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [percentDone]);
+  }, [
+    currentFilmingPhase,
+    setsPropsProgress,
+    composingProgress,
+    filmingProgress,
+    editingEffectsProgress,
+  ]);
 
   const handleArrowClick = (): void => {
     setInfoExpanded(!infoExpanded);
     setShowMovieDetails(!showMovieDetails);
   };
 
+  const phaseCheck = (percentDone: number): void => {
+    console.log(
+      currentFilmingPhase,
+      setsPropsProgress,
+      filmingProgress,
+      editingEffectsProgress,
+      composingProgress,
+    );
+    if (currentFilmingPhase === 0) {
+      setSetsPropsProgress(setsPropsProgress + percentDone);
+    } else if (currentFilmingPhase === 1) {
+      setFilmingProgress((filmingProgress) => filmingProgress + percentDone);
+    } else if (currentFilmingPhase === 2) {
+      setEditingEffectsProgress(
+        (editingEffectsProgress) => editingEffectsProgress + percentDone,
+      );
+    } else if (currentFilmingPhase === 3) {
+      setComposingProgress(
+        (composingProgress) => composingProgress + percentDone,
+      );
+    }
+  };
+
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
     setIsAdModalOpen(false);
     const weekEvent: FilmingEvent = generateFilmingEvent();
-    setPercentDone(percentDone + weekEvent.progress);
+    const percentToAdd = weekEvent.progress;
+    phaseCheck(percentToAdd);
     const hypeAdjustment = generateNextHypeNumber(
       hype + weekEvent.hypeDifference,
       targetHype,
@@ -121,10 +184,18 @@ const FilmingHome: React.FC<Props> = (props) => {
           theaters={-1}
           handleArrowClick={handleArrowClick}
           showMovieDetails={showMovieDetails}
-          percentDone={percentDone}
+          percentDone={totalPercentDone}
           currentWeek={currentWeek}
         />
-        <AdvertisingBox budgetInfo={budgetInfo} halved={true} />
+        <div className="filming-home-ad-progress-container">
+          <AdvertisingBox budgetInfo={budgetInfo} halved={true} />
+          <ProgressBox
+            setsPropsProgress={setsPropsProgress}
+            filmingProgress={filmingProgress}
+            composingProgress={composingProgress}
+            editingEffectsProgress={editingEffectsProgress}
+          />
+        </div>
         <FilmNotificationBox
           expandedInfo={infoExpanded}
           notifications={notifications}

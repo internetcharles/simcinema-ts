@@ -22,6 +22,8 @@ const MovieInfoHeaderDetails: React.FC<Props> = ({
   percentDone,
   theaters,
 }) => {
+  console.log(percentDone);
+  const totalPercentDone = Math.floor(percentDone / 4);
   return (
     <div className="movie-info-header-details-baseline-container">
       <div className="movie-info-header-details-container">
@@ -33,11 +35,11 @@ const MovieInfoHeaderDetails: React.FC<Props> = ({
             <div>Produced by: {companyInfo.companyName}</div>
           )}
           {currentWeek >= 0 && <div>Weeks passed: {currentWeek}</div>}
-          {percentDone >= 0 && percentDone < 100 && (
-            <div>Percent done: {percentDone} percent</div>
+          {percentDone >= 0 && percentDone < 400 && (
+            <div>Percent done: {totalPercentDone} percent</div>
           )}
-          {percentDone >= 100 && <div>Percent done: 100 percent</div>}
-          {<div>Hype: {budgetInfo.hype}</div>}
+          {percentDone >= 400 && <div>Percent done: 100 percent</div>}
+          {budgetInfo.hype >= 0 && <div>Hype: {budgetInfo.hype}</div>}
           {budgetInfo.moneyRemaining >= 0 && (
             <div>Money remaining: ${budgetInfo.moneyRemaining} million</div>
           )}

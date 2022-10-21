@@ -9,21 +9,33 @@
   flex-direction: row;
   height: 22%;
   width: 100%;
-  justify-content: baseline;
-  align-items: center;
+  padding-top: 1%;
   background-color: rgb(238, 238, 238);
+  border-bottom: 2px solid lightgrey;
 }
 
 .release-home-earnings {
   font-family: "Sysfont";
-  font-size: 24pt;
-  margin-left: 20px;
+  font-size: 20pt;
+  height: 92%;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  border-top: 1px solid black;
 }
 
 .release-home-earnings-number {
   font-family: "Sysfont";
   font-size: 24pt;
   color: green;
+  padding-bottom: 7px;
+  padding-top: 7px;
 }
 
 @media screen and (max-width: 1900px) {

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
@@ -82,6 +82,7 @@ const StartPage: React.FC = () => {
   if (companyInfo.requestInProgress || loading) return <Loading />;
   return (
     <>
+      <Link to="/filming-home">DEBUG FILMING</Link>
       {!showCompanyModal && (
         <Window size="large-window" label="SimCinema">
           <div className="start-page-container">

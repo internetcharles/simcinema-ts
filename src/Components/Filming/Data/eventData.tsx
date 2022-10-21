@@ -12,12 +12,12 @@ const positiveFilmingEvents: FilmingEvent[] = [
   {
     description: "Actor farts. Progress is increased by 10.",
     hypeDifference: 2,
-    progress: 10,
+    progress: 20,
   },
   {
     description: "Actor poops. Progress is increased by 20.",
     hypeDifference: 2,
-    progress: 20,
+    progress: 30,
   },
 ];
 
@@ -25,17 +25,17 @@ const negativeFilmingEvents: FilmingEvent[] = [
   {
     description: "Actor sharts. Progress is only increased by 5.",
     hypeDifference: -2,
-    progress: 5,
+    progress: 15,
   },
   {
     description: "Actor dies. Progress is only increased by 5.",
     hypeDifference: -2,
-    progress: 5,
+    progress: 15,
   },
 ];
 
 const defaultFilmingEvent = (): FilmingEvent => {
-  const progressNumber = getRandomArbitrary(5, 15);
+  const progressNumber = getRandomArbitrary(15, 25);
   return {
     description: `A week passes. Progress is increased by ${progressNumber}.`,
     hypeDifference: 0,

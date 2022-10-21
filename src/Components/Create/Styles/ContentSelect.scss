@@ -25,6 +25,7 @@
 .content-select-items {
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
 }
 
 .content-select-rating {
@@ -37,14 +38,15 @@
 .content-select-radio-button-container {
   display: flex;
   flex-direction: column;
+  justify-self: baseline;
   margin-top: 15%;
 }
 
 .content-select-radio-button-div {
   display: flex;
   align-items: center;
-  margin-bottom: 4%;
-  font-size: 12pt;
+  margin-bottom: 8%;
+  font-size: 16pt;
 }
 
 .content-select-radio-button-div input {
