@@ -7,6 +7,7 @@ export const movieOptions: MovieOption[][] = [
   [
     {
       name: "Tom Robinson",
+      type: "director",
       price: 25,
       status: "Available",
       description: `The king of the box office. Director of movies like "Space Kings" and "BoneQuest" He's not easy to work with, as his track record of massive blockbusters has made him powerful and demanding of actors. Actors often find it difficult to work in his massive green-screened backdrops.`,
@@ -23,6 +24,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "R.J. Cooper",
+      type: "director",
       price: 20,
       status: "Available",
       portrait: questionMark,
@@ -39,6 +41,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Theo Hayes",
+      type: "director",
       price: 15,
       status: "Available",
       portrait: questionMark,
@@ -55,6 +58,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Tom Mustachio",
+      type: "director",
       price: 8,
       status: "Available",
       portrait: questionMark,
@@ -71,6 +75,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Angela Kim",
+      type: "director",
       price: 10,
       status: "Available",
       portrait: questionMark,
@@ -87,6 +92,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Jerry Oppenheimer",
+      type: "director",
       price: 16,
       status: "Available",
       portrait: questionMark,
@@ -103,6 +109,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "None",
+      type: "none",
       price: 0,
       status: "None",
       description: "",
@@ -121,6 +128,7 @@ export const movieOptions: MovieOption[][] = [
   [
     {
       name: "Jerry McDougal",
+      type: "leadActor",
       price: 20,
       status: "Available",
       portrait: questionMark,
@@ -137,6 +145,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Jeremy Boat",
+      type: "leadActor",
       price: 20,
       status: "Available",
       portrait: questionMark,
@@ -153,6 +162,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "David Garrity",
+      type: "leadActor",
       price: 20,
       status: "Available",
       portrait: questionMark,
@@ -169,6 +179,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Nate R. Sampson",
+      type: "leadActor",
       price: 5,
       status: "Available",
       portrait: questionMark,
@@ -185,6 +196,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Hans Gruber",
+      type: "leadActor",
       price: 25,
       status: "Available",
       portrait: questionMark,
@@ -201,6 +213,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Bob Jobberson",
+      type: "leadActor",
       price: 10,
       description: `Bob Jobberson will do it for you. Really. He'll take anything he can get at this point. He used to be one of the richest men in Hollywood, but blew his fortune buying art and chateaus, and now he's desperate for new roles.`,
       status: "Available",
@@ -218,6 +231,7 @@ export const movieOptions: MovieOption[][] = [
     {
       name: "None",
       price: 0,
+      type: "none",
       status: "None",
       description: "",
       portrait: questionMark,
@@ -236,6 +250,7 @@ export const movieOptions: MovieOption[][] = [
     {
       name: "Cassandra Mantis",
       price: 15,
+      type: "leadActress",
       status: "Available",
       portrait: questionMark,
       description: `Cassandra Mantis is much like her name suggests. She can and will attack. Known for her famous blow-ups on sets, she's either bound to kill someone or deliver one of the greatest performances you'll ever sees. Who knows what'll happen.`,
@@ -251,6 +266,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Bella Goth",
+      type: "leadActress",
       price: 20,
       status: "Available",
       portrait: questionMark,
@@ -267,6 +283,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Sarah Wright",
+      type: "leadActress",
       price: 14,
       status: "Available",
       portrait: questionMark,
@@ -283,6 +300,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Sylvia Douglas",
+      type: "leadActress",
       price: 5,
       status: "Available",
       portrait: questionMark,
@@ -299,6 +317,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Priscilla Hart",
+      type: "leadActress",
       price: 10,
       status: "Available",
       portrait: questionMark,
@@ -315,6 +334,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Becca Bristol",
+      type: "leadActress",
       price: 20,
       status: "Available",
       portrait: questionMark,
@@ -331,6 +351,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Monica Madison",
+      type: "leadActress",
       price: 6,
       status: "Available",
       portrait: questionMark,
@@ -347,6 +368,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "None",
+      type: "leadActress",
       price: 0,
       status: "None",
       description: "",
@@ -365,6 +387,7 @@ export const movieOptions: MovieOption[][] = [
   [
     {
       name: "Sean Billiams",
+      type: "composer",
       price: 6,
       status: "Available",
       description: "",
@@ -381,6 +404,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Joe Music",
+      type: "composer",
       price: 4,
       status: "Available",
       description: "",
@@ -397,6 +421,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Bob Bass",
+      type: "composer",
       price: 3,
       status: "Available",
       description: "",
@@ -413,6 +438,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Saxophone Steve",
+      type: "composer",
       price: 2,
       status: "Available",
       description: "",
@@ -429,6 +455,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "None",
+      type: "none",
       price: 0,
       status: "Available",
       description: "",
@@ -447,6 +474,7 @@ export const movieOptions: MovieOption[][] = [
   [
     {
       name: "Vanderbilt Visuals",
+      type: "vfx",
       price: 15,
       status: "Available",
       description: "",
@@ -463,6 +491,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Screen Savers",
+      type: "vfx",
       price: 8,
       status: "Available",
       description: "",
@@ -479,6 +508,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Effect House",
+      type: "vfx",
       price: 20,
       status: "Available",
       description: "",
@@ -495,6 +525,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Animatronic Animals",
+      type: "vfx",
       price: 8,
       status: "Available",
       description: "",
@@ -511,6 +542,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "None",
+      type: "none",
       price: 0,
       status: "None",
       description: "",
@@ -529,6 +561,7 @@ export const movieOptions: MovieOption[][] = [
   [
     {
       name: "Ear Worms",
+      type: "sfx",
       price: 1,
       status: "Available",
       description: "",
@@ -545,6 +578,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Psycho Sounds",
+      type: "sfx",
       price: 5,
       status: "Available",
       description: "",
@@ -561,6 +595,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "Sound Boys",
+      type: "sfx",
       price: 3,
       status: "Available",
       description: "",
@@ -577,6 +612,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "CSA",
+      type: "sfx",
       price: 3,
       status: "Available",
       description: "",
@@ -593,6 +629,7 @@ export const movieOptions: MovieOption[][] = [
     },
     {
       name: "None",
+      type: "none",
       price: 0,
       status: "None",
       description: "",

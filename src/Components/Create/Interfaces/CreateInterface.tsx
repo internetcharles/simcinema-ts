@@ -30,6 +30,7 @@ export interface Studio {
 
 export interface MovieOption {
   name: string;
+  type: string;
   price: number;
   status: string;
   portrait: string;

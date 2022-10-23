@@ -27,6 +27,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   const navigate = useNavigate();
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const qualityInfo = useAppSelector((state) => state.quality);
+  const movieInfo = useAppSelector((state) => state.movieInfo);
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [percentDone, setPercentDone] = useState<number>(0);
   const [totalPercentDone, setTotalPercentDone] = useState<number>(0);
@@ -47,8 +48,10 @@ const FilmingHome: React.FC<Props> = (props) => {
     useState<boolean>(false);
   const [notifications, setNotifications] = useState<string[]>([]);
   const { hype, targetHype } = budgetInfo;
+  const { cast } = movieInfo;
 
   useEffect(() => {
+    console.log(movieInfo.cast);
     const initialHype = generateInitialHype(qualityInfo.quality);
     dispatch(adjustHype(initialHype));
     dispatch(adjustTargetHype(initialHype));
@@ -103,13 +106,6 @@ const FilmingHome: React.FC<Props> = (props) => {
   };
 
   const phaseCheck = (percentDone: number): void => {
-    console.log(
-      currentFilmingPhase,
-      setsPropsProgress,
-      filmingProgress,
-      editingEffectsProgress,
-      composingProgress,
-    );
     if (currentFilmingPhase === 0) {
       setSetsPropsProgress(setsPropsProgress + percentDone);
     } else if (currentFilmingPhase === 1) {
@@ -128,7 +124,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
     setIsAdModalOpen(false);
-    const weekEvent: FilmingEvent = generateFilmingEvent();
+    const weekEvent: FilmingEvent = generateFilmingEvent(cast, readyForRelease);
     const percentToAdd = weekEvent.progress;
     phaseCheck(percentToAdd);
     const hypeAdjustment = generateNextHypeNumber(

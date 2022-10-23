@@ -21,6 +21,7 @@ const initialState: MovieInfoState = {
   description: "A",
   leadActor: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
@@ -37,6 +38,7 @@ const initialState: MovieInfoState = {
   },
   leadActress: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
@@ -53,6 +55,7 @@ const initialState: MovieInfoState = {
   },
   composer: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
@@ -69,6 +72,7 @@ const initialState: MovieInfoState = {
   },
   vfx: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
@@ -85,6 +89,7 @@ const initialState: MovieInfoState = {
   },
   audio: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
