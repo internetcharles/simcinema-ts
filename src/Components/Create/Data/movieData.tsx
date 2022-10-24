@@ -62,7 +62,7 @@ export const movieOptions: MovieOption[][] = [
       price: 8,
       status: "Available",
       portrait: questionMark,
-      description: `Tom Mustachio is a middling director known for churning out film with gun-slinging protagonists. It'd be an exaggeration to say that he's on the rise, but he's certainly still around.`,
+      description: `Tom Mustachio is a middling director known for churning out films with gun-slinging protagonists. It'd be an exaggeration to say that he's on the rise, but he's certainly still around.`,
       quality: {
         actionAdventure: 50,
         comedy: 50,
