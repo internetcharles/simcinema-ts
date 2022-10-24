@@ -96,6 +96,7 @@ const CreateMovie: React.FC<Props> = (props) => {
           <div className="create-movie-title-container">
             <div className="create-movie-title-text">Title:</div>
             <input
+              maxLength={30}
               className="create-movie-title-input"
               value={movieName}
               onInput={(e) =>

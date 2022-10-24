@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
@@ -21,15 +21,23 @@ import { auth, logout } from "../../firebase";
 import { Movie } from "../Create/Interfaces/CreateInterface";
 import Loading from "../Global/Loading";
 import { useAuthState } from "react-firebase-hooks/auth";
+import MovieInfoModal from "./MovieInfoModal";
 
 const StartPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const companyInfo = useAppSelector((state) => state.companyInfo);
-  const [showCompanyModal, setShowCompanyModal] = useState(false);
-  const [showStudioInfoModal, setShowStudioInfoModal] = useState(false);
+  const [showCompanyModal, setShowCompanyModal] = useState<boolean>(false);
+  const [showStudioInfoModal, setShowStudioInfoModal] =
+    useState<boolean>(false);
+  const [currentHistoryItem, setCurrentHistoryItem] = useState<Movie | null>(
+    null,
+  );
+  const [showHistoryItemDetails, setShowHistoryItemDetails] =
+    useState<boolean>(false);
   const [dismissed, setDismissed] = useState(false);
   const [user, loading, error] = useAuthState(auth);
+  const { history } = companyInfo;
 
   useEffect(() => {
     if (!auth.currentUser) {
@@ -77,12 +85,20 @@ const StartPage: React.FC = () => {
     setShowStudioInfoModal(!showStudioInfoModal);
   };
 
+  const handleHistoryItemPress = (movie: Movie): void => {
+    setCurrentHistoryItem(movie);
+    setShowHistoryItemDetails(true);
+  };
+
+  const handleHistoryDetailsOKPress = (): void => {
+    setShowHistoryItemDetails(false);
+  };
+
   const newMovieArray: Movie[] = [...companyInfo.history];
 
   if (companyInfo.requestInProgress || loading) return <Loading />;
   return (
     <>
-      <Link to="/cast-select">DEBUG FILMING</Link>
       {!showCompanyModal && (
         <Window size="large-window" label="SimCinema">
           <div className="start-page-container">
@@ -96,7 +112,11 @@ const StartPage: React.FC = () => {
                 <div className="start-page-history-box">
                   {newMovieArray.length > 0 ? (
                     newMovieArray.reverse().map((movie, idx) => (
-                      <div className="history-item" key={idx}>
+                      <div
+                        className="history-item"
+                        key={idx}
+                        onClick={() => handleHistoryItemPress(movie)}
+                      >
                         {movie.title}: {movie.averageScore}/10 ($
                         {convertToMillions(movie.earnings)} million) (
                         {gradeMovie(
@@ -150,6 +170,12 @@ const StartPage: React.FC = () => {
       )}
       {showStudioInfoModal && (
         <StudioInfoModal handleStudioInfoPress={handleStudioInfoPress} />
+      )}
+      {showHistoryItemDetails && (
+        <MovieInfoModal
+          movieInfo={currentHistoryItem}
+          handleOKPress={handleHistoryDetailsOKPress}
+        />
       )}
     </>
   );

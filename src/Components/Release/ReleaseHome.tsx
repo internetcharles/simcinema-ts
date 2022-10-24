@@ -75,20 +75,16 @@ const ReleaseHome: React.FC<Props> = (props) => {
     setAdModalOpen(false);
     setTheaterFallOff(theaterFallOff * 1.6);
     const weekEvent: ReleaseEvent = generateReleaseEvent();
-    console.log("HYPE", hype);
-    console.log("TARGET HYPE", targetHype);
-    console.log("WEEK EVENT", weekEvent.hypeDifference);
     const hypeAdjustment = generateNextHypeNumber(
       hype + weekEvent.hypeDifference,
       targetHype - 1,
     );
-    console.log("HYPE ADJUSTMENT", hypeAdjustment);
     const theaterAdjustment =
       hype > 0
         ? theaters -
-          Math.floor(300 / (hype + Math.random() * 2 + 1) + (400 - quality))
+          Math.floor(300 / (hype + Math.random() * 2 + 1) + (300 - quality))
         : theaters -
-          Math.floor(300 / (Math.random() * 2 + 1) + (400 - quality));
+          Math.floor(300 / (Math.random() * 2 + 1) + (300 - quality));
     if (theaters <= 0) {
       setTheaters(0);
       setNotifications([

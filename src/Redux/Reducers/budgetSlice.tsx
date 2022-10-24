@@ -59,22 +59,22 @@ export const budgetSlice = createSlice({
     },
     addTvCommercials: (state) => {
       state.adInfo.tvCommercials += 1;
-      state.targetHype += 12;
+      state.targetHype += 18;
       state.moneyRemaining -= 6;
     },
     addMovieTrailers: (state) => {
       state.adInfo.movieTrailers += 1;
-      state.targetHype += 8;
+      state.targetHype += 13;
       state.moneyRemaining -= 4;
     },
     addMagazineNewspaperAds: (state) => {
       state.adInfo.magazineNewspaperAds += 1;
-      state.targetHype += 4;
+      state.targetHype += 6;
       state.moneyRemaining -= 2;
     },
     addPosters: (state) => {
       state.adInfo.posters += 1;
-      state.targetHype += 2;
+      state.targetHype += 3;
       state.moneyRemaining -= 1;
     },
   },

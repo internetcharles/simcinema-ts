@@ -51,7 +51,6 @@ const FilmingHome: React.FC<Props> = (props) => {
   const { cast } = movieInfo;
 
   useEffect(() => {
-    console.log(movieInfo.cast);
     const initialHype = generateInitialHype(qualityInfo.quality);
     dispatch(adjustHype(initialHype));
     dispatch(adjustTargetHype(initialHype));

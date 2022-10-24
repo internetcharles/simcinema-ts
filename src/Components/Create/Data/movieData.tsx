@@ -1,22 +1,54 @@
 import { MovieOption } from "../Interfaces/CreateInterface";
 import questionMark from "../../../Assets/QuestionMark.png";
+import None from "../../../Assets/none.png";
+import AngelaKim from "../../../Assets/AngelaKim.png";
+import JerryOppenheimer from "../../../Assets/JerryOppenheimer.png";
+import RJCooper from "../../../Assets/RJCooper.png";
+import TheoHayes from "../../../Assets/TheoHayes.png";
+import TomMustachio from "../../../Assets/TomMustachio.png";
+import TomRobinson from "../../../Assets/TomRobinson.png";
+import David from "../../../Assets/David.png";
+import Bob from "../../../Assets/Bob.png";
+import Hans from "../../../Assets/Hans.png";
+import Jeremy from "../../../Assets/Jeremy.png";
+import Nate from "../../../Assets/Nate.png";
+import Thomas from "../../../Assets/Thomas.png";
+import Becca from "../../../Assets/Becca.png";
+import Bella from "../../../Assets/Bella.png";
+import Cassandra from "../../../Assets/Cassandra.png";
+import Monica from "../../../Assets/Monica.png";
+import Priscilla from "../../../Assets/Priscilla.png";
+import Sarah from "../../../Assets/Sarah.png";
+import Sylvia from "../../../Assets/Sylvia.png";
+import Sax from "../../../Assets/Sax.png";
+import Sean from "../../../Assets/Sean.png";
+import BobBass from "../../../Assets/BobBass.png";
+import Joe from "../../../Assets/Joe.png";
+import Vanderbilt from "../../../Assets/Vanderbilt.png";
+import ScreenSavers from "../../../Assets/ScreenSavers.png";
+import EffectsHouse from "../../../Assets/EffectsHouse.png";
+import Animals from "../../../Assets/Animals.png";
+import CSA from "../../../Assets/CSA.png";
+import Psycho from "../../../Assets/Psycho.png";
+import Boys from "../../../Assets/Boys.png";
+import Worms from "../../../Assets/Worms.png";
 
 export const maxQuality: number = 380;
 
 export const movieOptions: MovieOption[][] = [
   [
     {
-      name: "Tom Robinson",
+      name: "Jim Robinson",
       type: "director",
       price: 25,
       status: "Available",
       description: `The king of the box office. Director of movies like "Space Kings" and "BoneQuest" He's not easy to work with, as his track record of massive blockbusters has made him powerful and demanding of actors. Actors often find it difficult to work in his massive green-screened backdrops.`,
-      portrait: questionMark,
+      portrait: TomRobinson,
       quality: {
         actionAdventure: 100,
         comedy: 50,
         drama: 70,
-        romance: 70,
+        romance: 100,
         horror: 85,
         sciFi: 100,
         animated: 100,
@@ -27,7 +59,7 @@ export const movieOptions: MovieOption[][] = [
       type: "director",
       price: 20,
       status: "Available",
-      portrait: questionMark,
+      portrait: RJCooper,
       description: `Known as the "Dork Deity", Jeremy Boat has the clout on the level of any modern director. He's known for his abstract and artful depictions of both fantasy and futuristic worlds. The only question is: do you have the money to hire the guy?`,
       quality: {
         actionAdventure: 100,
@@ -44,7 +76,7 @@ export const movieOptions: MovieOption[][] = [
       type: "director",
       price: 15,
       status: "Available",
-      portrait: questionMark,
+      portrait: TheoHayes,
       description: `Talk about being on the rise. Theo has recently conquered the Star Rise Cinematic Universe. That being said, he dug his roots in the art house movie scene, directing classics like "Evergreen Lane" and "Project Gungus."`,
       quality: {
         actionAdventure: 90,
@@ -61,7 +93,7 @@ export const movieOptions: MovieOption[][] = [
       type: "director",
       price: 8,
       status: "Available",
-      portrait: questionMark,
+      portrait: TomMustachio,
       description: `Tom Mustachio is a middling director known for churning out films with gun-slinging protagonists. It'd be an exaggeration to say that he's on the rise, but he's certainly still around.`,
       quality: {
         actionAdventure: 50,
@@ -78,13 +110,13 @@ export const movieOptions: MovieOption[][] = [
       type: "director",
       price: 10,
       status: "Available",
-      portrait: questionMark,
+      portrait: AngelaKim,
       description: `Angela Kim is an art-house director aching to break through to big time, and by God, she might just make it. Her films come equipped with many awards, but not the box office returns to show for it. That being said, her talent is not in question.`,
       quality: {
         actionAdventure: 60,
         comedy: 60,
         drama: 85,
-        romance: 85,
+        romance: 95,
         horror: 70,
         sciFi: 70,
         animated: 70,
@@ -95,7 +127,7 @@ export const movieOptions: MovieOption[][] = [
       type: "director",
       price: 16,
       status: "Available",
-      portrait: questionMark,
+      portrait: JerryOppenheimer,
       description: `Jerry is trying his best to not be the butt of his own joke anymore. Yes, he's made you laugh, but now he's desperately trying to make you cry. Please take him seriously.`,
       quality: {
         actionAdventure: 60,
@@ -113,7 +145,7 @@ export const movieOptions: MovieOption[][] = [
       price: 0,
       status: "None",
       description: "",
-      portrait: questionMark,
+      portrait: None,
       quality: {
         actionAdventure: -20,
         comedy: -20,
@@ -127,17 +159,17 @@ export const movieOptions: MovieOption[][] = [
   ],
   [
     {
-      name: "Jerry McDougal",
+      name: "Thomas McDougal",
       type: "leadActor",
       price: 20,
       status: "Available",
-      portrait: questionMark,
+      portrait: Thomas,
       description: `Is there anyone more handsome in this goddamn town? Possibly not, but beyond his good looks, there is endless talent. He's dominated the scene for many years, starting with his debut in "Midnight Nights" and his award-winning performance in "Train Man". Does anyone do it better?`,
       quality: {
         actionAdventure: 100,
-        comedy: 100,
+        comedy: 85,
         drama: 65,
-        romance: 50,
+        romance: 100,
         horror: 70,
         sciFi: 90,
         animated: 70,
@@ -148,11 +180,11 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActor",
       price: 20,
       status: "Available",
-      portrait: questionMark,
+      portrait: Jeremy,
       description: `Jeremy Boat is a solid actor, but also certifiably crazy. Known for his manic demeanor, if you can stop him from prosthelytizing hokey religions on set, you're bound to make a classic.`,
       quality: {
         actionAdventure: 90,
-        comedy: 70,
+        comedy: 100,
         drama: 70,
         romance: 60,
         horror: 55,
@@ -165,7 +197,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActor",
       price: 20,
       status: "Available",
-      portrait: questionMark,
+      portrait: David,
       description: `Old reliable. This geezer has been on the scene for years, and is about as well-rounded as an actor can be. Place him in any scene and he is going to give you a memorable performance. He just might keel over at any moment.`,
       quality: {
         actionAdventure: 95,
@@ -182,7 +214,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActor",
       price: 5,
       status: "Available",
-      portrait: questionMark,
+      portrait: Nate,
       description: `Nate comes cheap, but it doesn't mean he won't deliver. From his iconic catchphrase, "screw off!" to his grouchy public persona, quite everything about the man is both abrasive and endearing.`,
       quality: {
         actionAdventure: 60,
@@ -199,7 +231,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActor",
       price: 25,
       status: "Available",
-      portrait: questionMark,
+      portrait: Hans,
       description: `Hans barely speaks English. But boy is that guy buff. And expensive. If you can ignore his scandalous personal life, he might be the pricey star for your film.`,
       quality: {
         actionAdventure: 100,
@@ -217,7 +249,7 @@ export const movieOptions: MovieOption[][] = [
       price: 10,
       description: `Bob Jobberson will do it for you. Really. He'll take anything he can get at this point. He used to be one of the richest men in Hollywood, but blew his fortune buying art and chateaus, and now he's desperate for new roles.`,
       status: "Available",
-      portrait: questionMark,
+      portrait: Bob,
       quality: {
         actionAdventure: 75,
         comedy: 75,
@@ -234,7 +266,7 @@ export const movieOptions: MovieOption[][] = [
       type: "none",
       status: "None",
       description: "",
-      portrait: questionMark,
+      portrait: None,
       quality: {
         actionAdventure: -20,
         comedy: -20,
@@ -252,7 +284,7 @@ export const movieOptions: MovieOption[][] = [
       price: 15,
       type: "leadActress",
       status: "Available",
-      portrait: questionMark,
+      portrait: Cassandra,
       description: `Cassandra Mantis is much like her name suggests. She can and will attack. Known for her famous blow-ups on sets, she's either bound to kill someone or deliver one of the greatest performances you'll ever sees. Who knows what'll happen.`,
       quality: {
         actionAdventure: 75,
@@ -260,7 +292,7 @@ export const movieOptions: MovieOption[][] = [
         drama: 75,
         romance: 80,
         horror: 70,
-        sciFi: 70,
+        sciFi: 100,
         animated: 70,
       },
     },
@@ -269,7 +301,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActress",
       price: 20,
       status: "Available",
-      portrait: questionMark,
+      portrait: Bella,
       description: `Hey paparazzi, get your camera ready. Here comes Bella Goth. The actress/socialite can and will deliver a memorable performance. Known for her roles in "Castle Corduroy" and "The Weird People", she's bound to leave her mark on any film.`,
       quality: {
         actionAdventure: 100,
@@ -286,7 +318,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActress",
       price: 14,
       status: "Available",
-      portrait: questionMark,
+      portrait: Sarah,
       description: `This prodigal child actor somehow delivers performances with depth and nuance despite not knowing her multiplication tables. It's pretty incredible.`,
       quality: {
         actionAdventure: 60,
@@ -303,7 +335,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActress",
       price: 5,
       status: "Available",
-      portrait: questionMark,
+      portrait: Sylvia,
       description: `Who the hell is Sylvia Douglas? Oh yeah, the one from that TV show "Coppers." I guess she's okay, but don't expect her name to put any butts in the seats.`,
       quality: {
         actionAdventure: 50,
@@ -320,7 +352,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActress",
       price: 10,
       status: "Available",
-      portrait: questionMark,
+      portrait: Priscilla,
       description: `The "queen of tinsel town" Priscilla Hart can deliver in just about every role she's given. And not only that, she's a certifiable genius, having gotten a PhD in physics in her spare time off set.`,
       quality: {
         actionAdventure: 80,
@@ -337,7 +369,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActress",
       price: 20,
       status: "Available",
-      portrait: questionMark,
+      portrait: Becca,
       description: `Becca is both charming and sharp, with the rare gift to make you cry and laugh, possibly simultaneously. She'll leave you in an existential crisis, frankly.`,
       quality: {
         actionAdventure: 70,
@@ -354,7 +386,7 @@ export const movieOptions: MovieOption[][] = [
       type: "leadActress",
       price: 6,
       status: "Available",
-      portrait: questionMark,
+      portrait: Monica,
       description: `Monica Madison used to be the talk of the town. Yeah, she's not as popular as she used to be, but it doesn't make her any less formidable as an actress. She'll deliver in any role she's placed in.`,
       quality: {
         actionAdventure: 60,
@@ -372,7 +404,7 @@ export const movieOptions: MovieOption[][] = [
       price: 0,
       status: "None",
       description: "",
-      portrait: questionMark,
+      portrait: None,
       quality: {
         actionAdventure: -18,
         comedy: -18,
@@ -391,7 +423,7 @@ export const movieOptions: MovieOption[][] = [
       price: 6,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Sean,
       quality: {
         actionAdventure: 30,
         comedy: 30,
@@ -408,7 +440,7 @@ export const movieOptions: MovieOption[][] = [
       price: 4,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Joe,
       quality: {
         actionAdventure: 22,
         comedy: 22,
@@ -425,7 +457,7 @@ export const movieOptions: MovieOption[][] = [
       price: 3,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: BobBass,
       quality: {
         actionAdventure: 16,
         comedy: 16,
@@ -442,7 +474,7 @@ export const movieOptions: MovieOption[][] = [
       price: 2,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Sax,
       quality: {
         actionAdventure: 10,
         comedy: 10,
@@ -459,7 +491,7 @@ export const movieOptions: MovieOption[][] = [
       price: 0,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: None,
       quality: {
         actionAdventure: -4,
         comedy: -4,
@@ -478,7 +510,7 @@ export const movieOptions: MovieOption[][] = [
       price: 15,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Vanderbilt,
       quality: {
         actionAdventure: 60,
         comedy: 60,
@@ -495,7 +527,7 @@ export const movieOptions: MovieOption[][] = [
       price: 8,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: ScreenSavers,
       quality: {
         actionAdventure: 40,
         comedy: 40,
@@ -512,7 +544,7 @@ export const movieOptions: MovieOption[][] = [
       price: 20,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: EffectsHouse,
       quality: {
         actionAdventure: 80,
         comedy: 80,
@@ -529,7 +561,7 @@ export const movieOptions: MovieOption[][] = [
       price: 8,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Animals,
       quality: {
         actionAdventure: 42,
         comedy: 42,
@@ -546,7 +578,7 @@ export const movieOptions: MovieOption[][] = [
       price: 0,
       status: "None",
       description: "",
-      portrait: questionMark,
+      portrait: None,
       quality: {
         actionAdventure: -13,
         comedy: -13,
@@ -565,7 +597,7 @@ export const movieOptions: MovieOption[][] = [
       price: 1,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Worms,
       quality: {
         actionAdventure: 5,
         comedy: 5,
@@ -582,7 +614,7 @@ export const movieOptions: MovieOption[][] = [
       price: 5,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Psycho,
       quality: {
         actionAdventure: 20,
         comedy: 20,
@@ -599,7 +631,7 @@ export const movieOptions: MovieOption[][] = [
       price: 3,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: Boys,
       quality: {
         actionAdventure: 12,
         comedy: 12,
@@ -616,7 +648,7 @@ export const movieOptions: MovieOption[][] = [
       price: 3,
       status: "Available",
       description: "",
-      portrait: questionMark,
+      portrait: CSA,
       quality: {
         actionAdventure: 12,
         comedy: 12,
@@ -633,7 +665,7 @@ export const movieOptions: MovieOption[][] = [
       price: 0,
       status: "None",
       description: "",
-      portrait: questionMark,
+      portrait: None,
       quality: {
         actionAdventure: -5,
         comedy: -5,
@@ -708,7 +740,7 @@ export const ratingData: any = {
     drama: 10,
     romance: 10,
     horror: 14,
-    sciFi: 10,
+    sciFi: 14,
     animated: -20,
   },
   "NC-17": {
