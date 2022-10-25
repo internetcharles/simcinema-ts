@@ -6,6 +6,7 @@ import bigBoyImage from "../../../Assets/BigBoy.png";
 import everestImage from "../../../Assets/Everest.png";
 import filmFactoryImage from "../../../Assets/Factory.png";
 import bananaBrosImage from "../../../Assets/BananaBros.png";
+import failFilmsImage from "../../../Assets/FailFilms.png";
 import { CompanyInfoState } from "../../../Redux/Reducers/companyInfoSlice";
 
 export let studios: Studio[] = [
@@ -48,7 +49,7 @@ export let studios: Studio[] = [
   {
     id: 4,
     studioName: "Fail Films",
-    image: questionMark,
+    image: failFilmsImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -121,11 +122,17 @@ export const requestOffer = (
       company.reputation + company.history.length < 20 &&
       company.reputation + company.history.length > 0
     ) {
-      return company.reputation + company.history.length;
+      return 5;
+    } else if (company.reputation + company.history.length >= 20) {
+      return 15;
     } else {
       return 0;
     }
   };
+  console.log("COMPANY REPUTATION", companyReputation());
+  console.log("COMPANY LENGTH", company.history.length);
+  console.log("COMPANY REPUTATION", company.reputation);
+  console.log(randomNum);
 
   switch (studio.id) {
     case 0:
@@ -329,7 +336,7 @@ export const resetData = (): void => {
     {
       id: 4,
       studioName: "Fail Films",
-      image: questionMark,
+      image: failFilmsImage,
       offerRequested: false,
       rejected: false,
       offer: 0,

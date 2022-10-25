@@ -10,6 +10,7 @@ export const generateReviews = (quality: number): Reviews => {
   const newtonNewsSkew = randomValue * -0.12;
 
   const reviewScore = (reviewerSkew: number): number => {
+    console.log("QUALITY", quality);
     if (Math.floor((quality / maxQuality + reviewerSkew) * 10) > 10) {
       return 10;
     }

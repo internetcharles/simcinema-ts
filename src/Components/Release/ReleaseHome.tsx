@@ -76,10 +76,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
     setAdModalOpen(false);
     setTheaterFallOff((theaterFallOff) =>
       clamp(
-        theaterFallOff +
-          (350 - clamp(quality, 0, 346)) -
-          hype +
-          Math.random() * 5,
+        theaterFallOff + (350 - clamp(quality, 0, 340)) - hype * 3,
         0,
         10000,
       ),

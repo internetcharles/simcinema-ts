@@ -7,7 +7,7 @@ export const generateInitialHype = (quality: number): number => {
 
 export const generateNextHypeNumber = (min: number, max: number): number => {
   const arr: number[] = [];
-  const length: number = 7;
+  const length: number = 9;
 
   if (max > min) {
     arr[0] = min;

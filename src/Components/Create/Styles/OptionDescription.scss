@@ -24,3 +24,20 @@
   width: 80%;
   font-family: "Sysfont";
 }
+
+@media screen and (max-width: 1800px), screen and (max-height: 900px) {
+  .option-description-image {
+    height: 128px;
+    width: 120px;
+    image-rendering: pixelated;
+  }
+
+  .option-description-header {
+    font-size: 25pt;
+  }
+
+  .option-description-description {
+    font-size: 10pt;
+    width: 80%;
+  }
+}

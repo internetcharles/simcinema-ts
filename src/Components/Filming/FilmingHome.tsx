@@ -105,7 +105,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   const masterpieceCheck = (): void => {
     console.log(qualityInfo.quality);
     const randomInt = getRandomInt(10);
-    if (qualityInfo.quality > 250 && randomInt === 5) {
+    if (qualityInfo.quality > 410 && randomInt > 8) {
       console.log("MASTERPIECE!!!");
       dispatch(adjustQuality(100));
     }

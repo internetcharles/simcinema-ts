@@ -33,7 +33,7 @@ import Psycho from "../../../Assets/Psycho.png";
 import Boys from "../../../Assets/Boys.png";
 import Worms from "../../../Assets/Worms.png";
 
-export const maxQuality: number = 400;
+export const maxQuality: number = 420;
 
 export const movieOptions: MovieOption[][] = [
   [
@@ -62,7 +62,7 @@ export const movieOptions: MovieOption[][] = [
       portrait: RJCooper,
       description: `Known as the "Dork Deity", Jeremy Boat has the clout on the level of any modern director. He's known for his abstract and artful depictions of both fantasy and futuristic worlds. The only question is: do you have the money to hire the guy?`,
       quality: {
-        actionAdventure: 100,
+        actionAdventure: 90,
         comedy: 75,
         drama: 75,
         romance: 75,
@@ -238,7 +238,7 @@ export const movieOptions: MovieOption[][] = [
         comedy: 85,
         drama: 75,
         romance: 50,
-        horror: 100,
+        horror: 80,
         sciFi: 95,
         animated: 75,
       },
