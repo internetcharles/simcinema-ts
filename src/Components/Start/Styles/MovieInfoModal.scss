@@ -1,0 +1,45 @@
+.movie-info-container {
+  height: 100%;
+  width: 100%;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Sysfont";
+}
+
+.movie-info-title {
+  font-size: 30pt;
+  margin-bottom: 5%;
+}
+
+.movie-info-budget {
+  font-size: 25pt;
+  margin-bottom: 1%;
+}
+
+.movie-info-earnings-positive {
+  font-size: 20pt;
+  color: green;
+  margin-bottom: 2%;
+}
+
+.movie-info-earnings-negative {
+  font-size: 20pt;
+  color: red;
+  margin-bottom: 2%;
+}
+
+.movie-info-secondary-info {
+  font-size: 15pt;
+  margin-bottom: 1%;
+}
+
+.movie-info-option-outer-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 5%;
+}

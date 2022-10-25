@@ -10,6 +10,7 @@
   background-image: url("../../../Assets/FilmCamera.png");
   background-position: 20%;
   animation: marquee 90s infinite linear;
+  overflow: auto;
 }
 
 .funding-accept-window-container {
@@ -23,7 +24,7 @@
 
 .funding-accept-window-header {
   font-family: "Sysfont";
-  font-size: 20pt;
+  font-size: 25pt;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +47,7 @@
 
 .funding-accept-window-studio {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 30px;
   color: green;
   text-align: center;
 }
@@ -64,7 +65,7 @@
 }
 
 .funding-proposal-window-studio-header {
-  font-size: 20pt;
+  font-size: 30pt;
   margin-top: 20px;
 }
 
@@ -74,7 +75,7 @@
 }
 
 .funding-proposal-window-offer {
-  font-size: 15pt;
+  font-size: 25pt;
   color: green;
 }
 
@@ -84,6 +85,7 @@
 }
 
 .funding-proposal-window-message {
+  font-size: 20pt;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -95,5 +97,35 @@
 
   100% {
     background-position: 4190px;
+  }
+}
+
+@media screen and (max-width: 1800px), screen and (max-height: 900px) {
+  .funding-accept-window-header {
+    font-size: 15pt;
+  }
+
+  .funding-accept-button {
+    font-size: 14pt;
+  }
+
+  .funding-accept-window-studio {
+    font-size: 20px;
+  }
+
+  .funding-proposal-window-studio-header {
+    font-size: 25pt;
+  }
+
+  .funding-proposal-window-offer {
+    font-size: 20pt;
+  }
+
+  .funding-proposal-window-offer-rejected {
+    font-size: 15pt;
+  }
+
+  .funding-proposal-window-message {
+    font-size: 15pt;
   }
 }

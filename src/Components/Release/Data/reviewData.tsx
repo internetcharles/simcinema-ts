@@ -1,26 +1,24 @@
+import { maxQuality } from "../../Create/Data/movieData";
 import { Reviews } from "../Interfaces/ReleaseInterfaces";
 
 export const generateReviews = (quality: number): Reviews => {
   const randomValue = Math.random();
-  // Taking quality number and creating statement that determines
-  // the amount of stars. 280 is max quality.
-  const sodaCityTimesSkew = randomValue * 0.099;
-  const dailySpillSkew = randomValue * 0.13;
-  const nationalRetainerSkew = randomValue * -0.2;
+  const sodaCityTimesSkew = randomValue * 0.066;
+  const dailySpillSkew = randomValue * 0.1;
+  const nationalRetainerSkew = randomValue * -0.18;
   const wizardWeeklySkew = randomValue * 0;
   const newtonNewsSkew = randomValue * -0.12;
 
   const reviewScore = (reviewerSkew: number): number => {
-    if (Math.floor((quality / 280 + reviewerSkew) * 10) > 10) {
+    if (Math.floor((quality / maxQuality + reviewerSkew) * 10) > 10) {
       return 10;
     }
-    if (Math.floor((quality / 280 + reviewerSkew) * 10) <= 1) {
+    if (Math.floor((quality / maxQuality + reviewerSkew) * 10) <= 1) {
       return 1;
     }
-    return Math.floor((quality / 280 + reviewerSkew) * 10);
+    return Math.floor((quality / maxQuality + reviewerSkew) * 10);
   };
 
-  // Determine each rating by review score dropoff
   const sodaCityTimesReview: number = reviewScore(sodaCityTimesSkew);
   const dailySpillReview: number = reviewScore(dailySpillSkew);
   const nationalRetainerReview: number = reviewScore(nationalRetainerSkew);

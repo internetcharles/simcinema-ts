@@ -12,6 +12,7 @@ export interface MovieInfoState {
   vfx: MovieOption;
   audio: MovieOption;
   cast: MovieOption[];
+  rating: string;
 }
 
 const initialState: MovieInfoState = {
@@ -20,9 +21,11 @@ const initialState: MovieInfoState = {
   description: "A",
   leadActor: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
+    description: "A",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -35,9 +38,11 @@ const initialState: MovieInfoState = {
   },
   leadActress: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
+    description: "A",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -50,9 +55,11 @@ const initialState: MovieInfoState = {
   },
   composer: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
+    description: "A",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -65,9 +72,11 @@ const initialState: MovieInfoState = {
   },
   vfx: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
+    description: "",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -80,9 +89,11 @@ const initialState: MovieInfoState = {
   },
   audio: {
     name: "A",
+    type: "A",
     price: 0,
     status: "A",
     portrait: "",
+    description: "",
     quality: {
       actionAdventure: 0,
       comedy: 0,
@@ -94,6 +105,7 @@ const initialState: MovieInfoState = {
     },
   },
   cast: [],
+  rating: "G",
 };
 
 export const movieInfoSlice = createSlice({

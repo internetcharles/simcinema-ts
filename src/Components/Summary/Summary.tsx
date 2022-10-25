@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Auth, getAuth } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 import {
   convertBudgetToFullNumber,
@@ -9,12 +10,14 @@ import { adjustFunds } from "../../Redux/Reducers/companyInfoSlice";
 import MiniButton from "../Global/MiniButton";
 import Window from "../Global/Window";
 import "./Styles/Summary.scss";
+import { saveCompany } from "../../firebase";
 
 interface Props {}
 
 const Summary: React.FC<Props> = (props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const auth: Auth = getAuth();
   const budgetInfo = useAppSelector((state) => state.budgetInfo);
   const movieInfo = useAppSelector((state) => state.movieInfo);
   const companyInfo = useAppSelector((state) => state.companyInfo);
@@ -37,6 +40,8 @@ const Summary: React.FC<Props> = (props) => {
     return [dGross, iGross];
   };
 
+  const [dGross, iGross] = calculateDIEarnings();
+
   const calculateStudioEarnings = (): number[] => {
     const budgetInMillions = convertBudgetToFullNumber(budgetInfo.budget);
 
@@ -46,13 +51,21 @@ const Summary: React.FC<Props> = (props) => {
       const extraEarnings = earnings - budgetInMillions;
       const profits = convertToMillions(Math.floor(extraEarnings));
       const splitProfits = convertToMillions(Math.floor(extraEarnings / 2));
-      return [splitProfits, splitProfits, profits];
+      return [splitProfits, profits];
     }
   };
 
+  const [splitProfits, profits] = calculateStudioEarnings();
+
+  useEffect(() => {
+    dispatch(adjustFunds(splitProfits));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const navigateHome = (): void => {
-    dispatch(adjustFunds(calculateStudioEarnings()[0]));
-    navigate("/");
+    if (auth.currentUser) {
+      saveCompany(auth.currentUser, companyInfo).then(() => navigate("/"));
+    }
   };
 
   return (
@@ -61,21 +74,24 @@ const Summary: React.FC<Props> = (props) => {
         <div className="summary-header">Summary</div>
         <div className="summary-title-header">{movieInfo.title}</div>
         <div className="summary-earnings-container">
-          <div>Domestic Gross: ${calculateDIEarnings()[0]} million</div>
-          <div>International Gross: ${calculateDIEarnings()[1]} million</div>
+          <div>Domestic Gross: ${dGross} million</div>
+          <div>International Gross: ${iGross} million</div>
           <div>Total Gross: ${convertToMillions(earnings)} million</div>
         </div>
         <div className="summary-profits-container">
-          <div>
-            Profits: $
-            {calculateStudioEarnings()[2] ? calculateStudioEarnings()[2] : 0}{" "}
-            million
+          <div>Budget: ${budgetInfo.budget} million</div>
+          <div
+            className={
+              profits > 0
+                ? "summary-earnings-profits"
+                : "summary-earnings-profits-red"
+            }
+          >
+            Profits: ${profits} million
           </div>
+          <div>Distributor&lsquo;s Cut: ${splitProfits} million</div>
           <div>
-            Distributor&lsquo;s Cut: ${calculateStudioEarnings()[0]} million
-          </div>
-          <div>
-            {companyName}&lsquo;s Cut: ${calculateStudioEarnings()[1]} million
+            {companyName}&lsquo;s Cut: ${splitProfits} million
           </div>
         </div>
         <MiniButton

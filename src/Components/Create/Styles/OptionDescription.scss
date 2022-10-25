@@ -1,0 +1,43 @@
+.option-description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: lightgrey;
+}
+
+.option-description-header {
+  font-family: "Sysfont";
+  font-size: 40pt;
+}
+
+.option-description-image {
+  height: 256px;
+  width: 256px;
+  image-rendering: pixelated;
+}
+
+.option-description-description {
+  font-size: 14pt;
+  width: 80%;
+  font-family: "Sysfont";
+}
+
+@media screen and (max-width: 1800px), screen and (max-height: 900px) {
+  .option-description-image {
+    height: 128px;
+    width: 120px;
+    image-rendering: pixelated;
+  }
+
+  .option-description-header {
+    font-size: 25pt;
+  }
+
+  .option-description-description {
+    font-size: 10pt;
+    width: 80%;
+  }
+}

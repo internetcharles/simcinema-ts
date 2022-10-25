@@ -1,0 +1,19 @@
+.loading-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgrey;
+  flex-direction: column;
+  background-image: url("../../../Assets/FilmCamera.png");
+  background-position: 20%;
+  animation: marquee 90s infinite linear;
+  overflow: auto;
+}
+
+.loading-text {
+  font-size: 60pt;
+  color: white;
+  font-family: "Sysfont";
+}

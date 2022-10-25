@@ -9,14 +9,12 @@ import {
   selectMovieInfo,
   setMovieInfo,
 } from "../../Redux/Reducers/movieInfoSlice";
-import {
-  adjustQuality,
-  selectQuality,
-} from "../../Redux/Reducers/qualitySlice";
+import { adjustQuality } from "../../Redux/Reducers/qualitySlice";
 import Window from "../Global/Window";
 import { movieOptions, optionPath } from "./Data/movieData";
 import { MovieOption } from "./Interfaces/CreateInterface";
 import OptionButton from "./OptionButton";
+import OptionDescription from "./OptionDescription";
 import "./Styles/OptionSelect.scss";
 
 interface Props {}
@@ -26,11 +24,12 @@ const OptionSelect: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector(selectMovieInfo);
   const budgetInfo = useAppSelector(selectBudget);
-  const qualityInfo = useAppSelector(selectQuality);
   const { genre } = movieInfo;
 
   const [currentOption, setCurrentOption] = useState<number>(0);
   const [showAcceptWindow, setShowAcceptWindow] = useState<boolean>(false);
+  const [showDescriptionWindow, setShowDescriptionWindow] =
+    useState<boolean>(false);
   const [currentActor, setCurrentActor] = useState<MovieOption | null>(null);
   const [enoughMoneyBool, setEnoughMoneyBool] = useState<boolean>(false);
   const [dismissed, setDismissed] = useState<boolean>(false);
@@ -45,6 +44,15 @@ const OptionSelect: React.FC<Props> = (props) => {
       setEnoughMoneyBool(true);
       setShowAcceptWindow(true);
     }
+  };
+
+  const handleDescriptionClick = (option: MovieOption): void => {
+    setCurrentActor(option);
+    setShowDescriptionWindow(true);
+  };
+
+  const handleDescriptionOKPress = (): void => {
+    setShowDescriptionWindow(false);
   };
 
   const acceptOption = (): void => {
@@ -88,7 +96,7 @@ const OptionSelect: React.FC<Props> = (props) => {
       setTimeout(() => {
         setCurrentOption(0);
         setShowAcceptWindow(false);
-        navigate("/filming-home");
+        navigate("/content-select");
       }, 400);
     }
   };
@@ -108,10 +116,14 @@ const OptionSelect: React.FC<Props> = (props) => {
         <div className="option-select-money-header">
           Money Remaining: ${budgetInfo.moneyRemaining} million
         </div>
+        <div className="option-select-option-header">
+          {optionPath[currentOption].title}
+        </div>
         <div className="option-select-option-container">
           {movieOptions[currentOption].map((option) => (
             <OptionButton
               onOptionClick={() => selectOption(option)}
+              onDescriptionClick={() => handleDescriptionClick(option)}
               key={option.name}
               option={option}
             />
@@ -166,6 +178,12 @@ const OptionSelect: React.FC<Props> = (props) => {
             )}
           </div>
         </Window>
+      )}
+      {showDescriptionWindow && (
+        <OptionDescription
+          handleDescriptionPress={handleDescriptionOKPress}
+          option={currentActor}
+        />
       )}
     </>
   );

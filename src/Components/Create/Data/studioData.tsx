@@ -5,6 +5,8 @@ import badMovieCoImage from "../../../Assets/BadMovieCo.png";
 import bigBoyImage from "../../../Assets/BigBoy.png";
 import everestImage from "../../../Assets/Everest.png";
 import filmFactoryImage from "../../../Assets/Factory.png";
+import bananaBrosImage from "../../../Assets/BananaBros.png";
+import failFilmsImage from "../../../Assets/FailFilms.png";
 import { CompanyInfoState } from "../../../Redux/Reducers/companyInfoSlice";
 
 export let studios: Studio[] = [
@@ -46,8 +48,8 @@ export let studios: Studio[] = [
   },
   {
     id: 4,
-    studioName: "Big Papi Pictures",
-    image: questionMark,
+    studioName: "Fail Films",
+    image: failFilmsImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -65,7 +67,7 @@ export let studios: Studio[] = [
   {
     id: 6,
     studioName: "Banana Bros.",
-    image: questionMark,
+    image: bananaBrosImage,
     offerRequested: false,
     rejected: false,
     offer: 0,
@@ -73,7 +75,7 @@ export let studios: Studio[] = [
   },
 ];
 
-const getRandomInt = (max: number): number => {
+export const getRandomInt = (max: number): number => {
   return Math.floor(Math.random() * max) + 1;
 };
 
@@ -115,11 +117,23 @@ export const requestOffer = (
   company: CompanyInfoState,
 ): Studio[] => {
   const randomNum: number = getRandomInt(29);
-  const companyReputation: number = company.reputation + company.history.length;
+  const companyReputation = (): number => {
+    if (
+      company.reputation + company.history.length < 20 &&
+      company.reputation + company.history.length > 0
+    ) {
+      return 5;
+    } else if (company.reputation + company.history.length >= 20) {
+      return 15;
+    } else {
+      return 0;
+    }
+  };
+
   switch (studio.id) {
     case 0:
-      if (randomNum > 15 - companyReputation) {
-        studios[0].offer = getRandomArbitrary(50, 70);
+      if (randomNum < 5 + companyReputation()) {
+        studios[0].offer = getRandomArbitrary(90, 110);
         studios[0].offerRequested = true;
         studios[0].message = generateAcceptedMessage();
       } else {
@@ -131,7 +145,7 @@ export const requestOffer = (
       return studios;
     case 1:
       if (randomNum > 0) {
-        studios[1].offer = getRandomArbitrary(30, 40);
+        studios[1].offer = getRandomArbitrary(70, 80);
         studios[1].offerRequested = true;
         studios[1].message = generateAcceptedMessage();
       } else {
@@ -142,8 +156,8 @@ export const requestOffer = (
       }
       return studios;
     case 2:
-      if (randomNum >= 10 && randomNum <= 15 + companyReputation) {
-        studios[2].offer = getRandomArbitrary(40, 50);
+      if (randomNum >= 10 && randomNum <= 15 + companyReputation()) {
+        studios[2].offer = getRandomArbitrary(80, 90);
         studios[2].offerRequested = true;
         studios[2].message = generateAcceptedMessage();
       } else {
@@ -155,7 +169,7 @@ export const requestOffer = (
       return studios;
     case 3:
       if (randomNum >= 10) {
-        studios[3].offer = getRandomArbitrary(35, 55);
+        studios[3].offer = getRandomArbitrary(75, 95);
         studios[3].offerRequested = true;
         studios[3].message = generateAcceptedMessage();
       } else {
@@ -166,8 +180,8 @@ export const requestOffer = (
       }
       return studios;
     case 4:
-      if (randomNum >= 20 - companyReputation) {
-        studios[4].offer = getRandomArbitrary(35, 65);
+      if (randomNum >= 20 - companyReputation()) {
+        studios[4].offer = getRandomArbitrary(75, 105);
         studios[4].offerRequested = true;
         studios[4].message = generateAcceptedMessage();
       } else {
@@ -178,8 +192,8 @@ export const requestOffer = (
       }
       return studios;
     case 5:
-      if (randomNum >= 5 - companyReputation) {
-        studios[5].offer = getRandomArbitrary(35, 45);
+      if (randomNum >= 5 - companyReputation()) {
+        studios[5].offer = getRandomArbitrary(75, 85);
         studios[5].offerRequested = true;
         studios[5].message = generateAcceptedMessage();
       } else {
@@ -190,8 +204,8 @@ export const requestOffer = (
       }
       return studios;
     case 6:
-      if (randomNum >= 25 - companyReputation) {
-        studios[6].offer = getRandomArbitrary(55, 65);
+      if (randomNum >= 25 - companyReputation()) {
+        studios[6].offer = getRandomArbitrary(95, 105);
         studios[6].offerRequested = true;
         studios[6].message = generateAcceptedMessage();
       } else {
@@ -238,6 +252,9 @@ const rejectedMessages = [
   {
     message: "Sorry, we're broke. Can I borrow 40 dollars?",
   },
+  {
+    message: "Heck no.",
+  },
 ];
 
 const acceptedMessages = [
@@ -268,6 +285,9 @@ const acceptedMessages = [
   {
     message:
       "Hey, not only do I love your film, I'm also in love with you. Sorry, that's inappropriate, but yes, I'd like to distribute your film.",
+  },
+  {
+    message: "Heck yes.",
   },
 ];
 
@@ -311,8 +331,8 @@ export const resetData = (): void => {
     },
     {
       id: 4,
-      studioName: "Big Papi Pictures",
-      image: questionMark,
+      studioName: "Fail Films",
+      image: failFilmsImage,
       offerRequested: false,
       rejected: false,
       offer: 0,
@@ -330,7 +350,7 @@ export const resetData = (): void => {
     {
       id: 6,
       studioName: "Banana Bros.",
-      image: questionMark,
+      image: bananaBrosImage,
       offerRequested: false,
       rejected: false,
       offer: 0,

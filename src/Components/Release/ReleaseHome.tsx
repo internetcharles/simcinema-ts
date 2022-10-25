@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  clamp,
   generateInitialTheaters,
   generateNextHypeNumber,
   reputationCalc,
@@ -21,6 +22,7 @@ import { generateReleaseEvent } from "../Filming/Data/eventData";
 import { ReleaseEvent } from "../Filming/Interfaces/FilmingInterface";
 import AdModal from "../Global/AdModal";
 import FilmNotificationBox from "../Global/FilmNotificationBox";
+import FilmReelDecoration from "../Global/FilmReelDecoration";
 import MovieInfoHeader from "../Global/MovieInfoHeader";
 import Window from "../Global/Window";
 import { generateReviews } from "./Data/reviewData";
@@ -30,9 +32,7 @@ import ReviewsBox from "./ReviewsBox";
 import ReviewsModal from "./ReviewsModal";
 import "./Styles/ReleaseHome.scss";
 
-interface Props {}
-
-const ReleaseHome: React.FC<Props> = (props) => {
+const ReleaseHome: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector((state) => state.movieInfo);
@@ -45,7 +45,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const [showMovieDetails, setShowMovieDetails] = useState<boolean>(true);
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [notifications, setNotifications] = useState<string[]>([]);
-  const [theaterFallOff, setTheaterFallOff] = useState<number>(10);
+  const [theaterFallOff, setTheaterFallOff] = useState<number>(0);
   const [reviews, setReviews] = useState<Reviews>({
     sodaCityTimes: 0,
     dailySpill: 0,
@@ -72,16 +72,22 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
     setAdModalOpen(false);
-    setTheaterFallOff(theaterFallOff * 1.6);
+    setTheaterFallOff((theaterFallOff) =>
+      clamp(
+        theaterFallOff + (353 - clamp(quality, 300, 348)) - hype * 0.28,
+        0,
+        10000,
+      ),
+    );
     const weekEvent: ReleaseEvent = generateReleaseEvent();
-    const hypeAdjustment =
-      generateNextHypeNumber(hype + weekEvent.hypeDifference, targetHype) - 1;
+    const hypeAdjustment = generateNextHypeNumber(
+      hype + weekEvent.hypeDifference,
+      targetHype - 1,
+    );
     const theaterAdjustment =
       hype > 0
-        ? theaters -
-          Math.floor(300 / (hype + Math.random() * 2 + 1) + (200 - quality))
-        : theaters -
-          Math.floor(300 / (Math.random() * 2 + 1) + (200 - quality));
+        ? theaters - Math.floor(theaterFallOff)
+        : theaters - Math.floor(theaterFallOff);
     if (theaters <= 0) {
       setTheaters(0);
       setNotifications([
@@ -91,10 +97,12 @@ const ReleaseHome: React.FC<Props> = (props) => {
       return;
     }
     if (theaters > 0) {
-      setEarnings(earnings + theaters * 700);
-      if (hype + hypeAdjustment > 0) {
-        dispatch(adjustHype(hypeAdjustment));
+      setEarnings(earnings + theaters * 703);
+      if (targetHype > 0) {
         dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
+        dispatch(adjustHype(hypeAdjustment));
+      } else if (hypeAdjustment < 0) {
+        dispatch(adjustHype(0));
       } else {
         dispatch(adjustHype(0));
       }
@@ -142,6 +150,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
           budget: budgetInfo.budget,
           earnings,
           cast: movieInfo.cast,
+          genre: movieInfo.genre,
         }),
       );
       dispatch(adjustReputation(reputationCalc(budgetInfo.budget, earnings)));
@@ -155,35 +164,41 @@ const ReleaseHome: React.FC<Props> = (props) => {
 
   return (
     <Window size="large-window" label="Release">
-      <MovieInfoHeader
-        theaters={theaters}
-        handleArrowClick={handleMovieDetailsClick}
-        showMovieDetails={showMovieDetails}
-        currentWeek={currentWeek}
-        percentDone={-10}
-      />
-      <div className="release-home-ad-reviews">
-        <div className="release-home-earnings">
-          Earnings:{" "}
-          <div className="release-home-earnings-number">${earnings}</div>
+      <FilmReelDecoration />
+      <div className="release-home-container">
+        <MovieInfoHeader
+          theaters={theaters}
+          handleArrowClick={handleMovieDetailsClick}
+          showMovieDetails={showMovieDetails}
+          currentWeek={currentWeek}
+          percentDone={-10}
+        />
+        <div className="release-home-ad-reviews">
+          <div className="release-home-earnings">
+            Earnings:{" "}
+            <div className="release-home-earnings-number">${earnings}</div>
+          </div>
+          <AdvertisingBox halved={true} budgetInfo={budgetInfo} />
+          <ReviewsBox reviews={reviews} />
         </div>
-        <AdvertisingBox halved={true} budgetInfo={budgetInfo} />
-        <ReviewsBox reviews={reviews} />
+        <FilmNotificationBox
+          notifications={notifications}
+          expandedInfo={showMovieDetails}
+        />
+        <ReleaseButtonContainer
+          theaters={theaters}
+          handleAdModalPress={handleAdPress}
+          advanceWeek={advanceWeek}
+          continueToSummary={continueToSummary}
+        />
+        {adModalOpen && <AdModal handleDonePress={handleAdPress} />}
+        {reviewsModalOpen && (
+          <ReviewsModal
+            handleButtonPress={handleReviewPress}
+            reviews={reviews}
+          />
+        )}
       </div>
-      <FilmNotificationBox
-        notifications={notifications}
-        expandedInfo={showMovieDetails}
-      />
-      <ReleaseButtonContainer
-        theaters={theaters}
-        handleAdModalPress={handleAdPress}
-        advanceWeek={advanceWeek}
-        continueToSummary={continueToSummary}
-      />
-      {adModalOpen && <AdModal handleDonePress={handleAdPress} />}
-      {reviewsModalOpen && (
-        <ReviewsModal handleButtonPress={handleReviewPress} reviews={reviews} />
-      )}
     </Window>
   );
 };

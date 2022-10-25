@@ -73,7 +73,7 @@
 }
 
 .ad-modal-mini-button-container {
-  align-self: flex-end;
+  align-self: center;
   margin-right: 20px;
   margin-top: 20px;
 }
@@ -87,9 +87,25 @@
   -ms-user-select: none;
 }
 
-@media screen and (max-width: 1900px) {
+@media screen and (max-width: 1800px), screen and (max-height: 900px) {
   .ad-modal-container table {
     background-color: rgb(138, 138, 138);
     font-size: 10pt;
+  }
+  .ad-modal-money-remaining {
+    font-size: 10pt;
+    margin-top: 5px;
+    margin-left: 5px;
+    align-self: center;
+  }
+
+  .ad-modal-ad-header-container {
+    font-size: 10pt;
+    font-family: "Sysfont";
+    margin-bottom: 5px;
+  }
+
+  .ad-modal-table-price {
+    font-size: 8pt;
   }
 }

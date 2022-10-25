@@ -25,9 +25,11 @@
 }
 
 .info-container {
-  height: 80px;
+  height: calc(99% - 64px);
   display: flex;
   align-items: center;
   background-color: rgb(231, 231, 231);
   border-bottom: 2px solid grey;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }

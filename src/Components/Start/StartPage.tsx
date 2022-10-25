@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
@@ -5,6 +7,7 @@ import Window from "../Global/Window";
 import InfoHeader from "./InfoHeader";
 import { FaFilm } from "react-icons/fa";
 import { BsFillCameraReelsFill } from "react-icons/bs";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import MiniButton from "../Global/MiniButton";
 import "./Styles/StartPage.scss";
 import CreateCompany from "./CreateCompany";
@@ -13,24 +16,41 @@ import StudioInfoModal from "./StudioInfoModal";
 import { resetMovieInfo } from "../../Redux/Reducers/movieInfoSlice";
 import { resetBudget } from "../../Redux/Reducers/budgetSlice";
 import { resetData } from "../Create/Data/studioData";
+import { fetchCompany } from "../../Redux/Reducers/companyInfoSlice";
+import { auth, logout } from "../../firebase";
+import { Movie } from "../Create/Interfaces/CreateInterface";
+import Loading from "../Global/Loading";
+import { useAuthState } from "react-firebase-hooks/auth";
+import MovieInfoModal from "./MovieInfoModal";
 
-const StartPage: React.FC = (props) => {
+const StartPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const companyInfo = useAppSelector((state) => state.companyInfo);
-
-  const [showCompanyModal, setShowCompanyModal] = useState(false);
-  const [showStudioInfoModal, setShowStudioInfoModal] = useState(false);
+  const [showCompanyModal, setShowCompanyModal] = useState<boolean>(false);
+  const [showStudioInfoModal, setShowStudioInfoModal] =
+    useState<boolean>(false);
+  const [currentHistoryItem, setCurrentHistoryItem] = useState<Movie | null>(
+    null,
+  );
+  const [showHistoryItemDetails, setShowHistoryItemDetails] =
+    useState<boolean>(false);
   const [dismissed, setDismissed] = useState(false);
-  const [largeWindowDismissed, setLargeWindowDismissed] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    if (companyInfo.companyName === "") {
-      setShowCompanyModal(true);
+    if (!auth.currentUser) {
+      navigate("/login");
+    } else {
+      try {
+        dispatch(fetchCompany(auth.currentUser));
+      } catch {
+        console.log(error);
+      }
     }
-    console.log(companyInfo.history);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const reset = (): void => {
     dispatch(resetMovieInfo());
     dispatch(resetBudget());
@@ -40,7 +60,6 @@ const StartPage: React.FC = (props) => {
   const handleNewMoviePress = (): void => {
     if (companyInfo.companyName !== "") {
       reset();
-      setLargeWindowDismissed(true);
       setTimeout(() => {
         navigate("/create-movie");
       }, 400);
@@ -56,10 +75,28 @@ const StartPage: React.FC = (props) => {
     }, 400);
   };
 
+  const handleLogoutPress = (): void => {
+    logout().then(() => {
+      navigate("/");
+    });
+  };
+
   const handleStudioInfoPress = (): void => {
     setShowStudioInfoModal(!showStudioInfoModal);
   };
 
+  const handleHistoryItemPress = (movie: Movie): void => {
+    setCurrentHistoryItem(movie);
+    setShowHistoryItemDetails(true);
+  };
+
+  const handleHistoryDetailsOKPress = (): void => {
+    setShowHistoryItemDetails(false);
+  };
+
+  const newMovieArray: Movie[] = [...companyInfo.history];
+
+  if (loading) return <Loading />;
   return (
     <>
       {!showCompanyModal && (
@@ -73,9 +110,13 @@ const StartPage: React.FC = (props) => {
               <div className="start-page-history-container">
                 <div className="start-page-films-produced">Films produced:</div>
                 <div className="start-page-history-box">
-                  {companyInfo.history.length > 0 ? (
-                    companyInfo.history.map((movie) => (
-                      <div className="history-item" key={movie.earnings}>
+                  {newMovieArray.length > 0 ? (
+                    newMovieArray.reverse().map((movie, idx) => (
+                      <div
+                        className="history-item"
+                        key={idx}
+                        onClick={() => handleHistoryItemPress(movie)}
+                      >
                         {movie.title}: {movie.averageScore}/10 ($
                         {convertToMillions(movie.earnings)} million) (
                         {gradeMovie(
@@ -87,7 +128,8 @@ const StartPage: React.FC = (props) => {
                     ))
                   ) : (
                     <div className="no-history-text">
-                      No films produced yet!
+                      Press &quot;New Film&quot; to create your company and make
+                      a new movie!
                     </div>
                   )}
                 </div>
@@ -103,6 +145,11 @@ const StartPage: React.FC = (props) => {
                     handleButtonPress={handleStudioInfoPress}
                     icon={<BsFillCameraReelsFill size={14} />}
                     label="Studio Info"
+                  />
+                  <MiniButton
+                    handleButtonPress={handleLogoutPress}
+                    label="Logout"
+                    icon={<RiLogoutBoxRLine size={14} />}
                   />
                 </div>
                 <div className="start-page-info-window">
@@ -124,6 +171,12 @@ const StartPage: React.FC = (props) => {
       )}
       {showStudioInfoModal && (
         <StudioInfoModal handleStudioInfoPress={handleStudioInfoPress} />
+      )}
+      {showHistoryItemDetails && (
+        <MovieInfoModal
+          movieInfo={currentHistoryItem}
+          handleOKPress={handleHistoryDetailsOKPress}
+        />
       )}
     </>
   );

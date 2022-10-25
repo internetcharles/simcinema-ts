@@ -1,0 +1,37 @@
+.genre-warning-modal-container {
+  height: 100%;
+  width: 100%;
+  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.genre-warning-modal-text {
+  font-family: "Sysfont";
+  font-size: 10pt;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-align: center;
+}
+
+.genre-warning-modal-genre-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.genre-warning-modal-genre-container-text-header {
+  font-size: 12pt;
+  font-family: "Sysfont";
+}
+
+.genre-warning-modal-genre-container-text {
+  font-size: 10pt;
+  font-family: "Sysfont";
+}
+
+.genre-warning-modal-genre-button-container {
+  display: flex;
+}
