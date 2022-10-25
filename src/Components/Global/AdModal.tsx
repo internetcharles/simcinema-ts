@@ -78,7 +78,7 @@ const AdModal: React.FC<Props> = ({ handleDonePress }) => {
             <tbody>
               <tr className="ad-modal-ad-type-container">
                 <td className="ad-modal-ad-type-title">TV Commercials</td>
-                <td>Price: $6 million</td>
+                <td className="ad-modal-table-price">Price: $6 million</td>
                 <td className="ad-modal-ad-type-have">
                   {adInfo.tvCommercials}
                 </td>
@@ -91,7 +91,7 @@ const AdModal: React.FC<Props> = ({ handleDonePress }) => {
               </tr>
               <tr className="ad-modal-ad-type-container">
                 <td className="ad-modal-ad-type-title">Movie trailers</td>
-                <td>Price: $4 million</td>
+                <td className="ad-modal-table-price">Price: $4 million</td>
                 <td className="ad-modal-ad-type-have">
                   {adInfo.movieTrailers}
                 </td>
@@ -106,7 +106,7 @@ const AdModal: React.FC<Props> = ({ handleDonePress }) => {
                 <td className="ad-modal-ad-type-title">
                   Magazine/Newspaper ads
                 </td>
-                <td>Price: $2 million</td>
+                <td className="ad-modal-table-price">Price: $2 million</td>
                 <td className="ad-modal-ad-type-have">
                   {adInfo.magazineNewspaperAds}
                 </td>
@@ -119,7 +119,7 @@ const AdModal: React.FC<Props> = ({ handleDonePress }) => {
               </tr>
               <tr className="ad-modal-ad-type-container">
                 <td className="ad-modal-ad-type-title">Posters</td>
-                <td>Price: $1 million</td>
+                <td className="ad-modal-table-price">Price: $1 million</td>
                 <td className="ad-modal-ad-type-have">{adInfo.posters}</td>
                 <td
                   className="ad-modal-buy-button"

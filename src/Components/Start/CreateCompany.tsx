@@ -31,7 +31,6 @@ const CreateCompany: React.FC<Props> = ({
     if (auth.currentUser) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       const company = getCompany(auth.currentUser);
-      console.log(company);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

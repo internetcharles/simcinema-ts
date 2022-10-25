@@ -56,7 +56,6 @@ const CreateMovie: React.FC<Props> = (props) => {
       genreRepeatCheck(companyInfo.history, selectedGenre.value) &&
       !genreWarningShown
     ) {
-      console.log("GENRE REPEAT DETECTED");
       setGenreWarningModalVisible(true);
       setGenreWarningShown(true);
       return;
@@ -64,7 +63,6 @@ const CreateMovie: React.FC<Props> = (props) => {
       genreRepeatCheck(companyInfo.history, selectedGenre.value) &&
       genreWarningShown
     ) {
-      console.log("USER SAID FUCK IT");
       dispatch(adjustQuality(-50));
     }
     dispatch(

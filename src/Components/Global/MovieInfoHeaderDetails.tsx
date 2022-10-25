@@ -22,7 +22,6 @@ const MovieInfoHeaderDetails: React.FC<Props> = ({
   percentDone,
   theaters,
 }) => {
-  console.log(percentDone);
   const totalPercentDone = Math.floor(percentDone / 4);
   return (
     <div className="movie-info-header-details-baseline-container">

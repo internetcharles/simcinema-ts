@@ -7,7 +7,7 @@ export const generateInitialHype = (quality: number): number => {
 
 export const generateNextHypeNumber = (min: number, max: number): number => {
   const arr: number[] = [];
-  const length: number = 9;
+  const length: number = 11;
 
   if (max > min) {
     arr[0] = min;
@@ -123,7 +123,6 @@ export const reputationString = (
   reputation: number,
   history: Movie[],
 ): string => {
-  console.log(reputation);
   if (history.length < 5) {
     return "New kid on the block";
   } else if (reputation < 0) {

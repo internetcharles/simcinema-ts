@@ -54,7 +54,6 @@ const ContentSelect: React.FC<Props> = (props) => {
   };
 
   const handleSubmit = (rating: string): void => {
-    console.log(ratingData[rating][movieInfo.genre]);
     setDismissed(true);
     setTimeout(() => {
       dispatch(setMovieInfo({ ...movieInfo, rating }));

@@ -32,9 +32,7 @@ import ReviewsBox from "./ReviewsBox";
 import ReviewsModal from "./ReviewsModal";
 import "./Styles/ReleaseHome.scss";
 
-interface Props {}
-
-const ReleaseHome: React.FC<Props> = (props) => {
+const ReleaseHome: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const movieInfo = useAppSelector((state) => state.movieInfo);
@@ -76,12 +74,11 @@ const ReleaseHome: React.FC<Props> = (props) => {
     setAdModalOpen(false);
     setTheaterFallOff((theaterFallOff) =>
       clamp(
-        theaterFallOff + (350 - clamp(quality, 0, 340)) - hype * 3,
+        theaterFallOff + (353 - clamp(quality, 300, 348)) - hype * 0.28,
         0,
         10000,
       ),
     );
-    console.log(theaterFallOff);
     const weekEvent: ReleaseEvent = generateReleaseEvent();
     const hypeAdjustment = generateNextHypeNumber(
       hype + weekEvent.hypeDifference,

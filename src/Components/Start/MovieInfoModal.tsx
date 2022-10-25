@@ -11,7 +11,6 @@ interface Props {
 }
 
 const MovieInfoModal: React.FC<Props> = ({ movieInfo, handleOKPress }) => {
-  console.log(movieInfo);
   const earningsInMillions = movieInfo?.earnings
     ? convertToMillions(movieInfo.earnings)
     : null;

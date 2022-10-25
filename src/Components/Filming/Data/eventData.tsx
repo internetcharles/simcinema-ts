@@ -15,7 +15,6 @@ const generatePositiveFilmingEvent = (cast: MovieOption[]): FilmingEvent => {
   const director = cast.find((actor) => actor.type === "director")?.name;
   const progressNumber = getRandomArbitrary(30, 40);
   const randomInt = getRandomArbitrary(0, 10);
-  console.log(randomInt);
   if (randomInt === 0) {
     return {
       description: `${director} brings donuts for the crew. Progress is increased by ${progressNumber}.`,
@@ -177,7 +176,6 @@ export const generateFilmingEvent = (
   movieCompleted: boolean,
 ): FilmingEvent => {
   const randomInt = getRandomArbitrary(0, 100);
-  console.log("randomint", randomInt);
   if (randomInt >= 0 && randomInt <= 20 && !movieCompleted) {
     return generateNegativeFilmingEvent(cast);
   }

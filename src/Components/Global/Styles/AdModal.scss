@@ -73,7 +73,7 @@
 }
 
 .ad-modal-mini-button-container {
-  align-self: flex-end;
+  align-self: center;
   margin-right: 20px;
   margin-top: 20px;
 }
@@ -94,7 +94,7 @@
   }
   .ad-modal-money-remaining {
     font-size: 10pt;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 5px;
     align-self: center;
   }
@@ -102,6 +102,10 @@
   .ad-modal-ad-header-container {
     font-size: 10pt;
     font-family: "Sysfont";
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+  }
+
+  .ad-modal-table-price {
+    font-size: 8pt;
   }
 }
