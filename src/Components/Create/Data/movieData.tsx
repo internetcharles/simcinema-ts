@@ -33,7 +33,7 @@ import Psycho from "../../../Assets/Psycho.png";
 import Boys from "../../../Assets/Boys.png";
 import Worms from "../../../Assets/Worms.png";
 
-export const maxQuality: number = 380;
+export const maxQuality: number = 400;
 
 export const movieOptions: MovieOption[][] = [
   [
@@ -66,8 +66,8 @@ export const movieOptions: MovieOption[][] = [
         comedy: 75,
         drama: 75,
         romance: 75,
-        horror: 85,
-        sciFi: 100,
+        horror: 100,
+        sciFi: 85,
         animated: 80,
       },
     },
@@ -81,11 +81,11 @@ export const movieOptions: MovieOption[][] = [
       quality: {
         actionAdventure: 90,
         comedy: 70,
-        drama: 80,
+        drama: 95,
         romance: 70,
         horror: 60,
         sciFi: 85,
-        animated: 90,
+        animated: 80,
       },
     },
     {
@@ -96,13 +96,13 @@ export const movieOptions: MovieOption[][] = [
       portrait: TomMustachio,
       description: `Tom Mustachio is a middling director known for churning out films with gun-slinging protagonists. It'd be an exaggeration to say that he's on the rise, but he's certainly still around.`,
       quality: {
-        actionAdventure: 50,
-        comedy: 50,
-        drama: 50,
-        romance: 50,
-        horror: 50,
-        sciFi: 50,
-        animated: 50,
+        actionAdventure: 60,
+        comedy: 60,
+        drama: 60,
+        romance: 60,
+        horror: 60,
+        sciFi: 60,
+        animated: 60,
       },
     },
     {
@@ -117,7 +117,7 @@ export const movieOptions: MovieOption[][] = [
         comedy: 60,
         drama: 85,
         romance: 95,
-        horror: 70,
+        horror: 80,
         sciFi: 70,
         animated: 70,
       },
@@ -172,7 +172,7 @@ export const movieOptions: MovieOption[][] = [
         romance: 100,
         horror: 70,
         sciFi: 90,
-        animated: 70,
+        animated: 85,
       },
     },
     {
@@ -189,7 +189,7 @@ export const movieOptions: MovieOption[][] = [
         romance: 60,
         horror: 55,
         sciFi: 100,
-        animated: 60,
+        animated: 100,
       },
     },
     {
@@ -200,11 +200,11 @@ export const movieOptions: MovieOption[][] = [
       portrait: David,
       description: `Old reliable. This geezer has been on the scene for years, and is about as well-rounded as an actor can be. Place him in any scene and he is going to give you a memorable performance. He just might keel over at any moment.`,
       quality: {
-        actionAdventure: 95,
+        actionAdventure: 80,
         comedy: 75,
-        drama: 90,
+        drama: 100,
         romance: 90,
-        horror: 65,
+        horror: 100,
         sciFi: 75,
         animated: 75,
       },
@@ -229,7 +229,7 @@ export const movieOptions: MovieOption[][] = [
     {
       name: "Hans Gruber",
       type: "leadActor",
-      price: 25,
+      price: 20,
       status: "Available",
       portrait: Hans,
       description: `Hans barely speaks English. But boy is that guy buff. And expensive. If you can ignore his scandalous personal life, he might be the pricey star for your film.`,
@@ -238,7 +238,7 @@ export const movieOptions: MovieOption[][] = [
         comedy: 85,
         drama: 75,
         romance: 50,
-        horror: 80,
+        horror: 100,
         sciFi: 95,
         animated: 75,
       },
@@ -308,7 +308,7 @@ export const movieOptions: MovieOption[][] = [
         comedy: 70,
         drama: 100,
         romance: 80,
-        horror: 90,
+        horror: 100,
         sciFi: 70,
         animated: 90,
       },
@@ -738,7 +738,7 @@ export const ratingData: any = {
     actionAdventure: 14,
     comedy: 10,
     drama: 10,
-    romance: 10,
+    romance: 14,
     horror: 14,
     sciFi: 14,
     animated: -20,

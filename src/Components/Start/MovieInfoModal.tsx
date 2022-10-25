@@ -1,5 +1,5 @@
 import React from "react";
-import { convertToMillions } from "../../Common/utils";
+import { convertGenreName, convertToMillions } from "../../Common/utils";
 import { Movie } from "../Create/Interfaces/CreateInterface";
 import MiniButton from "../Global/MiniButton";
 import Window from "../Global/Window";
@@ -36,6 +36,12 @@ const MovieInfoModal: React.FC<Props> = ({ movieInfo, handleOKPress }) => {
         <div className={earningsClass()}>
           Box Office: ${earningsInMillions} million
         </div>
+        <div className="movie-info-secondary-info">
+          Genre: {movieInfo?.genre ? convertGenreName(movieInfo?.genre) : null}
+        </div>
+        <div className="movie-info-secondary-info">
+          Average Score: {movieInfo?.averageScore}
+        </div>
         <div className="movie-info-option-outer-container">
           <div className="movie-info-option-inner-container">
             <div className="movie-info-option">
@@ -46,7 +52,7 @@ const MovieInfoModal: React.FC<Props> = ({ movieInfo, handleOKPress }) => {
             </div>
             <div className="movie-info-option">
               Lead Actress: {movieInfo?.cast[2].name}
-            </div>{" "}
+            </div>
           </div>
           <div className="movie-info-option-inner-container">
             <div className="movie-info-option">

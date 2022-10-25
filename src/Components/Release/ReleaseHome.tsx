@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  clamp,
   generateInitialTheaters,
   generateNextHypeNumber,
   reputationCalc,
@@ -46,7 +47,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const [showMovieDetails, setShowMovieDetails] = useState<boolean>(true);
   const [currentWeek, setCurrentWeek] = useState<number>(0);
   const [notifications, setNotifications] = useState<string[]>([]);
-  const [theaterFallOff, setTheaterFallOff] = useState<number>(10);
+  const [theaterFallOff, setTheaterFallOff] = useState<number>(0);
   const [reviews, setReviews] = useState<Reviews>({
     sodaCityTimes: 0,
     dailySpill: 0,
@@ -73,7 +74,17 @@ const ReleaseHome: React.FC<Props> = (props) => {
   const advanceWeek = (): void => {
     setCurrentWeek(currentWeek + 1);
     setAdModalOpen(false);
-    setTheaterFallOff(theaterFallOff * 1.6);
+    setTheaterFallOff((theaterFallOff) =>
+      clamp(
+        theaterFallOff +
+          (350 - clamp(quality, 0, 346)) -
+          hype +
+          Math.random() * 5,
+        0,
+        10000,
+      ),
+    );
+    console.log(theaterFallOff);
     const weekEvent: ReleaseEvent = generateReleaseEvent();
     const hypeAdjustment = generateNextHypeNumber(
       hype + weekEvent.hypeDifference,
@@ -81,10 +92,8 @@ const ReleaseHome: React.FC<Props> = (props) => {
     );
     const theaterAdjustment =
       hype > 0
-        ? theaters -
-          Math.floor(300 / (hype + Math.random() * 2 + 1) + (300 - quality))
-        : theaters -
-          Math.floor(300 / (Math.random() * 2 + 1) + (300 - quality));
+        ? theaters - Math.floor(theaterFallOff)
+        : theaters - Math.floor(theaterFallOff);
     if (theaters <= 0) {
       setTheaters(0);
       setNotifications([
@@ -94,7 +103,7 @@ const ReleaseHome: React.FC<Props> = (props) => {
       return;
     }
     if (theaters > 0) {
-      setEarnings(earnings + theaters * 700);
+      setEarnings(earnings + theaters * 703);
       if (targetHype > 0) {
         dispatch(adjustTargetHype(targetHype - Math.log(currentWeek + 1)));
         dispatch(adjustHype(hypeAdjustment));

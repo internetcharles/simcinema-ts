@@ -37,7 +37,7 @@ export const generateInitialTheaters = (
   hype: number,
   quality: number,
 ): number => {
-  return hype * 23 + quality * 10;
+  return hype * 15 + quality * 10;
 };
 
 export const convertToMillions = (num: number): number => {
@@ -137,11 +137,9 @@ export const reputationString = (
 
 export const genreRepeatCheck = (history: Movie[], genre: string): boolean => {
   const lastThreeMovies = history.slice(history.length - 3, history.length);
-  console.log("HI", lastThreeMovies);
-  console.log(
-    "CHECK",
-    lastThreeMovies.some((element) => genre === element.genre),
-  );
   if (lastThreeMovies.some((element) => genre === element.genre)) return true;
   return false;
 };
+
+export const clamp = (num: number, min: number, max: number): number =>
+  Math.min(Math.max(num, min), max);

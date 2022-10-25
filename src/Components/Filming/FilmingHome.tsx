@@ -19,6 +19,8 @@ import { generateFilmingEvent } from "./Data/eventData";
 import "./Styles/FilmingHome.scss";
 import ReadyForReleaseModal from "./ReadyForReleaseModal";
 import ProgressBox from "./ProgressBox";
+import { getRandomInt } from "../Create/Data/studioData";
+import { adjustQuality } from "../../Redux/Reducers/qualitySlice";
 
 interface Props {}
 
@@ -51,6 +53,7 @@ const FilmingHome: React.FC<Props> = (props) => {
   const { cast } = movieInfo;
 
   useEffect(() => {
+    masterpieceCheck();
     const initialHype = generateInitialHype(qualityInfo.quality);
     dispatch(adjustHype(initialHype));
     dispatch(adjustTargetHype(initialHype));
@@ -98,6 +101,15 @@ const FilmingHome: React.FC<Props> = (props) => {
     filmingProgress,
     editingEffectsProgress,
   ]);
+
+  const masterpieceCheck = (): void => {
+    console.log(qualityInfo.quality);
+    const randomInt = getRandomInt(10);
+    if (qualityInfo.quality > 250 && randomInt === 5) {
+      console.log("MASTERPIECE!!!");
+      dispatch(adjustQuality(100));
+    }
+  };
 
   const handleArrowClick = (): void => {
     setInfoExpanded(!infoExpanded);

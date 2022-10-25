@@ -189,7 +189,10 @@ const CreateMovie: React.FC<Props> = (props) => {
                   >
                     Okay
                   </button>
-                  <button className="create-movie-description-button">
+                  <button
+                    onClick={() => navigate("/start-page")}
+                    className="create-movie-description-button"
+                  >
                     Cancel
                   </button>
                 </div>
